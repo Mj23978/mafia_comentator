@@ -1,0 +1,45 @@
+name: flutter_comentator
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_x:
+    path: ../packages/flutter_x/
+  adobe_xd: ^2.0.0+1
+  community_material_icon: ^5.9.55
+  cupertino_icons: ^1.0.2
+  dartx: ^0.6.0
+  dartz: ^0.10.0-nullsafety.2
+  date_format: ^2.0.2
+  flash: ^1.5.1
+  freezed_annotation: ^0.14.0
+  get: ^4.1.1
+  google_fonts: ^2.1.0
+  hive_flutter: ^1.0.0
+  hooks_riverpod: ^0.14.0+1
+  logger: ^1.0.0
+  quiver: ^3.0.0
+  responsive_builder: ^0.4.1
+  theme_provider: ^0.5.0
+  url_strategy: ^0.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^1.11.5
+  freezed: ^0.14.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
