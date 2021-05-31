@@ -1,6 +1,9 @@
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
-import 'package:dartx/dartx.dart';
+import 'package:flutter_x/flutter_x.dart';
+import 'package:get/get.dart';
+
+import '../utils/helpers.dart';
 
 void showAppSnackbar(BuildContext context, Color backgroundColor, Widget text, [Duration duration = const Duration(seconds: 4)]) {
   showFlash(
@@ -23,28 +26,9 @@ void showAppSnackbar(BuildContext context, Color backgroundColor, Widget text, [
           // showProgressIndicator: true,
           primaryAction: TextButton(
             onPressed: () => controller.dismiss(),
-            child: Text('Dismiss ', style: TextStyle(color: Colors.white)),
+            child: Text('dismiss'.tr, style: textStyle(15, color: Colors.white)),
           ),
-        ),
-      );
-    },
-  );
-}
-
-void showAppDialoge(BuildContext context, Widget child) {
-  showFlash(
-    context: context,
-    builder: (context, controller) {
-      return Flash.dialog(
-        controller: controller,
-        enableDrag: true,
-        // backgroundColor: backgroundColor,
-        brightness: Brightness.light,
-        boxShadows: [BoxShadow(blurRadius: 4)],
-        barrierBlur: 3.0,
-        barrierColor: Colors.black38,
-        barrierDismissible: true,
-        child: child,
+        ).pSy(x: 10),
       );
     },
   );

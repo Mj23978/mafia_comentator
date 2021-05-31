@@ -1,15 +1,13 @@
-import 'package:dartz/dartz.dart';
-import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_x/flutter_x.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../core/player.dart';
+import '../../models/role/role.dart';
 import '../../core/roles.dart';
+import '../../models/player/player.dart';
 import '../../providers/controllers/app_controller.dart';
-import '../../widgets/add_dialogue_pick_roles.dart';
-import '../../widgets/role_details_dialogue.dart';
+import '../../utils/helpers.dart';
+import '../../widgets/dialogs/role_details_dialog.dart';
 import '../../widgets/role_grid_item.dart';
 import '../../widgets/role_number_details.dart';
 import '../../widgets/show_snackbar.dart';
@@ -60,59 +58,19 @@ class PickRolesController extends GetxController {
   void _selectCity(int index, bool? value) {
     _cityRoles.update((val) {
       var res = _cityRoles.value[index];
-      res.selected = value ?? false;
-      val![index] = res;
+      val![index] = res.copyWith(selected: value ?? false);
     });
   }
 
   void _selectMafia(int index, bool? value) {
     _mafiaRoles.update((val) {
       var res = _mafiaRoles.value[index];
-      res.selected = value ?? false;
-      val![index] = res;
+      val![index] = res.copyWith(selected: value ?? false);
     });
   }
 
-  baseFlash(BuildContext context, Function1<FlashController, Widget> builder,
-      [bool dismissHorizental = false]) {
-    showFlash(
-      context: context,
-      builder: (context, controller) {
-        return Flash.dialog(
-          controller: controller,
-          backgroundColor: Colors.transparent,
-          enableDrag: true,
-          // backgroundColor: backgroundColor,
-          brightness: Brightness.light,
-          // boxShadows: [BoxShadow(blurRadius: 4)],
-          horizontalDismissDirection:
-              dismissHorizental ? HorizontalDismissDirection.horizontal : null,
-          barrierBlur: 3.0,
-          barrierColor: Colors.black38,
-          barrierDismissible: true,
-          child: builder(controller),
-        );
-      },
-    );
-  }
-
-  void _openAddDialogue(BuildContext context, double width, double height) {
-    var side = false.obs;
-    var cityChecked = false.obs;
-    baseFlash(
-      context,
-      (controller) => AddDialoguePickRoles(
-        height: height,
-        width: width,
-        value: cityChecked.value,
-        onChanged: (value) {
-          cityChecked.value = value!;
-          if (value == true) {
-            side.value = true;
-          }
-        },
-      ),
-    );
+  void _openAddDialogue() {
+    Get.toNamed("add-role");
   }
 
   void _roleDetailsDialogue(
@@ -126,10 +84,11 @@ class PickRolesController extends GetxController {
         height: height,
         roleDes: role.description,
         roleName: role.name,
-        roleSide: side ? "City" : "Mafia",
+        roleSide: side ? "city".tr : "mafia".tr,
         width: width,
         color: side ? Colors.green : Colors.red,
       ),
+      boxShadows: <BoxShadow>[],
     );
   }
 
@@ -139,102 +98,101 @@ class PickRolesController extends GetxController {
         context,
         Colors.red,
         Text(
-          "You Choosen ${_getCityRolesLength() + _getMafiaRolesLength()} Roles but You Have ${players.value.length} Players",
-          style: TextStyle(color: Colors.white),
+          "role_count_warning".trParams({
+                "role_count":
+                    (_getCityRolesLength() + _getMafiaRolesLength()).toString(),
+                "player_count": players.value.length.toString(),
+              }) ??
+              "",
+          style: textStyle(15, weight: FontWeight.w400, color: Colors.white),
         ),
       );
     } else {
       selectedRoles.value = [];
+
       selectedRoles.value.addAll(_cityRoles.value
           .where((element) => element.selected == true)
           .toList()
-          .map<Role>((e) {
-        e.count = 1;
-        return e;
-      }));
+          .map<Role>((e) => e.copyWith(count: 1)));
+
       selectedRoles.value.addAll(_mafiaRoles.value
           .where((element) => element.selected == true)
           .toList()
-          .map<Role>((e) {
-        e.count = 1;
-        return e;
-      }));
+          .map<Role>((e) => e.copyWith(count: 1)));
+
       print(selectedRoles.value.map((e) => e.name));
       baseFlash(
-          context,
-          (controller) => RoleNumberDetails(
-                // textStyle: tex,
-                dismiss: () {
-                  controller.dismiss();
-                },
-                height: height,
-                width: width,
-                playersCount: players.value.length,
-                submitRoles: () {
-                  var selectedCount = selectedRoles.value
-                      .fold<int>(0, (pv, e) => pv + (e.count));
-                  if (selectedCount != players.value.length) {
-                    showAppSnackbar(
-                        context,
-                        Colors.red,
-                        Text(
-                          "You Choosen $selectedCount Roles but You Have ${players.value.length} Players",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        3.0.seconds);
-                  } else {
-                    // Check Fairness
-                    List<String> roles = [];
-                    selectedRoles.value.forEach((element) {
-                      for (var i = 0; i < element.count; i++) {
-                        roles.add(element.name);
-                      }
-                    });
-                    roles.shuffle();
-                    final List<Player> resPlayers = [];
-                    for (var i = 0; i < players.value.length; i++) {
-                      var res = players.value[i];
-                      res.roleName = roles[i];
-                      resPlayers.add(res);
-                    }
-                    controller.dismiss();
-                    Get.offNamed("/show-roles", arguments: {
-                      "players": resPlayers,
-                      "roles": roles,
-                    });
-                  }
-                },
-                selectedRoles: selectedRoles,
-              ),
-          true); // Get.dialog();
+        context,
+        (controller) => RoleNumberDetails(
+          // textStyle: tex,
+          dismiss: () {
+            controller.dismiss();
+          },
+          height: height,
+          width: width,
+          playersCount: players.value.length,
+          submitRoles: () {
+            var selectedCount =
+                selectedRoles.value.fold<int>(0, (pv, e) => pv + (e.count));
+            if (selectedCount != players.value.length) {
+              showAppSnackbar(
+                  context,
+                  Colors.red,
+                  Text(
+                    "role_count_warning".trParams({
+                          "role_count":
+                              (_getCityRolesLength() + _getMafiaRolesLength())
+                                  .toString(),
+                          "player_count": players.value.length.toString(),
+                        }) ??
+                        "",
+                    style: textStyle(15,
+                        weight: FontWeight.w400, color: Colors.white),
+                  ),
+                  3.0.seconds);
+            } else {
+              // Check Fairness
+              List<String> roles = [];
+              selectedRoles.value.forEach((element) {
+                for (var i = 0; i < element.count; i++) {
+                  roles.add(element.name);
+                }
+              });
+              roles.shuffle();
+              final List<Player> resPlayers = [];
+              for (var i = 0; i < players.value.length; i++) {
+                var res = players.value[i];
+                resPlayers.add(res.copyWith(roleName: roles[i]));
+              }
+              controller.dismiss();
+              _helper.players.value = resPlayers;
+              _helper.roles.value = roles;
+              Get.offNamed("/show-roles", arguments: {
+                "show_players": resPlayers,
+                "show_roles": roles,
+              });
+            }
+          },
+          selectedRoles: selectedRoles,
+        ),
+        dismissHorizental: true,
+        boxShadows: <BoxShadow>[],
+      ); // Get.dialog();
     }
   }
 }
 
 class PickRolesView extends GetView<PickRolesController> {
-  int countGridTileCount(double maxWidth) {
-    final tileSize = maxWidth / 148.0;
-    final res = tileSize.round() == 0
-        ? 1
-        : (2.60 >= tileSize && tileSize >= 1.85)
-            ? 2
-            : tileSize;
-    return res.round();
-  }
-
-  TextStyle textStyle(double size,
-      [weight = FontWeight.w500, color = const Color(0xff222333)]) {
-    return GoogleFonts.rubik(fontSize: size, fontWeight: weight, color: color);
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, cs) {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            '${controller.players.value.length} Players',
-            style: textStyle(17, FontWeight.w500, Colors.white),
+            'pick_players_count'.trParams(
+                    {"count": controller.players.value.length.toString()}) ??
+                "",
+            style: textStyle(17, color: Colors.white),
           ),
           elevation: 0,
           shadowColor: Colors.transparent,
@@ -245,8 +203,7 @@ class PickRolesView extends GetView<PickRolesController> {
               Icons.add,
               color: Colors.white,
             ),
-            onPressed: () => controller._openAddDialogue(
-                context, cs.maxWidth * 0.55, cs.maxHeight * 0.45),
+            onPressed: () => controller._openAddDialogue(),
           ),
         ),
         extendBodyBehindAppBar: true,
@@ -267,13 +224,16 @@ class PickRolesView extends GetView<PickRolesController> {
                 slivers: <Widget>[
                   SliverToBoxAdapter(
                     child: Container(
-                      // height: cs.maxHeight * 0.085,
-                      // color: Colors.green,
                       child: Center(
                         child: Obx(
                           () => Text(
-                            "City Roles : ${controller._getCityRolesLength()}",
-                            style: textStyle(15, FontWeight.w500, Colors.white),
+                            "pick_city_count".trParams({
+                                  "count": controller
+                                      ._getCityRolesLength()
+                                      .toString()
+                                }) ??
+                                "",
+                            style: textStyle(15, color: Colors.white),
                           ),
                         ),
                       ),
@@ -294,13 +254,15 @@ class PickRolesView extends GetView<PickRolesController> {
                               stops: [0.0, 1.0],
                             ),
                             color: Colors.green.shade300,
-                            textStyle:
-                                textStyle(12, FontWeight.w400, Colors.white),
+                            textStyle: textStyle(12,
+                                weight: FontWeight.w400, color: Colors.white),
                             onLongPress: () {
+                              var desLen = controller
+                                  ._cityRoles.value[index].description.length;
                               controller._roleDetailsDialogue(
                                 context,
                                 cs.maxWidth * 0.6,
-                                cs.maxHeight * 0.36,
+                                cs.maxHeight * (0.29 + (desLen * 0.001)),
                                 true,
                                 controller._cityRoles.value[index],
                               );
@@ -319,7 +281,7 @@ class PickRolesView extends GetView<PickRolesController> {
                       childAspectRatio: 3.5,
                       mainAxisSpacing: 5.0,
                       crossAxisSpacing: 5.0,
-                      crossAxisCount: countGridTileCount(cs.maxWidth),
+                      crossAxisCount: gridTileCount(cs.maxWidth, 148.0),
                     ),
                   ),
                   SliverToBoxAdapter(
@@ -327,8 +289,13 @@ class PickRolesView extends GetView<PickRolesController> {
                       child: Center(
                         child: Obx(
                           () => Text(
-                            "Mafia Roles : ${controller._getMafiaRolesLength()}",
-                            style: textStyle(15, FontWeight.w500, Colors.white),
+                            "pick_mafia_count".trParams({
+                                  "count": controller
+                                      ._getMafiaRolesLength()
+                                      .toString()
+                                }) ??
+                                "",
+                            style: textStyle(15, color: Colors.white),
                           ),
                         ),
                       ),
@@ -349,14 +316,16 @@ class PickRolesView extends GetView<PickRolesController> {
                               ],
                               stops: [0.0, 1.0],
                             ),
-                            textStyle:
-                                textStyle(12, FontWeight.w400, Colors.white),
+                            textStyle: textStyle(12,
+                                weight: FontWeight.w400, color: Colors.white),
                             onLongPress: () {
+                              var desLen = controller
+                                  ._mafiaRoles.value[index].description.length;
                               controller._roleDetailsDialogue(
                                 context,
                                 cs.maxWidth * 0.6,
-                                cs.maxHeight * 0.36,
-                                true,
+                                cs.maxHeight * (0.29 + (desLen * 0.001)),
+                                false,
                                 controller._mafiaRoles.value[index],
                               );
                             },
@@ -374,7 +343,7 @@ class PickRolesView extends GetView<PickRolesController> {
                       childAspectRatio: 3.5,
                       mainAxisSpacing: 5.0,
                       crossAxisSpacing: 5.0,
-                      crossAxisCount: countGridTileCount(cs.maxWidth),
+                      crossAxisCount: gridTileCount(cs.maxWidth, 148),
                     ),
                   ),
                   SliverToBoxAdapter(child: (cs.maxHeight * 0.15).heightBox)
@@ -390,16 +359,16 @@ class PickRolesView extends GetView<PickRolesController> {
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(20)),
                   child: TextButton(
-                    child: Text("Show Roles",
-                        style: textStyle(16, FontWeight.w500, Colors.white)),
+                    child: Text("pick_show_roles".tr,
+                        style: textStyle(16, color: Colors.white)),
                     onPressed: () => controller._detailedRolesCount(
                       context,
                       cs.maxWidth * 0.65,
                       (cs.maxHeight *
-                              0.058 *
+                              0.05 *
                               (controller._getCityRolesLength() +
                                   controller._getMafiaRolesLength())) +
-                          (cs.maxHeight * 0.16),
+                          (cs.maxHeight * 0.21),
                     ),
                   ),
                 ),

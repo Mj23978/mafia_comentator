@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_x/flutter_x.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
+
+import '../../config/localization/language.dart';
+import '../../utils/helpers.dart';
+import '../../utils/keys.dart';
+import '../../widgets/dialogs/language_picker_dialog.dart';
 
 class SettingsBinding implements Bindings {
   @override
@@ -10,237 +16,104 @@ class SettingsBinding implements Bindings {
 }
 
 class SettingsController extends GetxController {
-  late SharedPreferences prefs;
-
-  var _resolution = ''.obs;
-  var _bandwidth = ''.obs;
-  var _codec = ''.obs;
+  Box confBox = Hive.box(DBKeys.hive_config);
   var _displayName = ''.obs;
 
   @override
   @mustCallSuper
   void onInit() async {
     super.onInit();
-    // _resolution.value = prefs.getString('resolution') ?? 'vga';
-    // _bandwidth.value = prefs.getString('bandwidth') ?? '512';
-    // _displayName.value = prefs.getString('display_name') ?? 'Guest';
-    // _codec.value = prefs.getString('codec') ?? 'vp8';
-  }
-
-  save() {
-    // prefs.setString('resolution', _resolution.value);
-    // prefs.setString('bandwidth', _bandwidth.value);
-    // prefs.setString('display_name', _displayName.value);
-    // prefs.setString('codec', _codec.value);
-    Get.back();
   }
 }
 
 class SettingsView extends GetView<SettingsController> {
-  var _codecItems = [
-    {
-      'name': 'H264',
-      'value': 'h264',
-    },
-    {
-      'name': 'VP8',
-      'value': 'vp8',
-    },
-    {
-      'name': 'VP9',
-      'value': 'VP9',
-    },
-  ];
-
-  var _bandwidthItems = [
-    {
-      'name': '256kbps',
-      'value': '256',
-    },
-    {
-      'name': '512kbps',
-      'value': '512',
-    },
-    {
-      'name': '768kbps',
-      'value': '768',
-    },
-    {
-      'name': '1Mbps',
-      'value': '1024',
-    },
-  ];
-
-  var _resolutionItems = [
-    {
-      'name': 'QVGA',
-      'value': 'qvga',
-    },
-    {
-      'name': 'VGA',
-      'value': 'vga',
-    },
-    {
-      'name': 'HD',
-      'value': 'hd',
-    },
-  ];
-
   Widget _buildRowFixTitleRadio(List<Map<String, dynamic>> items, var value,
       ValueChanged<String> onValueChanged) {
     return Container(
-        width: 320,
-        height: 100,
-        child: GridView.count(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10.0,
-            childAspectRatio: 2.8,
-            children: items
-                .map((item) => ConstrainedBox(
-                      constraints:
-                          BoxConstraints.tightFor(width: 120.0, height: 36.0),
-                      child: RadioListTile<String>(
-                        value: item['value'],
-                        title: Text(item['name']),
-                        groupValue: value,
-                        onChanged: (value) => onValueChanged(value!),
-                      ),
-                    ))
-                .toList()));
+      width: 320,
+      height: 100,
+      child: GridView.count(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.0,
+        childAspectRatio: 2.8,
+        children: items
+            .map(
+              (item) => ConstrainedBox(
+                constraints:
+                    BoxConstraints.tightFor(width: 120.0, height: 36.0),
+                child: RadioListTile<String>(
+                  value: item['value'],
+                  title: Text(item['name']),
+                  groupValue: value,
+                  onChanged: (value) => onValueChanged(value!),
+                ),
+              ),
+            )
+            .toList(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return LayoutBuilder(builder: (context, cs) {
+      return Scaffold(
         appBar: AppBar(
-          title: Text("Settings"),
+          // backgroundColor: Color(0xffE6E6EC),
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          centerTitle: true,
+          title: Text(
+            "settings".tr,
+            style: textStyle(17),
+          ),
+          // actionsIconTheme: IconThemeData(color: Colors.amberAccent),
+          iconTheme: IconThemeData(color: Color(0xff222333)),
         ),
-        body: Align(
-            alignment: Alignment(0, 0),
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(16.0),
+        backgroundColor: Color(0xffE6E6EC),
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(46.0, 18.0, 48.0, 0),
-                          child: Align(
-                            child: Text('DisplayName:'),
-                            alignment: Alignment.centerLeft,
-                          ),
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      baseFlash(
+                        context,
+                        (contr) => LanguagePickerDialog(
+                          height: cs.maxHeight * 0.45,
+                          width: cs.maxWidth * 0.5,
+                          isSearchable: true,
+                          languages: [Languages.persian, Languages.english],
+                          onValuePicked: (language) {
+                            Get.updateLocale(Locale(language.isoCode, language.countryCode));
+                            controller.confBox.put("local", Locale(language.isoCode, language.countryCode).toString());                            
+                            contr.dismiss();
+                          },
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(48.0, 0.0, 48.0, 0),
-                          child: TextField(
-                            keyboardType: TextInputType.text,
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(10.0),
-                              border: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.black12)),
-                              hintText: controller._displayName.value,
-                            ),
-                            onChanged: (value) {
-                              controller._displayName.value = value;
-                            },
-                          ),
-                        ),
-                      ],
+                        dismissHorizental: true,
+                        boxShadows: <BoxShadow>[],
+                      );
+                    },
+                    child: Container(
+                      width: cs.maxWidth,
+                      height: cs.maxHeight * 0.1,
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(13)),
+                      child: Row(
+                        children: [
+                          Icon(Icons.language, color: Color(0xff233444)),
+                          (cs.maxWidth * 0.06).widthBox,
+                          Text("language".tr, style: textStyle(15, weight: FontWeight.w400),),
+                        ],
+                      ).pSy(x: cs.maxWidth * 0.03, y: cs.maxHeight * 0.02),
                     ),
-                    Column(
-                      children: <Widget>[
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(46.0, 18.0, 48.0, 0),
-                          child: Align(
-                            child: Text('Codec:'),
-                            alignment: Alignment.centerLeft,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 0),
-                          child: Obx( () => _buildRowFixTitleRadio(
-                              _codecItems, controller._codec.value, (value) {
-                            controller._codec.value = value;
-                          })),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(46.0, 18.0, 48.0, 0),
-                          child: Align(
-                            child: Text('Resolution:'),
-                            alignment: Alignment.centerLeft,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 0),
-                          child: Obx(() => _buildRowFixTitleRadio(
-                              _resolutionItems, controller._resolution.value,
-                              (value) {
-                            controller._resolution.value = value;
-                          })),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(46.0, 18.0, 48.0, 0),
-                          child: Align(
-                            child: Text('Bandwidth:'),
-                            alignment: Alignment.centerLeft,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 0),
-                          child: Obx(() => _buildRowFixTitleRadio(
-                              _bandwidthItems, controller._bandwidth.value,
-                              (value) {
-                            controller._bandwidth.value = value;
-                          })),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(0.0, 18.0, 0.0, 0.0),
-                        child: Container(
-                            height: 48.0,
-                            width: 160.0,
-                            child: InkWell(
-                              child: Container(
-                                width: 220.0,
-                                height: 48.0,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Color(0xe13b3f),
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Save',
-                                    style: TextStyle(
-                                      fontSize: 16.0,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              onTap: () => controller.save(),
-                            )))
-                  ]),
-            )));
+                  ),
+                ],
+              ),
+            )
+          ],
+        ).pSy(x: cs.maxWidth * 0.02),
+      );
+    });
   }
 }

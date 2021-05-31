@@ -22,7 +22,7 @@ enum RoleEnum {
   Priest,
   Citizen,
   Mafia,
-  Fadayi,
+  Devoted,
   Journalist,
   Negotiator,
   Mason,

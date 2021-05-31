@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_comentator/core/ability.dart';
-import 'package:flutter_comentator/core/enums.dart';
+import 'package:flutter_comentator/models/ability/ability.dart';
+import 'package:flutter_comentator/models/player/player.dart';
+import 'package:flutter_comentator/models/enums.dart';
 import 'package:flutter_comentator/core/mafia_engine.dart';
-import 'package:flutter_comentator/core/player.dart';
 import 'package:flutter_comentator/core/roles.dart';
 
 void main() {
@@ -87,7 +87,7 @@ void main() {
 
     test('Test Can Make Action : False', () {
       var save = engine.players[7].role!.abilities[0] as Save;
-      save.everyClause!.stageDone = 2;
+      save.copyWith(everyClause: save.everyClause!.copyWith(stageDone: 2));
       expect(engine.canTakeAction(save).value1, false);
     });
 

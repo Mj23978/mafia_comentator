@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_x/flutter_x.dart';
+import 'package:get/get.dart';
 import '../config/responsive/sizer.dart';
 
 extension MafiaTextStyle on String {
@@ -17,13 +18,8 @@ extension MafiaTextStyle on String {
       text.color(Colors.white54).size(size.slowerSP).make();
   AutoSizeText roleCardTS(double size) =>
       text.color(Colors.white).size(size.slowSP).maxLines(1).make();
-  // AutoSizeText lobbyGameTS(double size) => text.color(const Color(0xFF194775)).size(size.slowSP).make();
-}
 
-// extension MafiaWidget on Widget {
-//   Flexible flex({int? flex, FlexFit? fit}) =>
-//       Flexible(flex: flex ?? 1, fit: fit ?? FlexFit.loose, child: this);
-// }
+}
 
 extension IntExt on int {
   double percent(int part) => this / part;

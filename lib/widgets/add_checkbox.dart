@@ -1,5 +1,6 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_comentator/utils/helpers.dart';
 import 'package:flutter_x/flutter_x.dart';
 
 class AddCheckBox extends StatelessWidget {
@@ -8,7 +9,6 @@ class AddCheckBox extends StatelessWidget {
   final Function1<bool?, void> onSubmit;
   final MainAxisAlignment alignment;
   final bool withText;
-  final TextStyle textStyle;
 
   const AddCheckBox({
     Key? key,
@@ -17,7 +17,6 @@ class AddCheckBox extends StatelessWidget {
     required this.onSubmit,
     this.alignment = MainAxisAlignment.center,
     this.withText = true,
-    this.textStyle = const TextStyle(color: Color(0xff222333), fontSize: 14, fontWeight: FontWeight.w500),
   }) : super(key: key);
 
   @override
@@ -36,7 +35,7 @@ class AddCheckBox extends StatelessWidget {
             ),
             if (withText) ...[
               5.0.widthBox,
-              Text(name, style: textStyle,),
+              Text(name, style: textStyle(14),),
             ],
           ],
         ),

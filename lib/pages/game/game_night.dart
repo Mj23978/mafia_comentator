@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_comentator/widgets/add_checkbox.dart';
 import 'package:flutter_x/flutter_x.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../providers/controllers/app_controller.dart';
 import '../../utils/extensions.dart';
+import '../../utils/helpers.dart';
 
 class GameNightBinding implements Bindings {
   @override
@@ -16,7 +14,6 @@ class GameNightBinding implements Bindings {
 }
 
 class GameNightController extends GetxController {
-  final _helper = Get.find<AppController>();
   @override
   @mustCallSuper
   void onInit() async {
@@ -32,10 +29,6 @@ class GameNightController extends GetxController {
 }
 
 class GameNightView extends GetView<GameNightController> {
-  TextStyle textStyle(double size,
-      [weight = FontWeight.w500, color = const Color(0xff222333)]) {
-    return GoogleFonts.rubik(fontSize: size, fontWeight: weight, color: color);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +195,11 @@ class GameNightView extends GetView<GameNightController> {
                 child: TextButton(
                   child: Text(
                     "Submit  Night  Actions",
-                    style: textStyle(16, FontWeight.w500, Colors.white),
+                    style: textStyle(
+                      16,
+                      weight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
                   ),
                   onPressed: () {},
                 ),

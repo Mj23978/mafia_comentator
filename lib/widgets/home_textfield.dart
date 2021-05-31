@@ -1,10 +1,11 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../utils/helpers.dart';
 
 class HomeTextField extends StatelessWidget {
   final TextEditingController controller;
-  final TextStyle hintTextStyle;
-  final TextStyle textStyle;
   final Function1<String, void> submit;
   final FocusNode? focusNode;
   final Color iconColor;
@@ -13,8 +14,6 @@ class HomeTextField extends StatelessWidget {
     Key? key,
     required this.controller,
     required this.submit,
-    this.hintTextStyle = const TextStyle(),
-    this.textStyle = const TextStyle(),
     this.iconColor = Colors.white,
     this.focusNode,
   }) : super(key: key);
@@ -28,10 +27,10 @@ class HomeTextField extends StatelessWidget {
           Flexible(
             child: TextField(
               decoration: InputDecoration.collapsed(
-                hintText: ' Please Input Player Name',
-                hintStyle: hintTextStyle,
+                hintText: 'home_name_field'.tr,
+                hintStyle: textStyle(15, color: Colors.white, weight: FontWeight.w500),
               ),
-              style: textStyle,
+              style: textStyle(14, color: Colors.white, weight: FontWeight.w400),
               textCapitalization: TextCapitalization.words,
               controller: controller,
               onSubmitted: submit,

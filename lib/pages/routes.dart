@@ -1,12 +1,11 @@
 import 'package:get/get.dart';
 
-import '../pages/add_role/add_role_page.dart';
-import '../pages/game/game_page.dart';
-import '../pages/home/home_page.dart';
-import '../pages/pick_roles/pick_roles_page.dart';
-import '../pages/settings/settings_page.dart';
-import '../pages/show_roles/show_roles_page.dart';
-import '../widgets/xd/PickRoles.dart';
+import 'add_role/add_role_page.dart';
+import 'game/game_page.dart';
+import 'home/home_page.dart';
+import 'pick_roles/pick_roles_page.dart';
+import 'settings/settings_page.dart';
+import 'show_roles/show_roles_page.dart';
 import 'game/game_night.dart';
 
 class AppPages {
@@ -48,12 +47,6 @@ class AppPages {
       title: 'Game View',
       page: () => GameView(),
       binding: GameBinding(),
-    ),
-    GetPage(
-      name: '/xd',
-      title: 'XD',
-      page: () => PickRolesXD(),
-      binding: PickRolesBinding(),
     ),
     GetPage(
       name: '/game-night',

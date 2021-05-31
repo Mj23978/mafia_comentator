@@ -1,121 +1,60 @@
-import 'ability.dart';
-import 'clause.dart';
-import 'enums.dart';
+import 'package:get/get.dart';
 
-abstract class Role {
-  abstract String name;
-  abstract RoleEnum nameEnum;
-  abstract String description;
-  abstract String appDescription;
-  abstract List<Ability> abilities;
-  abstract bool selected;
-  abstract bool wakesAtNight;
-  abstract int count;
-}
+import '../models/ability/ability.dart';
+import '../models/clause/clause.dart';
+import '../models/enums.dart';
+import '../models/role/role.dart';
 
-class CityRole with Role {
-  @override
-  String name;
-  @override
-  List<Ability> abilities;
-  @override
-  String appDescription;
-  @override
-  String description;
-  @override
-  RoleEnum nameEnum;
-  @override
-  bool selected;
-  @override
-  bool wakesAtNight;
-  @override
-  int count;
-
-  CityRole({
-    required this.name,
-    required this.nameEnum,
-    required this.abilities,
-    this.description = "",
-    this.appDescription = "",
-    this.selected = false,
-    this.wakesAtNight = false,
-    this.count = 0,
-  });
-}
-
-class MafiaRole with Role {
-  @override
-  String name;
-  @override
-  List<Ability> abilities;
-  @override
-  String appDescription;
-  @override
-  String description;
-  @override
-  RoleEnum nameEnum;
-  @override
-  bool selected;
-  @override
-  bool wakesAtNight;
-  @override
-  int count;
-  MafiaWakesGroup wakesGroup;
-
-  MafiaRole({
-    required this.name,
-    required this.nameEnum,
-    required this.abilities,
-    this.wakesGroup = MafiaWakesGroup.Main,
-    this.description = "",
-    this.appDescription = "",
-    this.selected = false,
-    this.wakesAtNight = false,
-    this.count = 0,
-  });
-}
 
 final List<CityRole> cityRoles = [
   CityRole(
     nameEnum: RoleEnum.Citizen,
-    name: "Citizen",
+    name: "citizen_name".tr,
+    description: "citizen_des".tr,
+    wakesAtNight: false,
     abilities: [],
   ),
   CityRole(
-    name: "Doctor",
+    name: "doctor_name".tr,
+    description: "doctor_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Doctor,
     abilities: [
       Save(
         saveFrom: [Action.Killing],
-        selfClause: SelfClause(howMany: 2),
+        selfClause: SelfClause(time: 2),
         whoWillBeSaved: [RoleEnum.All],
-        when: Stage.Night,
+        whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 2),
       ),
     ],
   ),
   CityRole(
-    name: "Hero",
+    name: "hero_name".tr,
+    description: "hero_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Doctor,
     abilities: [
       Save(
         saveFrom: [Action.Everything],
-        selfClause: SelfClause(howMany: 1),
+        selfClause: SelfClause(time: 1),
         whoWillBeSaved: [RoleEnum.All],
-        when: Stage.Night,
+        whenS: Stage.Night,
         everyClause: EveryClause(time: 2, howManyEveryStage: 1),
       ),
     ],
   ),
   CityRole(
-    name: "Guardian",
+    name: "guardian_name".tr,
+    description: "guardian_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Guardian,
     abilities: [
       Save(
         saveFrom: [Action.RoleBlock],
-        selfClause: SelfClause(howMany: 0),
+        selfClause: SelfClause(time: 0),
         whoWillBeSaved: [RoleEnum.All],
-        when: Stage.Night,
+        whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 2),
         ifClause: IFClause(
           action: Action.HisAction,
@@ -125,76 +64,86 @@ final List<CityRole> cityRoles = [
       ),
       Save(
         saveFrom: [Action.VotingOut],
-        selfClause: SelfClause(howMany: -1),
+        selfClause: SelfClause(time: -1),
         whoWillBeSaved: [RoleEnum.Himself],
-        when: Stage.Vote,
+        whenS: Stage.Vote,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   CityRole(
-    name: "Armor",
+    name: "armor_name".tr,
+    description: "armor_des".tr,
+    wakesAtNight: false,
     nameEnum: RoleEnum.Armor,
     abilities: [
       Save(
         saveFrom: [Action.VotingOut],
-        selfClause: SelfClause(howMany: -1),
+        selfClause: SelfClause(time: -1),
         whoWillBeSaved: [RoleEnum.Himself],
-        when: Stage.Vote,
+        whenS: Stage.Vote,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       ),
       Save(
         saveFrom: [Action.Killing],
-        selfClause: SelfClause(howMany: -1),
+        selfClause: SelfClause(time: -1),
         whoWillBeSaved: [RoleEnum.Himself],
-        when: Stage.Night,
+        whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   CityRole(
-    name: "Priest",
+    name: "priest_name".tr,
+    description: "priest_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Priest,
     abilities: [
       Save(
         saveFrom: [Action.Disable, Action.Silnce],
-        selfClause: SelfClause(howMany: -1),
+        selfClause: SelfClause(time: -1),
         whoWillBeSaved: [RoleEnum.All],
-        when: Stage.Night,
+        whenS: Stage.Night,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   CityRole(
-    name: "Fadayi",
-    nameEnum: RoleEnum.Fadayi,
+    name: "devoted_name".tr,
+    description: "devoted_des".tr,
+    wakesAtNight: false,
+    nameEnum: RoleEnum.Devoted,
     abilities: [
       Counter(
         whichRoleEnum: RoleEnum.Terrorist,
         by: AbilityType.Save,
         onWho: Who.Target,
-        when: Stage.Day,
+        whenS: Stage.Day,
         cost: Cost.Die,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   CityRole(
-    name: "Journalist",
+    name: "journalist_name".tr,
+    description: "journalist_des".tr,
+    wakesAtNight: false,
     nameEnum: RoleEnum.Journalist,
     abilities: [
       Counter(
         whichRoleEnum: RoleEnum.Negotiator,
         by: AbilityType.Guess,
         onWho: Who.Target,
-        when: Stage.Night,
+        whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   CityRole(
+    name: "mason_name".tr,
+    description: "mason_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Mason,
-    name: "Mason",
     abilities: [
       Recrute(
         validTargets: [RoleEnum.Citizen, RoleEnum.Armor],
@@ -202,53 +151,61 @@ final List<CityRole> cityRoles = [
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
         costOnHimOrAll: CostOn.All,
         costTypeIfNotValid: Cost.Die,
-        when: Stage.Night,
+        whenS: Stage.Night,
       ),
       Reserve(role: RoleEnum.GodFather, priority: 2),
     ],
   ),
   CityRole(
+    name: "hacker_name".tr,
+    description: "hacker_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Hacker,
-    name: "Hacker",
     abilities: [
       Guess(
           what: GuessType.Side,
-          when: Stage.Night,
+          whenS: Stage.Night,
           timesClause: TimesClause(time: 1, howManyEveryStage: 3),
           ifClause:
               IFClause(action: Action.HisAction, target: [RoleEnum.MafiaSide])),
     ],
   ),
   CityRole(
+    name: "detective_name".tr,
+    description: "detective_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Detective,
-    name: "Detective",
     abilities: [
       Guess(
         what: GuessType.Side,
-        when: Stage.Night,
+        whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   CityRole(
+    name: "nexsus_name".tr,
+    description: "nexsus_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Nexsus,
-    name: "Nexsus",
     abilities: [
       Change(
         what: AbilityType.All,
         forWho: [RoleEnum.Himself],
-        when: Stage.Night,
+        whenS: Stage.Night,
         change: ChangeType.Direction,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   CityRole(
+    name: "sniper_name".tr,
+    description: "sniper_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Sniper,
-    name: "Sniper",
     abilities: [
       Kill(
-        when: Stage.Night,
+        whenS: Stage.Night,
         effectesAfter: 0,
         effectesAfterStage: Stage.Night,
         validTargets: [RoleEnum.MafiaSide],
@@ -258,11 +215,13 @@ final List<CityRole> cityRoles = [
     ],
   ),
   CityRole(
+    name: "psycho_name".tr,
+    description: "psycho_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Psycho,
-    name: "Psycho",
     abilities: [
       Kill(
-        when: Stage.Night,
+        whenS: Stage.Night,
         effectesAfter: 0,
         effectesAfterStage: Stage.Night,
         validTargets: [RoleEnum.All],
@@ -271,11 +230,13 @@ final List<CityRole> cityRoles = [
     ],
   ),
   CityRole(
+    name: "cowboy_name".tr,
+    description: "cowboy_des".tr,
+    wakesAtNight: false,
     nameEnum: RoleEnum.Cowboy,
-    name: "Cowboy",
     abilities: [
       Kill(
-        when: Stage.Day,
+        whenS: Stage.Day,
         effectesAfter: 0,
         effectesAfterStage: Stage.Day,
         validTargets: [RoleEnum.All],
@@ -285,41 +246,51 @@ final List<CityRole> cityRoles = [
     ],
   ),
   CityRole(
+    name: "soldier_name".tr,
+    description: "soldier_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Soldier,
-    name: "Soldier",
     abilities: [Reserve(role: RoleEnum.Sniper, priority: 0)],
   ),
   CityRole(
+    name: "deputy_name".tr,
+    description: "deputy_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Deputy,
-    name: "Deputy",
     abilities: [Reserve(role: RoleEnum.Detective, priority: 0)],
   ),
   CityRole(
+    name: "nurse_name".tr,
+    description: "nurse_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Nurse,
-    name: "Nurse",
     abilities: [Reserve(role: RoleEnum.Doctor, priority: 0)],
   ),
   CityRole(
+    name: "gunsmith_name".tr,
+    description: "gunsmith_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.GunSmith,
-    name: "GunSmith",
     abilities: [
       Give(
         action: Action.Killing,
-        when: Stage.Night,
+        whenS: Stage.Night,
         whenAction: Stage.Day,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       )
     ],
   ),
   CityRole(
+    name: "bomber_name".tr,
+    description: "bomber_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Bomber,
-    name: "Bomber",
     abilities: [
-      Activition(
+      Activation(
         whoGains: Who.Himself,
         whenActivates: Action.VotingOut,
         can: AbilityType.Kill,
-        when: Stage.Day,
+        whenS: Stage.Day,
         timesClause: TimesClause(time: 1, howManyEveryStage: 2),
       ),
     ],
@@ -328,33 +299,37 @@ final List<CityRole> cityRoles = [
 
 final List<MafiaRole> mafiaRoles = [
   MafiaRole(
-    nameEnum: RoleEnum.Mafia,
-    name: "Mafia",
+    name: "mafia_name".tr,
+    description: "mafia_des".tr,
     wakesAtNight: true,
+    nameEnum: RoleEnum.Mafia,
     wakesGroup: MafiaWakesGroup.Main,
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 2),
     ],
   ),
   MafiaRole(
-    name: "Lecter",
+    name: "lecter_name".tr,
+    description: "lecter_des".tr,
     wakesAtNight: true,
     wakesGroup: MafiaWakesGroup.Main,
     nameEnum: RoleEnum.Lecter,
     abilities: [
       Save(
         saveFrom: [Action.Killing],
-        selfClause: SelfClause(howMany: 1),
+        selfClause: SelfClause(time: 1),
         whoWillBeSaved: [RoleEnum.MafiaSide],
-        when: Stage.Night,
+        whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
       Reserve(role: RoleEnum.GodFather, priority: 2),
     ],
   ),
   MafiaRole(
+    name: "negotiator_name".tr,
+    description: "negotiator_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Negotiator,
-    name: "Negotiator",
     wakesGroup: MafiaWakesGroup.Main,
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 2),
@@ -362,18 +337,20 @@ final List<MafiaRole> mafiaRoles = [
         validTargets: [RoleEnum.Citizen, RoleEnum.Armor],
         willBeConverted: true,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
-        when: Stage.Night,
+        whenS: Stage.Night,
       ),
     ],
   ),
   MafiaRole(
+    name: "nato_name".tr,
+    description: "nato_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Nato,
-    name: "Nato",
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 2),
       Guess(
         what: GuessType.Role,
-        when: Stage.Night,
+        whenS: Stage.Night,
         costIfRight: Cost.Die,
         costOnIfRight: CostOn.Target,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
@@ -381,39 +358,45 @@ final List<MafiaRole> mafiaRoles = [
     ],
   ),
   MafiaRole(
+    name: "framer_name".tr,
+    description: "framer_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Framer,
-    name: "Framer",
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 2),
       Change(
         what: AbilityType.Guess,
         forWho: [RoleEnum.All],
-        when: Stage.Night,
+        whenS: Stage.Night,
         change: ChangeType.Resault,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   MafiaRole(
+    name: "lawer_name".tr,
+    description: "lawer_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Lawer,
-    name: "Lawer",
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 2),
       Change(
         what: AbilityType.Guess,
         forWho: [RoleEnum.All],
-        when: Stage.Night,
+        whenS: Stage.Night,
         change: ChangeType.Resault,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   MafiaRole(
+    name: "godfather_name".tr,
+    description: "godfather_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.GodFather,
-    name: "GodFather",
     abilities: [
       Kill(
-        when: Stage.Night,
+        whenS: Stage.Night,
         effectesAfter: 0,
         effectesAfterStage: Stage.Night,
         validTargets: [RoleEnum.All],
@@ -422,13 +405,15 @@ final List<MafiaRole> mafiaRoles = [
     ],
   ),
   MafiaRole(
+    name: "strongman_name".tr,
+    description: "strongman_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.StrongMan,
-    name: "StrongMan",
     wakesGroup: MafiaWakesGroup.Side,
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 3),
       Kill(
-        when: Stage.Night,
+        whenS: Stage.Night,
         effectesAfter: 0,
         effectesAfterStage: Stage.Night,
         validTargets: [RoleEnum.All],
@@ -438,13 +423,15 @@ final List<MafiaRole> mafiaRoles = [
     ],
   ),
   MafiaRole(
+    name: "professional_killer_name".tr,
+    description: "professional_killer_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.ProfessionalKiller,
-    name: "Professional Killer",
     wakesGroup: MafiaWakesGroup.Side,
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 3),
       Kill(
-        when: Stage.Night,
+        whenS: Stage.Night,
         effectesAfter: 2,
         effectesAfterStage: Stage.Night,
         validTargets: [RoleEnum.All],
@@ -454,56 +441,64 @@ final List<MafiaRole> mafiaRoles = [
     ],
   ),
   MafiaRole(
+    name: "silncer_name".tr,
+    description: "silncer_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Silncer,
-    name: "Silncer",
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 2),
       Disable(
         fromActions: [Action.Voting, Action.Talking],
-        when: Stage.Night,
+        whenS: Stage.Night,
         validTargets: [RoleEnum.All],
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   MafiaRole(
+    name: "roleblocker_name".tr,
+    description: "roleblocker_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.RoleBlocker,
-    name: "Role Blocker",
     wakesGroup: MafiaWakesGroup.Side,
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 3),
       Disable(
         fromActions: [Action.HisAction],
-        when: Stage.Night,
+        whenS: Stage.Night,
         validTargets: [RoleEnum.City],
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
   MafiaRole(
+    name: "terrorist_name".tr,
+    description: "terrorist_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Terrorist,
-    name: "Terrorist",
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 2),
-      Activition(
+      Activation(
         whoGains: Who.Himself,
         whenActivates: Action.VotingOut,
         can: AbilityType.Kill,
-        when: Stage.Day,
+        whenS: Stage.Day,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       )
     ],
   ),
   MafiaRole(
+    name: "mistress_name".tr,
+    description: "mistress_des".tr,
+    wakesAtNight: true,
     nameEnum: RoleEnum.Mistress,
-    name: "Mistress",
     abilities: [
       Reserve(role: RoleEnum.GodFather, priority: 0),
-      Activition(
+      Activation(
         whoGains: Who.Himself,
         whenActivates: Action.Die,
         can: AbilityType.Kill,
-        when: Stage.Night,
+        whenS: Stage.Night,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       )
     ],

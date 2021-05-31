@@ -1,16 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_x/flutter_x.dart';
+import 'package:get/get.dart';
+
+import '../../utils/helpers.dart';
+import '../../utils/extensions.dart';
 
 class RoleDetails extends StatelessWidget {
   final double height;
   final double width;
   final String roleName;
-  final TextStyle roleNameTextStyle;
   final String roleDes;
-  final TextStyle roleDesTextStyle;
   final String roleSide;
-  final TextStyle roleSideTextStyle;
   final Color color;
   final Function0<void> dismiss;
 
@@ -22,9 +23,6 @@ class RoleDetails extends StatelessWidget {
     required this.roleSide,
     required this.roleDes,
     required this.dismiss,
-    this.roleNameTextStyle = const TextStyle(fontSize: 16),
-    this.roleDesTextStyle = const TextStyle(fontSize: 14),
-    this.roleSideTextStyle = const TextStyle(fontSize: 12),
     this.color = Colors.green,
   }) : super(key: key);
 
@@ -33,14 +31,19 @@ class RoleDetails extends StatelessWidget {
     return Container(
       height: height,
       width: width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        color: Color(0xff222344),
+      ),
       child: Column(
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(roleName, style: roleNameTextStyle),
-              Text(roleSide, style: roleSideTextStyle),
+              Text(roleName, style: textStyle(16, color: Colors.white)),
+              (width * 0.07).widthBox,
+              Text(roleSide, style: textStyle(12, color: Colors.white, weight: FontWeight.w400)),
               Spacer(),
               IconButton(
                 icon: Icon(
@@ -50,26 +53,32 @@ class RoleDetails extends StatelessWidget {
                 onPressed: () {},
               )
             ],
-          ).pSy(x: 10.0),
+          ).pSy(x: 10.0).flex(3),
           Divider(
             indent: 4,
             endIndent: 4,
             color: color,
           ),
-          Text(roleDes, style: roleDesTextStyle).pSy(x: 15.0, y: 4.0),
+          Text(roleDes, style: textStyle(14, color: Colors.white, weight: FontWeight.w400))
+              .pSy(x: 15.0, y: 4.0).flex(5 + (roleDes.length / 40).round()),
           Spacer(),
           TextButton(
             onPressed: dismiss,
-            // onPressed: () {
-            //   controller.dismiss();
-            // },
-            child: Center(
-              child: Text("Understand", style: roleNameTextStyle)
+            child: Container(
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Text(
+                  "understand".tr,
+                  style: textStyle(14, color: Colors.white),
+                ).pSy(y: 3),
+              ),
             ),
           ),
-          10.0.heightBox,
         ],
-      ).pSy(x: 10.0, y: 8.0),
+      ).pSy(x: 10.0, y: 4.0),
     );
   }
 }

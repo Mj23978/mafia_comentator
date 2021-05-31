@@ -7,4 +7,5 @@ class Keys {
 
 class DBKeys {
   static const String hive_config = 'config';
+  static const String home_players = 'home_players';
 }

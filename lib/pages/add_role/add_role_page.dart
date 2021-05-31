@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_comentator/widgets/add_checkbox.dart';
 import 'package:flutter_x/flutter_x.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../providers/controllers/app_controller.dart';
 import '../../utils/extensions.dart';
+import '../../utils/helpers.dart';
+import '../../widgets/add_checkbox.dart';
 
 class AddRoleBinding implements Bindings {
   @override
@@ -40,21 +40,6 @@ class AddRoleController extends GetxController {
 }
 
 class AddRoleView extends GetView<AddRoleController> {
-  int countGridTileCount(double maxWidth) {
-    final tileSize = maxWidth / 135.0;
-    final res = tileSize.round() == 0
-        ? 1
-        : (2.8 >= tileSize && tileSize >= 1.85)
-            ? 2
-            : tileSize;
-    return res.round();
-  }
-
-  TextStyle textStyle(double size,
-      [weight = FontWeight.w500, color = const Color(0xff222333)]) {
-    return GoogleFonts.rubik(fontSize: size, fontWeight: weight, color: color);
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, cs) {
@@ -79,17 +64,11 @@ class AddRoleView extends GetView<AddRoleController> {
             decoration: BoxDecoration(),
             child: Column(
               children: <Widget>[
-                // Container(
-                //   height: cs.maxHeight * 0.075,
-                // ),
                 Container(
-                  // color: Color(0xff222333),
                   width: cs.maxWidth,
                   child: Text("Side :", style: textStyle(16)),
                 ).pSy(y: cs.maxHeight * 0.00),
                 Container(
-                  // color: Color(0xffffffff),
-                  // height: cs.maxHeight * 0.07,
                   child: Row(
                     children: [
                       Spacer(
@@ -102,14 +81,12 @@ class AddRoleView extends GetView<AddRoleController> {
                           AddCheckBox(
                             value: false,
                             name: "City",
-                            textStyle: textStyle(14),
                             onSubmit: (v) {},
                           ).flex(3),
                           Spacer(),
                           AddCheckBox(
                             value: false,
                             name: "Mafia",
-                            textStyle: textStyle(14),
                             onSubmit: (v) {},
                           ).flex(3),
                           // Spacer(),
@@ -148,21 +125,18 @@ class AddRoleView extends GetView<AddRoleController> {
                             AddCheckBox(
                               value: false,
                               name: "Main",
-                              textStyle: textStyle(14),
                               onSubmit: (v) {},
                             ).flex(5),
                             Spacer(),
                             AddCheckBox(
                               value: false,
                               name: "Side",
-                              textStyle: textStyle(14),
                               onSubmit: (v) {},
                             ).flex(5),
                             Spacer(),
                             AddCheckBox(
                               value: false,
                               name: "Solo",
-                              textStyle: textStyle(14),
                               onSubmit: (v) {},
                             ).flex(5),
                           ],
@@ -171,8 +145,6 @@ class AddRoleView extends GetView<AddRoleController> {
                     ).pSy(y: cs.maxHeight * 0.015),
                   ),
                 Container(
-                  // color: Color(0xffffffff),
-                  // height: cs.maxHeight * 0.07,
                   child: Row(
                     children: [
                       Container(
@@ -193,14 +165,13 @@ class AddRoleView extends GetView<AddRoleController> {
                 if (true)
                   Container(
                     height: cs.maxHeight * 0.1 * 2,
-                    // color: Colors.white,
                     child: GridView(
                       // reverse: true,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         mainAxisExtent: 30,
                         // mainAxisExtent: value,
                         // childAspectRatio: 3.5,
-                        crossAxisCount: countGridTileCount(cs.maxWidth),
+                        crossAxisCount: gridTileCount(cs.maxWidth),
                         mainAxisSpacing: 5.0,
                         crossAxisSpacing: 5.0,
                       ),
@@ -209,31 +180,26 @@ class AddRoleView extends GetView<AddRoleController> {
                           value: false,
                           name: "Heal",
                           onSubmit: (v) {},
-                          textStyle: textStyle(14),
                           alignment: MainAxisAlignment.start,
                         ),
                         AddCheckBox(
                             value: false,
                             name: "Kill",
-                            textStyle: textStyle(14),
                             onSubmit: (v) {},
                             alignment: MainAxisAlignment.start),
                         AddCheckBox(
                             value: false,
                             name: "Reserve",
-                            textStyle: textStyle(14),
                             onSubmit: (v) {},
                             alignment: MainAxisAlignment.start),
                         AddCheckBox(
                             value: false,
                             name: "Convert",
-                            textStyle: textStyle(14),
                             onSubmit: (v) {},
                             alignment: MainAxisAlignment.start),
                         AddCheckBox(
                             value: false,
                             name: "Ask",
-                            textStyle: textStyle(14),
                             onSubmit: (v) {},
                             alignment: MainAxisAlignment.start),
                       ],

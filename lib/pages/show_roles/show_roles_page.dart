@@ -1,12 +1,13 @@
-import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
-import '../../core/player.dart';
+import 'package:flutter_comentator/widgets/dialogs/done_show_role_dialog.dart';
 import 'package:flutter_x/flutter_x.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../config/mock/roles.dart';
+import '../../core/roles.dart';
+import '../../models/player/player.dart';
 import '../../providers/controllers/app_controller.dart';
+import '../../utils/helpers.dart';
+import '../../widgets/dialogs/role_details_dialog.dart';
 
 class ShowRolesBinding implements Bindings {
   @override
@@ -17,8 +18,7 @@ class ShowRolesBinding implements Bindings {
 
 class ShowRolesController extends GetxController {
   final _helper = Get.find<AppController>();
-  final showedPlayers = Rx<List<Player>>([]);
-  var players = <Player>[];
+  final players = Rx<List<Player>>([]);
   final roles = Rx<List<String>>([]);
 
   @override
@@ -34,177 +34,111 @@ class ShowRolesController extends GetxController {
 
   void _showPlayerRoleDialogue(
       BuildContext context, double width, double hieght, Player player) async {
-    final side = cityRoleNames.any((element) => element == player.roleName);
-    await showFlash(
-      context: context,
-      builder: (context, controller) {
-        return Flash.dialog(
-          controller: controller,
-          enableDrag: true,
-          // backgroundColor: backgroundColor,
-          brightness: Brightness.light,
-          boxShadows: [BoxShadow(blurRadius: 4)],
-          barrierBlur: 3.0,
-          barrierColor: Colors.black38,
-          barrierDismissible: true,
-          child: Container(
-            height: hieght,
-            width: width,
-            child: Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    "${player.roleName} "
-                        .text
-                        .size(17)
-                        .color(Colors.black)
-                        .bold
-                        .make(),
-                    "  ${side ? "City" : "Mafia"}"
-                        .text
-                        .size(12)
-                        .color(side ? Colors.green : Colors.red)
-                        .make(),
-                  ],
-                ).pSy(x: 10.0),
-                Divider(
-                  indent: 4,
-                  endIndent: 4,
-                  color: side ? Colors.green : Colors.red,
-                ),
-                TextButton(
-                  onPressed: () {
-                    controller.dismiss();
-                  },
-                  child: Center(
-                    child: "Understand"
-                        .text
-                        .color(side ? Colors.green : Colors.red)
-                        .make(),
-                  ),
-                ),
-                10.0.heightBox,
-              ],
-            ).pSy(x: 10.0, y: 8.0),
-          ),
-        );
-      },
+    final side = cityRoles.any((element) => element.name == player.roleName);
+    final role = side
+        ? cityRoles.firstWhere((element) => element.name == player.roleName)
+        : mafiaRoles.firstWhere((element) => element.name == player.roleName);
+    var desLen = role.description.length;
+    await baseFlash(
+      context,
+      (controller) => RoleDetails(
+        dismiss: () {
+          controller.dismiss();
+        },
+        height: hieght * (1 + (desLen * 0.004)),
+        width: width,
+        roleDes: role.description,
+        roleName: role.name,
+        roleSide: side ? "city".tr : "mafia".tr,
+        color: side ? Colors.green : Colors.red,
+      ),
+      boxShadows: <BoxShadow>[],
     );
-    if (showedPlayers.value.length == 0) {
-      _doneDialogue(context, width * 1.2, hieght * 0.8);
+    if (players.value.every((e) => e.roleShowed == true)) {
+      _doneDialogue(context, width * 1.1, hieght * 1.4);
     }
   }
 
   Future<void> _doneDialogue(
-      BuildContext context, double width, double hieght) async {
+      BuildContext context, double width, double height) async {
     final _helper = Get.find<AppController>();
-    await showFlash(
-      context: context,
-      builder: (context, controller) {
-        // controller.onWillPop() {};
-        return Flash.dialog(
-          controller: controller,
-          enableDrag: true,
-          // backgroundColor: backgroundColor,
-          brightness: Brightness.light,
-          boxShadows: [BoxShadow(blurRadius: 4)],
-          barrierBlur: 3.0,
-          barrierColor: Colors.black38,
-          barrierDismissible: true,
-          child: Container(
-            height: hieght,
-            width: width,
-            child: Column(
-              children: [
-                10.0.heightBox,
-                Flexible(
-                  child: TextButton(
-                    onPressed: () {
-                      controller.dismiss();
-                      print(players.length);
-                      _refreshRoles();
-                    },
-                    child: Center(
-                      child: "Refresh Roles".text.color(Colors.black).make(),
-                    ),
-                  ),
-                ),
-                10.0.heightBox,
-                Flexible(
-                  child: TextButton(
-                    onPressed: () {
-                      controller.dismiss();
-                      _helper.players.value = players;
-                      print(players.length);
-                      Get.offNamed("/game", arguments: {
-                        "players": players,
-                      });
-                    },
-                    child: Center(
-                      child: "Go to Comentator Page"
-                          .text
-                          .color(Colors.black)
-                          .make(),
-                    ),
-                  ),
-                ),
-              ],
-            ).pSy(x: 10.0, y: 8.0),
-          ),
-        );
-      },
+    await baseFlash(
+      context,
+      (controller) => DoneShowRolesDialog(
+        height: height,
+        width: width,
+        goComentatorPage: () {
+          controller.dismiss();
+          _helper.players.value = players.value;
+          Get.offNamed("/game", arguments: {
+            "game_players": players.value.map((e) {
+              final side = cityRoles.any((element) => element.name == e.roleName);
+              final role = side
+                  ? cityRoles.firstWhere((element) => element.name == e.roleName)
+                  : mafiaRoles.firstWhere((element) => element.name == e.roleName);
+              return e.copyWith(role: role);
+            }).toList(),
+          });
+        },
+        refreshRoles: () {
+          controller.dismiss();
+          _refreshRoles();
+        },
+      ),
+      boxShadows: <BoxShadow>[]
     );
   }
 
   _refreshRoles() {
     roles.value.shuffle();
-    showedPlayers.value.clear();
     for (var i = 0; i < roles.value.length; i++) {
-      var resShow = players[i];
-      resShow.roleName = roles.value[i];
-      showedPlayers.value.add(resShow);
-      players[i] = resShow;
+      var player = players.value[i];
+      players.value[i] =
+          player.copyWith(roleName: roles.value[i], roleShowed: false);
     }
-    showedPlayers.update((val) {});
+    players.update((val) {});
   }
 }
 
 class ShowRolesView extends GetView<ShowRolesController> {
-  int countGridTileCount(double maxWidth) {
-    final tileSize = maxWidth / 135.0;
-    final res = tileSize.round() == 0
-        ? 1
-        : (2.8 >= tileSize && tileSize >= 1.85)
-            ? 2
-            : tileSize;
-    return res.round();
-  }
-
-  TextStyle textStyle(double size,
-      [weight = FontWeight.w500, color = const Color(0xff222333)]) {
-    return GoogleFonts.rubik(fontSize: size, fontWeight: weight, color: color);
+  Widget _playerTile(String name) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.0),
+        gradient: LinearGradient(
+          begin: Alignment(-0.91, -1.0),
+          end: Alignment(0.87, 1.0),
+          colors: [const Color(0xbf4022a5), const Color(0xff5677ad)],
+          stops: [0.0, 1.0],
+        ),
+      ),
+      child: Center(
+        child: Text(
+          name,
+          style: textStyle(17, color: Colors.white),
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    if (Get.arguments["players"] != null) {
-      if (controller.players.length == 0) {
-        controller.roles.value = Get.arguments["roles"] ?? [];
-        controller.players.addAll(Get.arguments["players"]);
-        controller.showedPlayers.value.addAll(Get.arguments["players"]);
+    if (Get.arguments["show_players"] != null) {
+      if (controller.players.value.length == 0) {
+        controller.roles.value = Get.arguments["show_roles"] ?? [];
+        controller.players.value.addAll(Get.arguments["show_players"]);
         controller._refreshRoles();
       }
       return Scaffold(
         appBar: AppBar(
           title: Obx(
             () => Text(
-              '${controller.showedPlayers.value.length} Players Left',
+              'left_players'.trParams(
+                      {"count": controller.players.value.length.toString()}) ??
+                  "",
               style: textStyle(
                 16,
-                FontWeight.w500,
-                Colors.white,
+                color: Colors.white,
               ),
             ),
           ),
@@ -232,44 +166,28 @@ class ShowRolesView extends GetView<ShowRolesController> {
               () => GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 1.2,
-                    crossAxisCount: countGridTileCount(cs.maxWidth),
+                    crossAxisCount: gridTileCount(cs.maxWidth, 135),
                     mainAxisSpacing: 5.0,
                     crossAxisSpacing: 5.0,
                   ),
-                  itemCount: controller.showedPlayers.value.length,
+                  itemCount: controller.players.value.length,
                   itemBuilder: (context, index) {
-                    // print(controller.showedPlayers.value[index].name);
-                    return InkWell(
-                      onLongPress: () {
-                        controller._showPlayerRoleDialogue(
-                            context,
-                            cs.maxWidth * 0.55,
-                            cs.maxHeight * 0.35,
-                            controller.showedPlayers.value[index]);
-                        controller.showedPlayers.value.removeAt(index);
-                        controller.showedPlayers.update((val) {});
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.0),
-                          gradient: LinearGradient(
-                            begin: Alignment(-0.91, -1.0),
-                            end: Alignment(0.87, 1.0),
-                            colors: [
-                              const Color(0xbf4022a5),
-                              const Color(0xff5677ad)
-                            ],
-                            stops: [0.0, 1.0],
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            controller.showedPlayers.value[index].name,
-                            style: textStyle(17, FontWeight.w500, Colors.white),
-                          ),
-                        ),
-                      ),
-                    );
+                    var player = controller.players.value[index];
+                    return player.roleShowed
+                        ? Container()
+                        : InkWell(
+                            onLongPress: () {
+                              controller._showPlayerRoleDialogue(
+                                  context,
+                                  cs.maxWidth * 0.55,
+                                  cs.maxHeight * 0.29,
+                                  player);
+                              controller.players.update((val) {
+                                val![index] =
+                                    val[index].copyWith(roleShowed: true);
+                              });
+                            },
+                            child: _playerTile(player.name));
                   }),
             ).pSy(x: cs.maxWidth * 0.02, y: cs.maxHeight * 0.02);
           }),

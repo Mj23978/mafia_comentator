@@ -1,22 +1,22 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_x/flutter_x.dart';
+import 'package:get/get.dart';
 
-class AddDialoguePickRoles extends StatelessWidget {
+import '../../utils/helpers.dart';
+
+class AddDialogPickRoles extends StatelessWidget {
   final double height;
   final double width;
   final bool value;
   final Function1<bool?, void> onChanged;
-  final TextStyle textStyle;
 
-  const AddDialoguePickRoles({
+  const AddDialogPickRoles({
     Key? key,
     required this.height,
     required this.width,
     required this.value,
     required this.onChanged,
-    this.textStyle = const TextStyle(),
   }) : super(key: key);
 
   @override
@@ -38,7 +38,7 @@ class AddDialoguePickRoles extends StatelessWidget {
                     side: BorderSide(width: 2, color: Colors.green),
                     activeColor: Colors.green,
                   ),
-                  Text("City", style: textStyle),
+                  Text("city".tr, style: textStyle(14)),
                 ],
               ),
             ),

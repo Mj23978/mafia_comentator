@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-import '../../core/player.dart';
+import '../../models/player/player.dart';
 import '../../utils/keys.dart';
 
 class AppController extends GetxController {
   Box conf = Hive.box(DBKeys.hive_config);
   final players = Rx<List<Player>>([]);
+  final roles = Rx<List<String>>([]);
 
   @override
   void onInit() async {

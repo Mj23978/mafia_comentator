@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_x:
     path: ../packages/flutter_x/
   adobe_xd: ^2.0.0+1
@@ -21,7 +23,7 @@ dependencies:
   date_format: ^2.0.2
   flash: ^1.5.1
   freezed_annotation: ^0.14.0
-  get: ^4.1.1
+  get: ^4.1.4
   google_fonts: ^2.1.0
   hive_flutter: ^1.0.0
   hooks_riverpod: ^0.14.0+1
@@ -36,6 +38,7 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^1.11.5
   freezed: ^0.14.0
+  json_serializable: ^4.1.3
 
 flutter:
   uses-material-design: true
@@ -43,3 +46,4 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    # - assets/data/

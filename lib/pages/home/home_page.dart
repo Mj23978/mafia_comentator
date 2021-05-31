@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_x/flutter_x.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 
-import '../../core/player.dart';
+import '../../models/player/player.dart';
 import '../../providers/controllers/app_controller.dart';
+import '../../utils/helpers.dart';
+import '../../utils/keys.dart';
 import '../../widgets/home_listTile.dart';
 import '../../widgets/home_textfield.dart';
 import '../../widgets/show_snackbar.dart';
@@ -21,14 +25,13 @@ class HomeBinding implements Bindings {
 
 class HomeController extends GetxController {
   final _helper = Get.find<AppController>();
+  var playerBox = Hive.box(DBKeys.home_players);
+  final _players = Rx<List<Player>>(Hive.box(DBKeys.home_players)
+      .values
+      .cast<String>()
+      .map<Player>((e) => Player.fromJson(json.decode(e)))
+      .toList());
   final TextEditingController textEditingController = TextEditingController();
-  final _players = Rx<List<Player>>([
-    "Reza",
-    "Jaafar",
-    "Mohsen",
-    "Javad",
-    "Alireza"
-  ].map((e) => Player(name: e, selected: false, takingAction: [])).toList());
   FocusNode textFocusNode = FocusNode();
   var allSelected = false.obs;
 
@@ -41,7 +44,6 @@ class HomeController extends GetxController {
   @override
   void dispose() {
     print('Dispose Add player widget!');
-    // _players.value.clear();
     super.dispose();
   }
 
@@ -59,7 +61,20 @@ class HomeController extends GetxController {
     }
   }
 
-  void _handleSubmit(String text) {
+  void _handleSubmit(BuildContext context, String text) {
+    if (playerBox.values
+        .map<Player>((e) => Player.fromJson(json.decode(e)))
+        .any((e) => e.name == text)) {
+      showAppSnackbar(
+        context,
+        Colors.red,
+        Text(
+          "player_exists".trParams({"name": text}) ?? "",
+          style: textStyle(15, color: Colors.white),
+        ),
+      );
+      return;
+    }
     textEditingController.clear();
 
     if (text.length == 0 || text == '') {
@@ -67,17 +82,16 @@ class HomeController extends GetxController {
     }
 
     Player player = Player(name: text, selected: false, takingAction: []);
-
+    playerBox.add(json.encode(player.toJson()));
     _players.value.add(player);
+
     _players.update((val) {});
     toggleAllSelect();
   }
 
   void _selectPlayer(int index, bool? value) {
-    Player newPlayer = _players.value[index];
-    newPlayer.selected = value ?? false;
     _players.update((val) {
-      val![index] = newPlayer;
+      val![index] = _players.value[index].copyWith(selected: value ?? false);
     });
     toggleAllSelect();
   }
@@ -86,14 +100,14 @@ class HomeController extends GetxController {
     _players.update((val) {
       val!.removeAt(index);
     });
+    playerBox.deleteAt(index);
     toggleAllSelect();
   }
 
   void _selectAll() {
     allSelected.toggle();
     _players.value = _players.value.map<Player>((e) {
-      e.selected = allSelected.value;
-      return e;
+      return e.copyWith(selected: allSelected.value);
     }).toList();
     _players.refresh();
   }
@@ -104,27 +118,31 @@ class HomeController extends GetxController {
       Get.offAll(() => PickRolesView());
     } else {
       showAppSnackbar(
-          context,
-          Colors.red,
-          Text(
-              "Least Amount of Players is 5 You Added ${_getSelectedPlayersLength()} Player"));
+        context,
+        Colors.red,
+        Text(
+          "least_player_count".trParams(
+                  {"count": _getSelectedPlayersLength().toString()}) ??
+              "",
+          style: textStyle(
+            13,
+            color: Colors.white,
+            weight: FontWeight.w400,
+          ),
+        ),
+      );
     }
   }
 }
 
 class HomeView extends GetView<HomeController> {
-  TextStyle textStyle(double size,
-      [weight = FontWeight.w500, color = const Color(0xff222333)]) {
-    return GoogleFonts.rubik(fontSize: size, fontWeight: weight, color: color);
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, cs) {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Players List',
+            "players_list".tr,
             style: textStyle(16),
           ),
           elevation: 0,
@@ -141,20 +159,17 @@ class HomeView extends GetView<HomeController> {
               activeColor: Color(0xff3D79BE),
             ),
           ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.settings_sharp, color: Color(0xff233344)),
+              onPressed: () {
+                Get.toNamed("/settings");
+              },
+            ).pSy(x: cs.maxWidth * 0.02)
+          ],
           centerTitle: true,
         ),
         backgroundColor: Color(0xffE6E6EC),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Get.toNamed("/add-role");
-            Get.toNamed("/game-night");
-            // Get.offNamed("/game", arguments: {
-            //   "players": <Player>[...controller._players.value, ...controller._players.value],
-            // });
-
-          },
-          child: Icon(Icons.access_time_outlined),
-        ),
         body: IconTheme(
           data: IconThemeData(color: Color(0xff222333)),
           child: Column(
@@ -164,7 +179,6 @@ class HomeView extends GetView<HomeController> {
                   () => ListView.builder(
                     padding: EdgeInsets.all(8.0),
                     itemBuilder: (_, int index) {
-                      // controller._players.value[index],
                       return HomeListTile(
                         delete: () => controller._deletePlayer(index),
                         onCheck: (value) =>
@@ -190,39 +204,48 @@ class HomeView extends GetView<HomeController> {
                 ),
                 child: HomeTextField(
                   controller: controller.textEditingController,
-                  hintTextStyle: textStyle(14, FontWeight.w400, Colors.white),
-                  textStyle: textStyle(15, FontWeight.w400, Colors.white),
-                  submit: controller._handleSubmit,
+                  submit: (value) => controller._handleSubmit(context, value),
                   iconColor: Colors.white,
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0xff3D79BE),
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: Center(
-                        child: Obx(
-                          () => Text(
-                            "Pick Roles :  ${controller._getSelectedPlayersLength()}",
-                            style: textStyle(16, FontWeight.w500, Colors.white),
+              InkWell(
+                onTap: () {
+                  controller._goNextPage(context);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xff3D79BE),
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Flexible(
+                        child: Center(
+                          child: Obx(
+                            () => Text(
+                              "home_pick_button".trParams({
+                                    "count": controller
+                                        ._getSelectedPlayersLength()
+                                        .toString()
+                                  }) ??
+                                  "",
+                              style: textStyle(16,
+                                  weight: FontWeight.w500, color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.send_outlined,
-                          color: Colors.white,
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.send_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () => controller._goNextPage(context),
                         ),
-                        onPressed: () => controller._goNextPage(context),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

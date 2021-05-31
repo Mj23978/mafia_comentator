@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_x/flutter_x.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../core/roles.dart';
+import '../models/role/role.dart';
+import '../utils/helpers.dart';
 
 class RoleNumberDetails extends StatelessWidget {
   final double height;
@@ -30,18 +30,18 @@ class RoleNumberDetails extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        color: Colors.white
-      ),
+          borderRadius: BorderRadius.circular(20.0), color: Colors.white),
       child: SingleChildScrollView(
         child: Obx(
           () => Column(
             children: [
               4.0.heightBox,
               // "Players Count : ${players.value.length}"
-              Text("Players Count : $playersCount",
-                  style: GoogleFonts.rubik(
-                      fontSize: 16, fontWeight: FontWeight.w500)),
+              Text(
+                  "players_count"
+                          .trParams({"count": playersCount.toString()}) ??
+                      "",
+                  style: textStyle(16)),
               8.0.heightBox,
               ...selectedRoles.value.map(
                 (e) => Container(
@@ -50,21 +50,17 @@ class RoleNumberDetails extends StatelessWidget {
                     Flexible(
                       child: Container(
                           width: width * 0.35,
-                          child: Text("${e.name}",
-                              style: GoogleFonts.rubik(
-                                  fontSize: 12, fontWeight: FontWeight.w500))),
+                          child: Text("${e.name}", style: textStyle(12))),
                     ),
                     Flexible(
                       child: Row(
                         children: [
                           InkWell(
                             onTap: () {
-                              print("Increment ${e.name}");
                               var index = selectedRoles.value.indexWhere(
                                   (element) => element.name == e.name);
                               var resSelected = selectedRoles.value[index];
-                              resSelected.count += 1;
-                              selectedRoles.value[index] = resSelected;
+                              selectedRoles.value[index] = resSelected.copyWith(count: resSelected.count + 1);
                               selectedRoles.update((val) {});
                             },
                             // onTap: increment,
@@ -77,19 +73,16 @@ class RoleNumberDetails extends StatelessWidget {
                           (width * 0.05).widthBox,
                           Text(
                             "${e.count}",
-                            style: GoogleFonts.rubik(
-                                fontSize: 15, fontWeight: FontWeight.w500),
+                            style: textStyle(15),
                           ),
                           (width * 0.05).widthBox,
                           InkWell(
                             onTap: () {
-                              print("Decrement ${e.name}");
                               var index = selectedRoles.value.indexWhere(
                                   (element) => element.name == e.name);
                               if ((selectedRoles.value[index].count) > 1) {
                                 var resSelected = selectedRoles.value[index];
-                                resSelected.count -= 1;
-                                selectedRoles.value[index] = resSelected;
+                                selectedRoles.value[index] = resSelected.copyWith(count: resSelected.count - 1);
                               }
                               selectedRoles.update((val) {});
                             },
@@ -126,11 +119,8 @@ class RoleNumberDetails extends StatelessWidget {
                             color: Colors.green,
                             borderRadius: BorderRadius.circular(8)),
                         child: Text(
-                          "Submit Roles",
-                          style: GoogleFonts.rubik(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
+                          "submit_roles".tr,
+                          style: textStyle(14, color: Colors.white),
                         ).pSy(x: 8.0, y: 4.0),
                       ),
                       onPressed: submitRoles,
@@ -142,11 +132,8 @@ class RoleNumberDetails extends StatelessWidget {
                             color: Colors.red,
                             borderRadius: BorderRadius.circular(8)),
                         child: Text(
-                          "Dismiss",
-                          style: GoogleFonts.rubik(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
+                          "dismiss".tr,
+                          style: textStyle(14, color: Colors.white),
                         ).pSy(x: 8.0, y: 4.0),
                       ),
                       onPressed: dismiss,
