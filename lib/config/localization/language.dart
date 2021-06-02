@@ -150,7 +150,7 @@ class Languages {
   static Language get ossetian => Language('os', 'Ossetian');
   static Language get pali => Language('pi', 'Pali');
   static Language get panjabi => Language('pa', 'Panjabi');
-  static Language get persian => Language('fa', 'Persian', "IR");
+  static Language get persian => Language('fa', 'فارسی', "IR");
   static Language get polish => Language('pl', 'Polish');
   static Language get portuguese => Language('pt', 'Portuguese');
   static Language get pushto => Language('ps', 'Pushto');

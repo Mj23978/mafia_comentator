@@ -5,20 +5,18 @@ import 'package:get/get.dart';
 
 import '../../utils/helpers.dart';
 
-class KillConfirmDialog extends StatelessWidget {
+class ToNightDialog extends StatelessWidget {
   final double height;
   final double width;
   final Function0<void> dismiss;
-  final Function0<void> killFunc;
-  final List<String> players;
+  final Function0<void> success;
 
-  const KillConfirmDialog({
+  const ToNightDialog({
     Key? key,
     required this.height,
     required this.width,
     required this.dismiss,
-    required this.killFunc,
-    required this.players,
+    required this.success,
   }) : super(key: key);
 
   @override
@@ -27,13 +25,15 @@ class KillConfirmDialog extends StatelessWidget {
       width: width,
       height: height,
       padding: EdgeInsets.symmetric(
-          horizontal: width * 0.07, vertical: height * 0.07),
+          horizontal: width * 0.07, vertical: height * 0.1),
       decoration: BoxDecoration(
-          color: Color(0xff222344), borderRadius: BorderRadius.circular(20)),
+        color: Color(0xff222344),
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Column(
         children: [
           Text(
-            "kill_player".tr,
+            "warning".tr + "!",
             style: textStyle(
               18,
               color: Colors.red,
@@ -41,7 +41,7 @@ class KillConfirmDialog extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            "kill_player_message".trParams({"players": players.toString()}) ?? "",
+            "not_voted_message".tr,
             style: textStyle(14, color: Colors.white),
           ).pSy(x: width * 0.04),
           Spacer(),
@@ -57,11 +57,11 @@ class KillConfirmDialog extends StatelessWidget {
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(8)),
                     child: Text(
-                      "kill".tr,
+                      "go_to_night".tr,
                       style: textStyle(14, color: Colors.white),
                     ).pSy(x: 8.0, y: 4.0),
                   ),
-                  onPressed: killFunc,
+                  onPressed: success,
                 ),
                 TextButton(
                   child: Container(

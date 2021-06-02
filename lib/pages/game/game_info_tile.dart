@@ -79,94 +79,95 @@ class GameInfoTile extends StatelessWidget {
             ),
           ),
           Spacer(flex: 2),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      controller.statusQuery.value++;
-                    },
-                    child: Icon(
-                      Icons.add,
-                      size: width * 0.07 > 30.0 ? 30.0 : width * 0.07,
-                      color: Colors.white,
+          Obx(() => Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        controller.statusQuery.value++;
+                      },
+                      child: Icon(
+                        Icons.add,
+                        size: width * 0.07 > 30.0 ? 30.0 : width * 0.07,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  (width * 0.05).widthBox,
-                  InkWell(
-                    onTap: () {
-                      if (controller.statusQuery.value > 0) {
-                        controller.statusQuery.value--;
-                      }
-                    },
-                    child: Icon(
-                      Icons.horizontal_rule_outlined,
-                      size: width * 0.07 > 30.0 ? 30.0 : width * 0.07,
-                      color: Colors.white,
+                    (width * 0.05).widthBox,
+                    InkWell(
+                      onTap: () {
+                        if (controller.statusQuery.value > 0) {
+                          controller.statusQuery.value--;
+                        }
+                      },
+                      child: Icon(
+                        Icons.horizontal_rule_outlined,
+                        size: width * 0.07 > 30.0 ? 30.0 : width * 0.07,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
-              ).flex(3),
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "city_count".trParams(
-                            {"count": controller.aliveCity().toString()}) ??
-                        "",
-                    style: textStyle(
-                      13,
-                      weight: FontWeight.w400,
-                      color: Colors.white,
+                  ],
+                ).flex(3),
+                Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "city_count".trParams(
+                              {"count": controller.aliveCity().toString()}) ??
+                          "",
+                      style: textStyle(
+                        13,
+                        weight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  15.0.widthBox,
-                  Text(
-                    "mafia_count".trParams(
-                            {"count": controller.aliveMafia().toString()}) ??
-                        "",
-                    style: textStyle(
-                      13,
-                      weight: FontWeight.w400,
-                      color: Colors.white,
+                    15.0.widthBox,
+                    Text(
+                      "mafia_count".trParams(
+                              {"count": controller.aliveMafia().toString()}) ??
+                          "",
+                      style: textStyle(
+                        13,
+                        weight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
-              ).flex(3),
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "city_count".trParams(
-                            {"count": controller.eleminatedCity().toString()}) ??
-                        "",
-                    style: textStyle(
-                      13,
-                      weight: FontWeight.w400,
-                      color: Colors.white,
+                  ],
+                ).flex(3),
+                Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "city_count".trParams(
+                              {"count": controller.eleminatedCity().toString()}) ??
+                          "",
+                      style: textStyle(
+                        13,
+                        weight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  15.0.widthBox,
-                  Text(
-                    "mafia_count".trParams(
-                            {"count": controller.eleminatedMafia().toString()}) ??
-                        "",
-                    style: textStyle(
-                      13,
-                      weight: FontWeight.w400,
-                      color: Colors.white,
+                    15.0.widthBox,
+                    Text(
+                      "mafia_count".trParams(
+                              {"count": controller.eleminatedMafia().toString()}) ??
+                          "",
+                      style: textStyle(
+                        13,
+                        weight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
-              ).flex(3),
-            ],
-          ).flex(3),
+                  ],
+                ).flex(3),
+              ],
+            ).flex(3),
+          ),
           // Spacer(),
         ],
       ),

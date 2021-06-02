@@ -16,7 +16,7 @@ dependencies:
   flutter_x:
     path: ../packages/flutter_x/
   adobe_xd: ^2.0.0+1
-  community_material_icon: ^5.9.55
+  ionicons: ^0.1.2
   cupertino_icons: ^1.0.2
   dartx: ^0.6.0
   dartz: ^0.10.0-nullsafety.2

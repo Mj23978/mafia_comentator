@@ -87,7 +87,7 @@ void main() {
 
     test('Test Can Make Action : False', () {
       var save = engine.players[7].role!.abilities[0] as Save;
-      save.copyWith(everyClause: save.everyClause!.copyWith(stageDone: 2));
+      save = save.copyWith(everyClause: save.everyClause!.copyWith(stageDone: 2));
       expect(engine.canTakeAction(save).value1, false);
     });
 

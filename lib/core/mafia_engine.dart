@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_comentator/core/roles.dart';
 
 import '../models/ability/ability.dart';
 import '../models/enums.dart';
@@ -19,14 +20,15 @@ class MafiaEngine {
 
   void calculateStageActions() {
     var deadPlayers = <int>[];
-    for (var i = 0; i < players.length; i++) {
-      for (var action in players[i].takingAction) {
+    var alivePlayers = players.where((element) => element.alive).toList();
+    for (var i = 0; i < alivePlayers.length; i++) {
+      for (var action in alivePlayers[i].takingAction) {
         if (action.ability == AbilityType.Kill) {
-          var kill = players[action.fromIndex]
+          var kill = alivePlayers[action.fromIndex]
               .role!
               .abilities[action.abilityIndex] as Kill;
           var saved = false;
-          var saves = players[i]
+          var saves = alivePlayers[i]
               .takingAction
               .where((e) => e.ability == AbilityType.Save);
           saves
@@ -41,12 +43,12 @@ class MafiaEngine {
           !saved ? deadPlayers.add(i) : null;
         } else if (action.ability == AbilityType.Guess) {
           var resSide = false;
-          var guess = players[action.fromIndex]
+          var guess = alivePlayers[action.fromIndex]
               .role!
               .abilities[action.abilityIndex] as Guess;
           if (guess.what == GuessType.Side) {
-            if (players[i].role!.nameEnum == RoleEnum.GodFather ||
-                players[i].role!.runtimeType == CityRole) {
+            if (alivePlayers[i].role!.nameEnum == RoleEnum.GodFather ||
+                alivePlayers[i].role!.runtimeType == CityRole) {
               resSide = false;
               var costRes = calcualteCost(guess, action.fromIndex, i);
               costRes != -1 ? deadPlayers.add(costRes) : null;
@@ -56,7 +58,7 @@ class MafiaEngine {
               costRes != -1 ? deadPlayers.add(costRes) : null;
             }
           } else if (guess.what == GuessType.Role) {
-            if (action.details["guessedRole"] == players[i].roleName) {
+            if (action.details["guessedRole"] == alivePlayers[i].roleName) {
               var costRes = calcualteCost(guess, action.fromIndex, i);
               costRes != -1 ? deadPlayers.add(costRes) : null;
             }
@@ -90,7 +92,7 @@ class MafiaEngine {
       if (guess.costOnIfRight == CostOn.Him) {
         return hisIndex;
       } else if (guess.costOnIfRight == CostOn.Target) {
-        targetIndex;
+        return targetIndex;
       }
     }
     return -1;
@@ -100,12 +102,13 @@ class MafiaEngine {
     var orderIndex = <String, int>{};
     var setAbility = <String, int>{};
     var allAbilities = <String, Ability>{};
-    for (var i = 0; i < players.length; i++) {
-      for (var j = 0; j < players[i].role!.abilities.length; j++) {
-        if (currentStage == players[i].role!.abilities[j].whenS) {
+    var alivePlayers = players.where((element) => element.alive).toList();
+    for (var i = 0; i < alivePlayers.length; i++) {
+      for (var j = 0; j < alivePlayers[i].role!.abilities.length; j++) {
+        if (currentStage == alivePlayers[i].role!.abilities[j].whenS) {
           allAbilities.putIfAbsent(
-              '${players[i].name}-$i-$j-${getMafiaWakeOrder(players[i].role!)}',
-              () => players[i].role!.abilities[j]);
+              '${alivePlayers[i].name}-$i-$j-${getMafiaWakeOrder(alivePlayers[i].role!)}',
+              () => alivePlayers[i].role!.abilities[j]);
         }
       }
     }
@@ -184,12 +187,14 @@ class MafiaEngine {
         abilityIndex: abilityIndex,
         details: details ?? {},
       );
+      print(res.value2.everyClause);
     }
     action != null ? players[targetIndex].takingAction.add(action) : null;
   }
 
   String getMafiaWakeOrder(Role role) {
-    if (role.runtimeType == MafiaRole) {
+    // if (role.runtimeType == MafiaRole) {
+    if (mafiaRoles.any((element) => element.nameEnum == role.nameEnum)) {
       var mafiaRole = role as MafiaRole;
       return mafiaRole.wakesGroup.toString();
     } else {
@@ -198,30 +203,32 @@ class MafiaEngine {
   }
 
   Tuple2<bool, Ability> canTakeAction(Ability ability) {
+    var resAbility = ability;
     if (ability.everyClause != null) {
       if (ability.everyClause!.lastStageUsed == currentDay) {
         if (ability.everyClause!.stageDone <
             ability.everyClause!.howManyEveryStage) {
-          ability.everyClause!
-              .copyWith(stageDone: ability.everyClause!.stageDone + 1);
-          return Tuple2<bool, Ability>(true, ability);
+          resAbility = ability.copyWith(everyClause: ability.everyClause!
+              .copyWith(stageDone: ability.everyClause!.stageDone + 1));
+          return Tuple2<bool, Ability>(true, resAbility);
         }
       } else if (ability.everyClause!.lastStageUsed < currentDay) {
         ability.everyClause!.copyWith(lastStageUsed: currentDay);
         if (ability.everyClause!.stageDone <
             ability.everyClause!.howManyEveryStage) {
-          ability.everyClause!
-              .copyWith(stageDone: ability.everyClause!.stageDone + 1);
-          return Tuple2<bool, Ability>(true, ability);
+          resAbility = ability.copyWith(everyClause: ability.everyClause!
+              .copyWith(stageDone: ability.everyClause!.stageDone + 1, lastStageUsed: currentDay));
+          return Tuple2<bool, Ability>(true, resAbility);
         }
       }
     } else if (ability.timesClause != null) {
       if (ability.timesClause!.done < ability.timesClause!.howManyEveryStage) {
-        ability.timesClause!.copyWith(done: ability.timesClause!.done + 1);
-        return Tuple2<bool, Ability>(true, ability);
+        resAbility = ability.copyWith(timesClause: ability.timesClause!
+              .copyWith(done: ability.timesClause!.done + 1));
+        return Tuple2<bool, Ability>(true, resAbility);
       }
     }
     print('Action Cant Be Created');
-    return Tuple2<bool, Ability>(false, ability);
+    return Tuple2<bool, Ability>(false, resAbility);
   }
 }

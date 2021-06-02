@@ -69,15 +69,16 @@ class ShowRolesController extends GetxController {
         width: width,
         goComentatorPage: () {
           controller.dismiss();
-          _helper.players.value = players.value;
-          Get.offNamed("/game", arguments: {
-            "game_players": players.value.map((e) {
+          var resPlayers = players.value.map((e) {
               final side = cityRoles.any((element) => element.name == e.roleName);
               final role = side
                   ? cityRoles.firstWhere((element) => element.name == e.roleName)
                   : mafiaRoles.firstWhere((element) => element.name == e.roleName);
               return e.copyWith(role: role);
-            }).toList(),
+            }).toList();
+          _helper.players.value = resPlayers;
+          Get.offNamed("/game", arguments: {
+            "game_players": resPlayers,
           });
         },
         refreshRoles: () {
@@ -97,6 +98,10 @@ class ShowRolesController extends GetxController {
           player.copyWith(roleName: roles.value[i], roleShowed: false);
     }
     players.update((val) {});
+  }
+  
+  int _getShowedPlayers() {
+    return players.value.where((element) => !element.roleShowed).length;
   }
 }
 
@@ -134,7 +139,7 @@ class ShowRolesView extends GetView<ShowRolesController> {
           title: Obx(
             () => Text(
               'left_players'.trParams(
-                      {"count": controller.players.value.length.toString()}) ??
+                      {"count": controller._getShowedPlayers().toString()}) ??
                   "",
               style: textStyle(
                 16,

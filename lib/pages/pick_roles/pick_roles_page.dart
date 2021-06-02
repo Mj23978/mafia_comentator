@@ -368,7 +368,7 @@ class PickRolesView extends GetView<PickRolesController> {
                               0.05 *
                               (controller._getCityRolesLength() +
                                   controller._getMafiaRolesLength())) +
-                          (cs.maxHeight * 0.21),
+                          (cs.maxHeight * 0.26),
                     ),
                   ),
                 ),

@@ -5,20 +5,18 @@ import 'package:get/get.dart';
 
 import '../../utils/helpers.dart';
 
-class KillConfirmDialog extends StatelessWidget {
+class RevivePlayerDialog extends StatelessWidget {
   final double height;
   final double width;
   final Function0<void> dismiss;
-  final Function0<void> killFunc;
-  final List<String> players;
+  final Function0<void> reviveFunc;
 
-  const KillConfirmDialog({
+  const RevivePlayerDialog({
     Key? key,
     required this.height,
     required this.width,
     required this.dismiss,
-    required this.killFunc,
-    required this.players,
+    required this.reviveFunc,
   }) : super(key: key);
 
   @override
@@ -33,15 +31,15 @@ class KillConfirmDialog extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "kill_player".tr,
+            "revive_player".tr,
             style: textStyle(
               18,
-              color: Colors.red,
+              color: Colors.green,
             ),
           ),
           Spacer(),
           Text(
-            "kill_player_message".trParams({"players": players.toString()}) ?? "",
+            "revive_player_message".tr,
             style: textStyle(14, color: Colors.white),
           ).pSy(x: width * 0.04),
           Spacer(),
@@ -54,14 +52,14 @@ class KillConfirmDialog extends StatelessWidget {
                 TextButton(
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.green,
                         borderRadius: BorderRadius.circular(8)),
                     child: Text(
-                      "kill".tr,
+                      "revive".tr,
                       style: textStyle(14, color: Colors.white),
                     ).pSy(x: 8.0, y: 4.0),
                   ),
-                  onPressed: killFunc,
+                  onPressed: reviveFunc,
                 ),
                 TextButton(
                   child: Container(

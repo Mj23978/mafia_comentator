@@ -13,7 +13,7 @@ class KillPlayerDialog extends StatelessWidget {
   final Function2<double, double, int> gridTileCount;
   final Function0<void> killFunc;
   final Function0<void> dismiss;
-  final Function1<int, void> select;
+  final List<int>? indexes;
   final Rx<List<int>> selectedIndexes;
 
   const KillPlayerDialog({
@@ -23,9 +23,9 @@ class KillPlayerDialog extends StatelessWidget {
     required this.players,
     required this.gridTileCount,
     required this.killFunc,
-    required this.select,
     required this.selectedIndexes,
     required this.dismiss,
+    this.indexes,
   }) : super(key: key);
 
   @override
@@ -53,26 +53,34 @@ class KillPlayerDialog extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(child: (height * 0.1).heightBox),
-          Obx(
-            () => SliverGrid(
+          Obx(() {
+            var alivePlayers =
+                players.value.where((element) => element.alive).toList();
+            return SliverGrid(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   var selected = selectedIndexes.value.contains(index);
                   return InkWell(
-                    onTap: () => select(index),
+                    onTap: () {
+                      if (selectedIndexes.value.contains(index)) {
+                        selectedIndexes.value.remove(index);
+                      } else {
+                        selectedIndexes.value.add(index);
+                      }
+                      selectedIndexes.update((val) {});
+                      players.update((val) {});
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: selected
-                            ? Colors.red
-                            : Colors.transparent,
+                        color: selected ? Colors.red : Colors.transparent,
                       ),
                       padding: EdgeInsets.symmetric(
                           horizontal: width * 0.01, vertical: height * 0.01),
                       child: Align(
                         alignment: Alignment(0, 0),
                         child: Text(
-                          players.value[index].name,
+                          alivePlayers[index].name,
                           style: textStyle(
                             13,
                             weight: FontWeight.w400,
@@ -83,7 +91,7 @@ class KillPlayerDialog extends StatelessWidget {
                     ),
                   );
                 },
-                childCount: players.value.length,
+                childCount: alivePlayers.length,
               ),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: gridTileCount(width, width * 0.3),
@@ -91,8 +99,8 @@ class KillPlayerDialog extends StatelessWidget {
                 mainAxisSpacing: 5.0,
                 crossAxisSpacing: 5.0,
               ),
-            ),
-          ),
+            );
+          }),
           SliverToBoxAdapter(child: (height * 0.1).heightBox),
           SliverToBoxAdapter(
             child: Container(
@@ -112,7 +120,9 @@ class KillPlayerDialog extends StatelessWidget {
                             weight: FontWeight.w500, color: Colors.white),
                       ).pSy(x: 8.0, y: 4.0),
                     ),
-                    onPressed: killFunc,
+                    onPressed: (){
+                      killFunc();
+                    },
                   ),
                   TextButton(
                     child: Container(

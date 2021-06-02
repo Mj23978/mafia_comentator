@@ -9,8 +9,9 @@ import '../../utils/helpers.dart';
 class PlayersVote extends StatelessWidget {
   final double height;
   final double width;
+  final Rx<int> minimumVote;
   final Rx<Map<Player, int>> players;
-  final Function0<void> submitRoles;
+  final Function0<void> submitVotes;
   final Function1<Player, void> increment;
   final Function1<Player, void> decrement;
   final Function0<void> dismiss;
@@ -21,8 +22,9 @@ class PlayersVote extends StatelessWidget {
     required this.width,
     required this.decrement,
     required this.increment,
+    required this.minimumVote,
     required this.players,
-    required this.submitRoles,
+    required this.submitVotes,
     required this.dismiss,
   }) : super(key: key);
 
@@ -49,62 +51,37 @@ class PlayersVote extends StatelessWidget {
                 ),
               ),
               8.0.heightBox,
+              Obx(() => PlayerVoteTile(
+                  height: height,
+                  width: width,
+                  count: minimumVote.value,
+                  playerName: "minimum_vote".tr,
+                  increment: () {
+                    minimumVote.value += 1;
+                    minimumVote.update((val) {});
+                    print(minimumVote);
+                  },
+                  decrement: () {
+                    if (minimumVote.value > 0) {
+                      minimumVote.value -= 1;
+                      minimumVote.update((val) {});
+                    }
+                    print(minimumVote);
+                  },
+                ),
+              ),
+              8.0.heightBox,
               ...players.value
                   .map<String, Widget>(
                     (e, count) => MapEntry(
                       e.name,
-                      Container(
+                      PlayerVoteTile(
+                        height: height,
                         width: width,
-                        child: [
-                          Flexible(
-                            child: Container(
-                              width: width * 0.35,
-                              child: Text(
-                                "${e.name}",
-                                style: textStyle(
-                                  12,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Flexible(
-                            child: Row(
-                              children: [
-                                InkWell(
-                                  onTap: () => increment(e),
-                                  child: Icon(
-                                    Icons.add,
-                                    size: width * 0.1,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                (width * 0.05).widthBox,
-                                Text(
-                                  "$count",
-                                  style: textStyle(
-                                    16,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                (width * 0.05).widthBox,
-                                InkWell(
-                                  onTap: () => decrement(e),
-                                  child: Icon(
-                                    Icons.horizontal_rule_outlined,
-                                    size: width * 0.1,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ]
-                            .row(
-                                axisSize: MainAxisSize.max,
-                                crossAlignment: CrossAxisAlignment.center,
-                                alignment: MainAxisAlignment.start)
-                            .pSy(x: width * 0.08),
+                        count: count,
+                        playerName: e.name,
+                        increment: () => increment(e),
+                        decrement: () => decrement(e),
                       ),
                     ),
                   )
@@ -129,7 +106,7 @@ class PlayersVote extends StatelessWidget {
                           style: textStyle(14, color: Colors.white),
                         ).pSy(x: 8.0, y: 4.0),
                       ),
-                      onPressed: submitRoles,
+                      onPressed: submitVotes,
                       // onPressed:
                     ),
                     TextButton(
@@ -154,6 +131,82 @@ class PlayersVote extends StatelessWidget {
           ).pSy(x: 20.0, y: 10.0),
         ),
       ),
+    );
+  }
+}
+
+class PlayerVoteTile extends StatelessWidget {
+  final double height;
+  final double width;
+  final int count;
+  final String playerName;
+  final Function0<void> increment;
+  final Function0<void> decrement;
+
+  const PlayerVoteTile({
+    Key? key,
+    required this.height,
+    required this.width,
+    required this.count,
+    required this.playerName,
+    required this.increment,
+    required this.decrement,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      child: [
+        Flexible(
+          child: Container(
+            width: width * 0.35,
+            child: Text(
+              "${playerName}",
+              style: textStyle(
+                12,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+        Flexible(
+          child: Row(
+            children: [
+              InkWell(
+                onTap: increment,
+                child: Icon(
+                  Icons.add,
+                  size: width * 0.1,
+                  color: Colors.white,
+                ),
+              ),
+              (width * 0.05).widthBox,
+              Text(
+                "$count",
+                style: textStyle(
+                  16,
+                  color: Colors.white,
+                ),
+              ),
+              (width * 0.05).widthBox,
+              InkWell(
+                onTap: decrement,
+                child: Icon(
+                  Icons.horizontal_rule_outlined,
+                  size: width * 0.1,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ]
+          .row(
+              axisSize: MainAxisSize.max,
+              crossAlignment: CrossAxisAlignment.center,
+              alignment: MainAxisAlignment.start)
+          .pSy(x: width * 0.08),
     );
   }
 }

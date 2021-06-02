@@ -28,7 +28,13 @@ class GameDayBottomNav extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              controller.noteDialog(
+                context,
+                width * 0.7,
+                height * 0.45,
+              );
+            },
             child: SvgPicture.asset(
               "assets/icons/note.svg",
               width: width * 0.06,
@@ -36,11 +42,12 @@ class GameDayBottomNav extends StatelessWidget {
           ).flex(1),
           TextButton(
             onPressed: () {
+              var desiredHeight = height * 0.42 +
+                    (height * 0.08 * (controller.players.value.length / 3));
               controller.stageVotes(
                 context,
                 width * 0.7,
-                height * 0.35 +
-                    (height * 0.08 * (controller.players.value.length / 3)),
+                desiredHeight > (height * 0.75) ? height * 0.75 : desiredHeight,
               );
             },
             child: SvgPicture.asset(
