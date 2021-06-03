@@ -1,6 +1,6 @@
 name: Flutter CI For Java Build
 
-on: 
+on:
   push:
     branches:
       - "master"
@@ -10,9 +10,31 @@ on:
       - "master"
       - "main"
 
-jobs: 
+jobs:
+  build-java:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Export Release Timestamp
+        run: echo "APP_VERSION=release_$(date +'%Y-%m-%d_%H-%m-%S')" >> $GITHUB_ENV
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "dev"
+      - name: Install dependencies
+        run: flutter pub get
+      - run: flutter test
+      - name: Build apk
+        run: flutter build apk --release --split-per-abi # 6MG
+        # run: flutter build apk --release # 20MG
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.APP_VERSION }}
+          path: build/app/outputs/apk/release/*.apk
 
-  build:
+  build-macos:
     runs-on: macos-latest
     steps:
       - name: Export Release Timestamp
@@ -20,36 +42,26 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: '12.x'
+          java-version: "12.x"
       - uses: subosito/flutter-action@v1
         with:
-          channel: 'dev'
+          channel: "dev"
       - name: Install dependencies
         run: flutter pub get
       - run: flutter test
       - name: Build iOS App
         run: |
-            flutter build ios --no-codesign
-            cd build/ios/iphoneos
-            mkdir Payload
-            cd Payload
-            ln -s ../Runner.app
-            cd ..
-            zip -r app.ipa Payload
-      - name: Build apk
-        run: flutter build apk --release --split-per-abi # 6MG
-        # run: flutter build apk --release # 20MG
-      - name: Build Web App
-        run: |
-          flutter build web
-          cd build/web
-          zip -r web-app.zip .
+          flutter build ios --no-codesign
+          cd build/ios/iphoneos
+          mkdir Payload
+          cd Payload
+          ln -s ../Runner.app
+          cd ..
+          zip -r app.ipa Payload
       - uses: actions/upload-artifact@v1
         with:
-          tag: ${{ env.APP_VERSION }}
           name: ${{ env.APP_VERSION }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: "build/app/outputs/apk/release/*.apk,build/ios/iphoneos/app.ipa,build/web/web-app.zip"
+          path: build/ios/iphoneos/app.ipa
 
   gh-pages:
     runs-on: ubuntu-latest
