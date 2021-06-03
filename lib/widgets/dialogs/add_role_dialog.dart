@@ -1,7 +1,7 @@
 import 'package:dartx/dartx.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 
 void addRoleDialoge(
     BuildContext context,
@@ -35,12 +35,14 @@ void addRoleDialoge(
                       Spacer(),
                       Flexible(
                         flex: 3,
-                        child:AddCheckBox(name: "City", value: false, onSubmit: (v) {}),
+                        child: AddCheckBox(
+                            name: "City", value: false, onSubmit: (v) {}),
                       ),
                       Spacer(),
                       Flexible(
                         flex: 3,
-                        child: AddCheckBox(name: "Mafia", value: false, onSubmit: (v) {}),
+                        child: AddCheckBox(
+                            name: "Mafia", value: false, onSubmit: (v) {}),
                       ),
                       Spacer(),
                     ],
@@ -57,7 +59,8 @@ void addRoleDialoge(
                   flex: 2,
                   child: Container(
                     width: width * 0.7,
-                    padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
                     child: TextField(
                       decoration: InputDecoration.collapsed(
                         hintText: 'Role Name',
@@ -101,20 +104,20 @@ void addRoleDialoge(
                 if (true) 8.0.heightBox,
                 // Column(
                 //   children: [
-                    Flexible(
-                      flex: 2,
-                      child: Wrap(
-                        direction: Axis.vertical,
-                        children: [
-                          // AddCheckBox(name: "Heal", value: false, onSubmit: (v) {}),
-                          // AddCheckBox(name: "Kill", value: false, onSubmit: (v) {}),
-                          // AddCheckBox(name: "Reserve", value: false, onSubmit: (v) {}),
-                          // AddCheckBox(name: "Convert", value: false, onSubmit: (v) {}),
-                          // AddCheckBox(name: "Convert", value: false, onSubmit: (v) {}),
-                        ],
-                      ),
-                    ),
-                  // ],
+                Flexible(
+                  flex: 2,
+                  child: Wrap(
+                    direction: Axis.vertical,
+                    children: [
+                      // AddCheckBox(name: "Heal", value: false, onSubmit: (v) {}),
+                      // AddCheckBox(name: "Kill", value: false, onSubmit: (v) {}),
+                      // AddCheckBox(name: "Reserve", value: false, onSubmit: (v) {}),
+                      // AddCheckBox(name: "Convert", value: false, onSubmit: (v) {}),
+                      // AddCheckBox(name: "Convert", value: false, onSubmit: (v) {}),
+                    ],
+                  ),
+                ),
+                // ],
                 // ),
                 12.0.heightBox,
                 Spacer(),
@@ -122,7 +125,8 @@ void addRoleDialoge(
                   flex: 2,
                   child: Container(
                     width: width * 0.7,
-                    padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
                     child: TextField(
                       decoration: InputDecoration.collapsed(
                         hintText: 'Description',

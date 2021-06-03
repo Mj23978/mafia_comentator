@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
@@ -86,8 +86,12 @@ class SettingsView extends GetView<SettingsController> {
                           isSearchable: true,
                           languages: [Languages.persian, Languages.english],
                           onValuePicked: (language) {
-                            Get.updateLocale(Locale(language.isoCode, language.countryCode));
-                            controller.confBox.put("local", Locale(language.isoCode, language.countryCode).toString());                            
+                            Get.updateLocale(
+                                Locale(language.isoCode, language.countryCode));
+                            controller.confBox.put(
+                                "local",
+                                Locale(language.isoCode, language.countryCode)
+                                    .toString());
                             contr.dismiss();
                           },
                         ),
@@ -98,12 +102,17 @@ class SettingsView extends GetView<SettingsController> {
                     child: Container(
                       width: cs.maxWidth,
                       height: cs.maxHeight * 0.1,
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(13)),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(13)),
                       child: Row(
                         children: [
                           Icon(Icons.language, color: Color(0xff233444)),
                           (cs.maxWidth * 0.06).widthBox,
-                          Text("language".tr, style: textStyle(15, weight: FontWeight.w400),),
+                          Text(
+                            "language".tr,
+                            style: textStyle(15, weight: FontWeight.w400),
+                          ),
                         ],
                       ).pSy(x: cs.maxWidth * 0.03, y: cs.maxHeight * 0.02),
                     ),

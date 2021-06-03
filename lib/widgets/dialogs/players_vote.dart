@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 
 import '../../models/player/player.dart';
@@ -51,7 +51,8 @@ class PlayersVote extends StatelessWidget {
                 ),
               ),
               8.0.heightBox,
-              Obx(() => PlayerVoteTile(
+              Obx(
+                () => PlayerVoteTile(
                   height: height,
                   width: width,
                   count: minimumVote.value,

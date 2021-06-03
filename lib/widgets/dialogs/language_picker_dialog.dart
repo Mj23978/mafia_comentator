@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 
 import '../../config/localization/language.dart';

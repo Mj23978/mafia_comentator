@@ -1,7 +1,7 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_comentator/utils/helpers.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 
 class AddCheckBox extends StatelessWidget {
   final bool value;
@@ -35,7 +35,10 @@ class AddCheckBox extends StatelessWidget {
             ),
             if (withText) ...[
               5.0.widthBox,
-              Text(name, style: textStyle(14),),
+              Text(
+                name,
+                style: textStyle(14),
+              ),
             ],
           ],
         ),

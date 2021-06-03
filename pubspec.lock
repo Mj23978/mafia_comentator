@@ -275,18 +275,18 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_uix:
+    dependency: "direct main"
+    description:
+      name: flutter_uix
+      url: "https://pub.dartlang.org"
+  flutter_uix hosted
+    version: "0.1.0-nullsafety.1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_x:
-    dependency: "direct main"
-    description:
-      path: "../packages/flutter_x"
-      relative: true
-    source: path
-    version: "0.0.1"
   freezed:
     dependency: "direct dev"
     description:

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 
 import '../models/role/role.dart';
@@ -60,7 +60,8 @@ class RoleNumberDetails extends StatelessWidget {
                               var index = selectedRoles.value.indexWhere(
                                   (element) => element.name == e.name);
                               var resSelected = selectedRoles.value[index];
-                              selectedRoles.value[index] = resSelected.copyWith(count: resSelected.count + 1);
+                              selectedRoles.value[index] = resSelected.copyWith(
+                                  count: resSelected.count + 1);
                               selectedRoles.update((val) {});
                             },
                             // onTap: increment,
@@ -82,7 +83,8 @@ class RoleNumberDetails extends StatelessWidget {
                                   (element) => element.name == e.name);
                               if ((selectedRoles.value[index].count) > 1) {
                                 var resSelected = selectedRoles.value[index];
-                                selectedRoles.value[index] = resSelected.copyWith(count: resSelected.count - 1);
+                                selectedRoles.value[index] = resSelected
+                                    .copyWith(count: resSelected.count - 1);
                               }
                               selectedRoles.update((val) {});
                             },

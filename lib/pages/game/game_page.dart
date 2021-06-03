@@ -5,7 +5,7 @@ import 'package:flutter_comentator/core/mafia_engine.dart';
 import 'package:flutter_comentator/models/enums.dart';
 import '../../providers/controllers/app_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 

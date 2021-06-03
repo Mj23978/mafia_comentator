@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 
 import '../../utils/helpers.dart';
@@ -49,8 +49,7 @@ class DoneShowRolesDialog extends StatelessWidget {
             child: Container(
               width: width * 0.6,
               decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(8)),
+                  color: Colors.green, borderRadius: BorderRadius.circular(8)),
               child: Center(
                 child: Text(
                   "go_comentator_page".tr,
@@ -65,8 +64,7 @@ class DoneShowRolesDialog extends StatelessWidget {
             child: Container(
               width: width * 0.6,
               decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(8)),
+                  color: Colors.black, borderRadius: BorderRadius.circular(8)),
               child: Center(
                 child: Text(
                   "refresh_roles".tr,

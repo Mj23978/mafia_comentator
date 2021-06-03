@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 
 import '../../utils/helpers.dart';
@@ -43,7 +43,9 @@ class RoleDetails extends StatelessWidget {
             children: [
               Text(roleName, style: textStyle(16, color: Colors.white)),
               (width * 0.07).widthBox,
-              Text(roleSide, style: textStyle(12, color: Colors.white, weight: FontWeight.w400)),
+              Text(roleSide,
+                  style: textStyle(12,
+                      color: Colors.white, weight: FontWeight.w400)),
               Spacer(),
               IconButton(
                 icon: Icon(
@@ -59,8 +61,11 @@ class RoleDetails extends StatelessWidget {
             endIndent: 4,
             color: color,
           ),
-          Text(roleDes, style: textStyle(14, color: Colors.white, weight: FontWeight.w400))
-              .pSy(x: 15.0, y: 4.0).flex(5 + (roleDes.length / 40).round()),
+          Text(roleDes,
+                  style: textStyle(14,
+                      color: Colors.white, weight: FontWeight.w400))
+              .pSy(x: 15.0, y: 4.0)
+              .flex(5 + (roleDes.length / 40).round()),
           Spacer(),
           TextButton(
             onPressed: dismiss,

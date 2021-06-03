@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 
 import '../../utils/extensions.dart';
@@ -53,9 +53,8 @@ class GameInfoTile extends StatelessWidget {
                 ).flex(3),
                 Spacer(),
                 Text(
-                  "alive_players".trParams({
-                        "count": controller.alivePlayers().toString()
-                      }) ??
+                  "alive_players".trParams(
+                          {"count": controller.alivePlayers().toString()}) ??
                       "",
                   style: textStyle(
                     14,
@@ -79,7 +78,8 @@ class GameInfoTile extends StatelessWidget {
             ),
           ),
           Spacer(flex: 2),
-          Obx(() => Column(
+          Obx(
+            () => Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -143,8 +143,9 @@ class GameInfoTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "city_count".trParams(
-                              {"count": controller.eleminatedCity().toString()}) ??
+                      "city_count".trParams({
+                            "count": controller.eleminatedCity().toString()
+                          }) ??
                           "",
                       style: textStyle(
                         13,
@@ -154,8 +155,9 @@ class GameInfoTile extends StatelessWidget {
                     ),
                     15.0.widthBox,
                     Text(
-                      "mafia_count".trParams(
-                              {"count": controller.eleminatedMafia().toString()}) ??
+                      "mafia_count".trParams({
+                            "count": controller.eleminatedMafia().toString()
+                          }) ??
                           "",
                       style: textStyle(
                         13,

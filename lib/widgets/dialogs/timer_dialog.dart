@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:dartz/dartz.dart' show Tuple2;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 
 import '../../utils/helpers.dart';
@@ -177,9 +177,9 @@ class _TimerDialogState extends State<TimerDialog> {
                           ).pSy(x: 8.0, y: 4.0),
                         ),
                         onPressed: () {
-                          controller =
-                              CounterController(start: widget.counter.value + 1.seconds);
-                              // CounterController(start: 5.seconds);
+                          controller = CounterController(
+                              start: widget.counter.value + 1.seconds);
+                          // CounterController(start: 5.seconds);
                           _timerBuild();
                           print(timer.isActive);
                         },
@@ -196,7 +196,6 @@ class _TimerDialogState extends State<TimerDialog> {
                           ).pSy(x: 8.0, y: 4.0),
                         ),
                         onPressed: () {
-                          
                           widget.dismiss();
                         },
                       ),
@@ -219,7 +218,6 @@ String durationToString(Tuple2<int, int> counter) {
       counter.value2 < 10 ? "0${counter.value2}" : counter.value2.toString();
   return "$counterMin:$counterSec";
 }
-
 
 Tuple2<int, int> formatDuration(Duration duration) {
   return Tuple2((duration.inSeconds / 60).floor(), duration.inSeconds % 60);

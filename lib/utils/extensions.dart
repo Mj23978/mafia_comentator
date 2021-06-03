@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 import '../config/responsive/sizer.dart';
 
@@ -18,7 +18,6 @@ extension MafiaTextStyle on String {
       text.color(Colors.white54).size(size.slowerSP).make();
   AutoSizeText roleCardTS(double size) =>
       text.color(Colors.white).size(size.slowSP).maxLines(1).make();
-
 }
 
 extension IntExt on int {
@@ -30,5 +29,6 @@ extension DoubleExt on double {
 }
 
 extension Flex on Widget {
-  Flexible flex(int flex, [FlexFit? fit]) => Flexible(flex: flex, fit: fit ?? FlexFit.loose, child: this);
+  Flexible flex(int flex, [FlexFit? fit]) =>
+      Flexible(flex: flex, fit: fit ?? FlexFit.loose, child: this);
 }

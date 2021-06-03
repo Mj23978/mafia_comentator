@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_comentator/widgets/dialogs/done_show_role_dialog.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 
 import '../../core/roles.dart';
@@ -63,31 +63,33 @@ class ShowRolesController extends GetxController {
       BuildContext context, double width, double height) async {
     final _helper = Get.find<AppController>();
     await baseFlash(
-      context,
-      (controller) => DoneShowRolesDialog(
-        height: height,
-        width: width,
-        goComentatorPage: () {
-          controller.dismiss();
-          var resPlayers = players.value.map((e) {
-              final side = cityRoles.any((element) => element.name == e.roleName);
-              final role = side
-                  ? cityRoles.firstWhere((element) => element.name == e.roleName)
-                  : mafiaRoles.firstWhere((element) => element.name == e.roleName);
-              return e.copyWith(role: role);
-            }).toList();
-          _helper.players.value = resPlayers;
-          Get.offNamed("/game", arguments: {
-            "game_players": resPlayers,
-          });
-        },
-        refreshRoles: () {
-          controller.dismiss();
-          _refreshRoles();
-        },
-      ),
-      boxShadows: <BoxShadow>[]
-    );
+        context,
+        (controller) => DoneShowRolesDialog(
+              height: height,
+              width: width,
+              goComentatorPage: () {
+                controller.dismiss();
+                var resPlayers = players.value.map((e) {
+                  final side =
+                      cityRoles.any((element) => element.name == e.roleName);
+                  final role = side
+                      ? cityRoles
+                          .firstWhere((element) => element.name == e.roleName)
+                      : mafiaRoles
+                          .firstWhere((element) => element.name == e.roleName);
+                  return e.copyWith(role: role);
+                }).toList();
+                _helper.players.value = resPlayers;
+                Get.offNamed("/game", arguments: {
+                  "game_players": resPlayers,
+                });
+              },
+              refreshRoles: () {
+                controller.dismiss();
+                _refreshRoles();
+              },
+            ),
+        boxShadows: <BoxShadow>[]);
   }
 
   _refreshRoles() {
@@ -99,7 +101,7 @@ class ShowRolesController extends GetxController {
     }
     players.update((val) {});
   }
-  
+
   int _getShowedPlayers() {
     return players.value.where((element) => !element.roleShowed).length;
   }

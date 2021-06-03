@@ -1,6 +1,6 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 import '../utils/extensions.dart';
 
@@ -24,9 +24,7 @@ class GameListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12)
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(12)),
       padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Row(
         children: [

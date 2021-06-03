@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_x/flutter_x.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 
 import '../../utils/helpers.dart';
@@ -41,7 +41,8 @@ class KillConfirmDialog extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            "kill_player_message".trParams({"players": players.toString()}) ?? "",
+            "kill_player_message".trParams({"players": players.toString()}) ??
+                "",
             style: textStyle(14, color: Colors.white),
           ).pSy(x: width * 0.04),
           Spacer(),
