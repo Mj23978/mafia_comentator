@@ -9,7 +9,7 @@ on:
       - "master"
 
 jobs: 
-  build_java:
+  build-java:
 
     runs-on: ubuntu-latest
 
@@ -32,7 +32,7 @@ jobs:
           name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
 
-  build_macos:
+  build-macos:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -47,7 +47,7 @@ jobs:
     - run: flutter build apk
     - run: flutter build ios --release --no-codesign
 
-  build_gh_pages:
+  build-gh-pages:
     runs-on: ubuntu-latest
 
     steps:
