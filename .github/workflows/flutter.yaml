@@ -22,7 +22,7 @@ jobs:
         with:
           channel: 'stable' # or: 'beta', 'dev' or 'master'
       - name: Install dependencies
-      - run: flutter pub get
+        run: flutter pub get
       - run: flutter test
       - name: Build apk
         run: flutter build apk --split-per-abi
