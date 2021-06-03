@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_uix: ^0.1.2-nullsafety.2
+  flutter_uix: ^0.1.0-nullsafety.1
   adobe_xd: ^2.0.0+1
   ionicons: ^0.1.2
   cupertino_icons: ^1.0.2
