@@ -50,12 +50,14 @@ class _$AbilityTearOff {
       {required AbilityType type,
       required Stage whenS,
       EveryClause? everyClause,
-      TimesClause? timesClause}) {
+      TimesClause? timesClause,
+      List<RoleEnum> validTargets = const []}) {
     return _Ability(
       type: type,
       whenS: whenS,
       everyClause: everyClause,
       timesClause: timesClause,
+      validTargets: validTargets,
     );
   }
 
@@ -64,7 +66,7 @@ class _$AbilityTearOff {
       required Stage whenS,
       required List<Action> saveFrom,
       required SelfClause selfClause,
-      required List<RoleEnum> whoWillBeSaved,
+      required List<RoleEnum> validTargets,
       WhenClause? whenClause,
       FromActionClause? fromClause,
       UntilClause? untilClause,
@@ -76,7 +78,7 @@ class _$AbilityTearOff {
       whenS: whenS,
       saveFrom: saveFrom,
       selfClause: selfClause,
-      whoWillBeSaved: whoWillBeSaved,
+      validTargets: validTargets,
       whenClause: whenClause,
       fromClause: fromClause,
       untilClause: untilClause,
@@ -91,7 +93,7 @@ class _$AbilityTearOff {
       required Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
-      required RoleEnum whichRoleEnum,
+      required List<RoleEnum> validTargets,
       required AbilityType by,
       required Who onWho,
       Cost? cost}) {
@@ -100,7 +102,7 @@ class _$AbilityTearOff {
       whenS: whenS,
       everyClause: everyClause,
       timesClause: timesClause,
-      whichRoleEnum: whichRoleEnum,
+      validTargets: validTargets,
       by: by,
       onWho: onWho,
       cost: cost,
@@ -133,6 +135,7 @@ class _$AbilityTearOff {
       required Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      required List<RoleEnum> validTargets,
       required GuessType what,
       Cost? costIfRight,
       Cost? costIfWrong,
@@ -147,6 +150,7 @@ class _$AbilityTearOff {
       whenS: whenS,
       everyClause: everyClause,
       timesClause: timesClause,
+      validTargets: validTargets,
       what: what,
       costIfRight: costIfRight,
       costIfWrong: costIfWrong,
@@ -166,7 +170,7 @@ class _$AbilityTearOff {
       TimesClause? timesClause,
       required AbilityType what,
       required ChangeType change,
-      required List<RoleEnum> forWho,
+      required List<RoleEnum> validTargets,
       WhenClause? whenClause,
       FromClause? fromClause,
       IFClause? ifClause,
@@ -178,7 +182,7 @@ class _$AbilityTearOff {
       timesClause: timesClause,
       what: what,
       change: change,
-      forWho: forWho,
+      validTargets: validTargets,
       whenClause: whenClause,
       fromClause: fromClause,
       ifClause: ifClause,
@@ -241,6 +245,7 @@ class _$AbilityTearOff {
       required Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      List<RoleEnum> validTargets = const [],
       required Action whenActivates,
       required Who whoGains,
       required AbilityType can,
@@ -250,6 +255,7 @@ class _$AbilityTearOff {
       whenS: whenS,
       everyClause: everyClause,
       timesClause: timesClause,
+      validTargets: validTargets,
       whenActivates: whenActivates,
       whoGains: whoGains,
       can: can,
@@ -262,6 +268,7 @@ class _$AbilityTearOff {
       required Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      required List<RoleEnum> validTargets,
       required Action action,
       required Stage whenAction,
       IFClause? ifClause}) {
@@ -270,6 +277,7 @@ class _$AbilityTearOff {
       whenS: whenS,
       everyClause: everyClause,
       timesClause: timesClause,
+      validTargets: validTargets,
       action: action,
       whenAction: whenAction,
       ifClause: ifClause,
@@ -281,6 +289,7 @@ class _$AbilityTearOff {
       Stage whenS = Stage.All,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      List<RoleEnum> validTargets = const [],
       required RoleEnum role,
       required int priority,
       IFClause? ifClause}) {
@@ -289,6 +298,7 @@ class _$AbilityTearOff {
       whenS: whenS,
       everyClause: everyClause,
       timesClause: timesClause,
+      validTargets: validTargets,
       role: role,
       priority: priority,
       ifClause: ifClause,
@@ -309,18 +319,19 @@ mixin _$Ability {
   Stage get whenS => throw _privateConstructorUsedError;
   EveryClause? get everyClause => throw _privateConstructorUsedError;
   TimesClause? get timesClause => throw _privateConstructorUsedError;
+  List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -333,7 +344,7 @@ mixin _$Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -353,6 +364,7 @@ mixin _$Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -370,7 +382,7 @@ mixin _$Ability {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -405,6 +417,7 @@ mixin _$Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -415,6 +428,7 @@ mixin _$Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -424,6 +438,7 @@ mixin _$Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
@@ -433,14 +448,14 @@ mixin _$Ability {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -453,7 +468,7 @@ mixin _$Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -473,6 +488,7 @@ mixin _$Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -490,7 +506,7 @@ mixin _$Ability {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -525,6 +541,7 @@ mixin _$Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -535,6 +552,7 @@ mixin _$Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -544,6 +562,7 @@ mixin _$Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -595,7 +614,8 @@ abstract class $AbilityCopyWith<$Res> {
       {AbilityType type,
       Stage whenS,
       EveryClause? everyClause,
-      TimesClause? timesClause});
+      TimesClause? timesClause,
+      List<RoleEnum> validTargets});
 }
 
 /// @nodoc
@@ -612,6 +632,7 @@ class _$AbilityCopyWithImpl<$Res> implements $AbilityCopyWith<$Res> {
     Object? whenS = freezed,
     Object? everyClause = freezed,
     Object? timesClause = freezed,
+    Object? validTargets = freezed,
   }) {
     return _then(_value.copyWith(
       type: type == freezed
@@ -630,6 +651,10 @@ class _$AbilityCopyWithImpl<$Res> implements $AbilityCopyWith<$Res> {
           ? _value.timesClause
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
+      validTargets: validTargets == freezed
+          ? _value.validTargets
+          : validTargets // ignore: cast_nullable_to_non_nullable
+              as List<RoleEnum>,
     ));
   }
 }
@@ -643,7 +668,8 @@ abstract class _$AbilityCopyWith<$Res> implements $AbilityCopyWith<$Res> {
       {AbilityType type,
       Stage whenS,
       EveryClause? everyClause,
-      TimesClause? timesClause});
+      TimesClause? timesClause,
+      List<RoleEnum> validTargets});
 }
 
 /// @nodoc
@@ -661,6 +687,7 @@ class __$AbilityCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? whenS = freezed,
     Object? everyClause = freezed,
     Object? timesClause = freezed,
+    Object? validTargets = freezed,
   }) {
     return _then(_Ability(
       type: type == freezed
@@ -679,6 +706,10 @@ class __$AbilityCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           ? _value.timesClause
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
+      validTargets: validTargets == freezed
+          ? _value.validTargets
+          : validTargets // ignore: cast_nullable_to_non_nullable
+              as List<RoleEnum>,
     ));
   }
 }
@@ -691,7 +722,8 @@ class _$_Ability extends _Ability {
       {required this.type,
       required this.whenS,
       this.everyClause,
-      this.timesClause})
+      this.timesClause,
+      this.validTargets = const []})
       : super._();
 
   factory _$_Ability.fromJson(Map<String, dynamic> json) =>
@@ -705,10 +737,13 @@ class _$_Ability extends _Ability {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<RoleEnum> validTargets;
 
   @override
   String toString() {
-    return 'Ability(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause)';
+    return 'Ability(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, validTargets: $validTargets)';
   }
 
   @override
@@ -724,7 +759,10 @@ class _$_Ability extends _Ability {
                     .equals(other.everyClause, everyClause)) &&
             (identical(other.timesClause, timesClause) ||
                 const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)));
+                    .equals(other.timesClause, timesClause)) &&
+            (identical(other.validTargets, validTargets) ||
+                const DeepCollectionEquality()
+                    .equals(other.validTargets, validTargets)));
   }
 
   @override
@@ -733,7 +771,8 @@ class _$_Ability extends _Ability {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(whenS) ^
       const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause);
+      const DeepCollectionEquality().hash(timesClause) ^
+      const DeepCollectionEquality().hash(validTargets);
 
   @JsonKey(ignore: true)
   @override
@@ -744,14 +783,14 @@ class _$_Ability extends _Ability {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -764,7 +803,7 @@ class _$_Ability extends _Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -784,6 +823,7 @@ class _$_Ability extends _Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -801,7 +841,7 @@ class _$_Ability extends _Ability {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -836,6 +876,7 @@ class _$_Ability extends _Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -846,6 +887,7 @@ class _$_Ability extends _Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -855,26 +897,27 @@ class _$_Ability extends _Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
         reserve,
   }) {
-    return $default(type, whenS, everyClause, timesClause);
+    return $default(type, whenS, everyClause, timesClause, validTargets);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -887,7 +930,7 @@ class _$_Ability extends _Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -907,6 +950,7 @@ class _$_Ability extends _Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -924,7 +968,7 @@ class _$_Ability extends _Ability {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -959,6 +1003,7 @@ class _$_Ability extends _Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -969,6 +1014,7 @@ class _$_Ability extends _Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -978,6 +1024,7 @@ class _$_Ability extends _Ability {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -985,7 +1032,7 @@ class _$_Ability extends _Ability {
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(type, whenS, everyClause, timesClause);
+      return $default(type, whenS, everyClause, timesClause, validTargets);
     }
     return orElse();
   }
@@ -1041,7 +1088,8 @@ abstract class _Ability extends Ability {
       {required AbilityType type,
       required Stage whenS,
       EveryClause? everyClause,
-      TimesClause? timesClause}) = _$_Ability;
+      TimesClause? timesClause,
+      List<RoleEnum> validTargets}) = _$_Ability;
   const _Ability._() : super._();
 
   factory _Ability.fromJson(Map<String, dynamic> json) = _$_Ability.fromJson;
@@ -1054,6 +1102,8 @@ abstract class _Ability extends Ability {
   EveryClause? get everyClause => throw _privateConstructorUsedError;
   @override
   TimesClause? get timesClause => throw _privateConstructorUsedError;
+  @override
+  List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AbilityCopyWith<_Ability> get copyWith =>
@@ -1070,7 +1120,7 @@ abstract class $SaveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
       Stage whenS,
       List<Action> saveFrom,
       SelfClause selfClause,
-      List<RoleEnum> whoWillBeSaved,
+      List<RoleEnum> validTargets,
       WhenClause? whenClause,
       FromActionClause? fromClause,
       UntilClause? untilClause,
@@ -1094,7 +1144,7 @@ class _$SaveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? whenS = freezed,
     Object? saveFrom = freezed,
     Object? selfClause = freezed,
-    Object? whoWillBeSaved = freezed,
+    Object? validTargets = freezed,
     Object? whenClause = freezed,
     Object? fromClause = freezed,
     Object? untilClause = freezed,
@@ -1119,9 +1169,9 @@ class _$SaveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           ? _value.selfClause
           : selfClause // ignore: cast_nullable_to_non_nullable
               as SelfClause,
-      whoWillBeSaved: whoWillBeSaved == freezed
-          ? _value.whoWillBeSaved
-          : whoWillBeSaved // ignore: cast_nullable_to_non_nullable
+      validTargets: validTargets == freezed
+          ? _value.validTargets
+          : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       whenClause: whenClause == freezed
           ? _value.whenClause
@@ -1160,7 +1210,7 @@ class _$Save extends Save {
       required this.whenS,
       required this.saveFrom,
       required this.selfClause,
-      required this.whoWillBeSaved,
+      required this.validTargets,
       this.whenClause,
       this.fromClause,
       this.untilClause,
@@ -1189,7 +1239,7 @@ class _$Save extends Save {
   @override
   final SelfClause selfClause;
   @override
-  final List<RoleEnum> whoWillBeSaved;
+  final List<RoleEnum> validTargets;
   @override
   final WhenClause? whenClause;
   @override
@@ -1205,7 +1255,7 @@ class _$Save extends Save {
 
   @override
   String toString() {
-    return 'Ability.save(type: $type, whenS: $whenS, saveFrom: $saveFrom, selfClause: $selfClause, whoWillBeSaved: $whoWillBeSaved, whenClause: $whenClause, fromClause: $fromClause, untilClause: $untilClause, everyClause: $everyClause, timesClause: $timesClause, ifClause: $ifClause)';
+    return 'Ability.save(type: $type, whenS: $whenS, saveFrom: $saveFrom, selfClause: $selfClause, validTargets: $validTargets, whenClause: $whenClause, fromClause: $fromClause, untilClause: $untilClause, everyClause: $everyClause, timesClause: $timesClause, ifClause: $ifClause)';
   }
 
   @override
@@ -1222,9 +1272,9 @@ class _$Save extends Save {
             (identical(other.selfClause, selfClause) ||
                 const DeepCollectionEquality()
                     .equals(other.selfClause, selfClause)) &&
-            (identical(other.whoWillBeSaved, whoWillBeSaved) ||
+            (identical(other.validTargets, validTargets) ||
                 const DeepCollectionEquality()
-                    .equals(other.whoWillBeSaved, whoWillBeSaved)) &&
+                    .equals(other.validTargets, validTargets)) &&
             (identical(other.whenClause, whenClause) ||
                 const DeepCollectionEquality()
                     .equals(other.whenClause, whenClause)) &&
@@ -1252,7 +1302,7 @@ class _$Save extends Save {
       const DeepCollectionEquality().hash(whenS) ^
       const DeepCollectionEquality().hash(saveFrom) ^
       const DeepCollectionEquality().hash(selfClause) ^
-      const DeepCollectionEquality().hash(whoWillBeSaved) ^
+      const DeepCollectionEquality().hash(validTargets) ^
       const DeepCollectionEquality().hash(whenClause) ^
       const DeepCollectionEquality().hash(fromClause) ^
       const DeepCollectionEquality().hash(untilClause) ^
@@ -1269,14 +1319,14 @@ class _$Save extends Save {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -1289,7 +1339,7 @@ class _$Save extends Save {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -1309,6 +1359,7 @@ class _$Save extends Save {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -1326,7 +1377,7 @@ class _$Save extends Save {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -1361,6 +1412,7 @@ class _$Save extends Save {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -1371,6 +1423,7 @@ class _$Save extends Save {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -1380,12 +1433,13 @@ class _$Save extends Save {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
         reserve,
   }) {
-    return save(type, whenS, saveFrom, selfClause, whoWillBeSaved, whenClause,
+    return save(type, whenS, saveFrom, selfClause, validTargets, whenClause,
         fromClause, untilClause, everyClause, timesClause, ifClause);
   }
 
@@ -1393,14 +1447,14 @@ class _$Save extends Save {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -1413,7 +1467,7 @@ class _$Save extends Save {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -1433,6 +1487,7 @@ class _$Save extends Save {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -1450,7 +1505,7 @@ class _$Save extends Save {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -1485,6 +1540,7 @@ class _$Save extends Save {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -1495,6 +1551,7 @@ class _$Save extends Save {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -1504,6 +1561,7 @@ class _$Save extends Save {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -1511,7 +1569,7 @@ class _$Save extends Save {
     required TResult orElse(),
   }) {
     if (save != null) {
-      return save(type, whenS, saveFrom, selfClause, whoWillBeSaved, whenClause,
+      return save(type, whenS, saveFrom, selfClause, validTargets, whenClause,
           fromClause, untilClause, everyClause, timesClause, ifClause);
     }
     return orElse();
@@ -1569,7 +1627,7 @@ abstract class Save extends Ability {
       required Stage whenS,
       required List<Action> saveFrom,
       required SelfClause selfClause,
-      required List<RoleEnum> whoWillBeSaved,
+      required List<RoleEnum> validTargets,
       WhenClause? whenClause,
       FromActionClause? fromClause,
       UntilClause? untilClause,
@@ -1586,7 +1644,8 @@ abstract class Save extends Ability {
   Stage get whenS => throw _privateConstructorUsedError;
   List<Action> get saveFrom => throw _privateConstructorUsedError;
   SelfClause get selfClause => throw _privateConstructorUsedError;
-  List<RoleEnum> get whoWillBeSaved => throw _privateConstructorUsedError;
+  @override
+  List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   WhenClause? get whenClause => throw _privateConstructorUsedError;
   FromActionClause? get fromClause => throw _privateConstructorUsedError;
   UntilClause? get untilClause => throw _privateConstructorUsedError;
@@ -1610,7 +1669,7 @@ abstract class $CounterCopyWith<$Res> implements $AbilityCopyWith<$Res> {
       Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
-      RoleEnum whichRoleEnum,
+      List<RoleEnum> validTargets,
       AbilityType by,
       Who onWho,
       Cost? cost});
@@ -1631,7 +1690,7 @@ class _$CounterCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? whenS = freezed,
     Object? everyClause = freezed,
     Object? timesClause = freezed,
-    Object? whichRoleEnum = freezed,
+    Object? validTargets = freezed,
     Object? by = freezed,
     Object? onWho = freezed,
     Object? cost = freezed,
@@ -1653,10 +1712,10 @@ class _$CounterCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           ? _value.timesClause
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
-      whichRoleEnum: whichRoleEnum == freezed
-          ? _value.whichRoleEnum
-          : whichRoleEnum // ignore: cast_nullable_to_non_nullable
-              as RoleEnum,
+      validTargets: validTargets == freezed
+          ? _value.validTargets
+          : validTargets // ignore: cast_nullable_to_non_nullable
+              as List<RoleEnum>,
       by: by == freezed
           ? _value.by
           : by // ignore: cast_nullable_to_non_nullable
@@ -1682,7 +1741,7 @@ class _$Counter extends Counter {
       required this.whenS,
       this.everyClause,
       this.timesClause,
-      required this.whichRoleEnum,
+      required this.validTargets,
       required this.by,
       required this.onWho,
       this.cost})
@@ -1705,7 +1764,7 @@ class _$Counter extends Counter {
   @override
   final TimesClause? timesClause;
   @override
-  final RoleEnum whichRoleEnum;
+  final List<RoleEnum> validTargets;
   @override
   final AbilityType by;
   @override
@@ -1715,7 +1774,7 @@ class _$Counter extends Counter {
 
   @override
   String toString() {
-    return 'Ability.counter(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, whichRoleEnum: $whichRoleEnum, by: $by, onWho: $onWho, cost: $cost)';
+    return 'Ability.counter(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, validTargets: $validTargets, by: $by, onWho: $onWho, cost: $cost)';
   }
 
   @override
@@ -1732,9 +1791,9 @@ class _$Counter extends Counter {
             (identical(other.timesClause, timesClause) ||
                 const DeepCollectionEquality()
                     .equals(other.timesClause, timesClause)) &&
-            (identical(other.whichRoleEnum, whichRoleEnum) ||
+            (identical(other.validTargets, validTargets) ||
                 const DeepCollectionEquality()
-                    .equals(other.whichRoleEnum, whichRoleEnum)) &&
+                    .equals(other.validTargets, validTargets)) &&
             (identical(other.by, by) ||
                 const DeepCollectionEquality().equals(other.by, by)) &&
             (identical(other.onWho, onWho) ||
@@ -1750,7 +1809,7 @@ class _$Counter extends Counter {
       const DeepCollectionEquality().hash(whenS) ^
       const DeepCollectionEquality().hash(everyClause) ^
       const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(whichRoleEnum) ^
+      const DeepCollectionEquality().hash(validTargets) ^
       const DeepCollectionEquality().hash(by) ^
       const DeepCollectionEquality().hash(onWho) ^
       const DeepCollectionEquality().hash(cost);
@@ -1764,14 +1823,14 @@ class _$Counter extends Counter {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -1784,7 +1843,7 @@ class _$Counter extends Counter {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -1804,6 +1863,7 @@ class _$Counter extends Counter {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -1821,7 +1881,7 @@ class _$Counter extends Counter {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -1856,6 +1916,7 @@ class _$Counter extends Counter {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -1866,6 +1927,7 @@ class _$Counter extends Counter {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -1875,27 +1937,28 @@ class _$Counter extends Counter {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
         reserve,
   }) {
     return counter(
-        type, whenS, everyClause, timesClause, whichRoleEnum, by, onWho, cost);
+        type, whenS, everyClause, timesClause, validTargets, by, onWho, cost);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -1908,7 +1971,7 @@ class _$Counter extends Counter {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -1928,6 +1991,7 @@ class _$Counter extends Counter {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -1945,7 +2009,7 @@ class _$Counter extends Counter {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -1980,6 +2044,7 @@ class _$Counter extends Counter {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -1990,6 +2055,7 @@ class _$Counter extends Counter {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -1999,6 +2065,7 @@ class _$Counter extends Counter {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -2006,8 +2073,8 @@ class _$Counter extends Counter {
     required TResult orElse(),
   }) {
     if (counter != null) {
-      return counter(type, whenS, everyClause, timesClause, whichRoleEnum, by,
-          onWho, cost);
+      return counter(
+          type, whenS, everyClause, timesClause, validTargets, by, onWho, cost);
     }
     return orElse();
   }
@@ -2064,7 +2131,7 @@ abstract class Counter extends Ability {
       required Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
-      required RoleEnum whichRoleEnum,
+      required List<RoleEnum> validTargets,
       required AbilityType by,
       required Who onWho,
       Cost? cost}) = _$Counter;
@@ -2080,7 +2147,8 @@ abstract class Counter extends Ability {
   EveryClause? get everyClause => throw _privateConstructorUsedError;
   @override
   TimesClause? get timesClause => throw _privateConstructorUsedError;
-  RoleEnum get whichRoleEnum => throw _privateConstructorUsedError;
+  @override
+  List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   AbilityType get by => throw _privateConstructorUsedError;
   Who get onWho => throw _privateConstructorUsedError;
   Cost? get cost => throw _privateConstructorUsedError;
@@ -2257,14 +2325,14 @@ class _$Recrute extends Recrute {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -2277,7 +2345,7 @@ class _$Recrute extends Recrute {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -2297,6 +2365,7 @@ class _$Recrute extends Recrute {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -2314,7 +2383,7 @@ class _$Recrute extends Recrute {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -2349,6 +2418,7 @@ class _$Recrute extends Recrute {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -2359,6 +2429,7 @@ class _$Recrute extends Recrute {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -2368,6 +2439,7 @@ class _$Recrute extends Recrute {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
@@ -2381,14 +2453,14 @@ class _$Recrute extends Recrute {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -2401,7 +2473,7 @@ class _$Recrute extends Recrute {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -2421,6 +2493,7 @@ class _$Recrute extends Recrute {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -2438,7 +2511,7 @@ class _$Recrute extends Recrute {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -2473,6 +2546,7 @@ class _$Recrute extends Recrute {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -2483,6 +2557,7 @@ class _$Recrute extends Recrute {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -2492,6 +2567,7 @@ class _$Recrute extends Recrute {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -2573,6 +2649,7 @@ abstract class Recrute extends Ability {
   EveryClause? get everyClause => throw _privateConstructorUsedError;
   @override
   TimesClause? get timesClause => throw _privateConstructorUsedError;
+  @override
   List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   bool get willBeConverted => throw _privateConstructorUsedError;
   CostOn get costOnHimOrAll => throw _privateConstructorUsedError;
@@ -2592,6 +2669,7 @@ abstract class $GuessCopyWith<$Res> implements $AbilityCopyWith<$Res> {
       Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      List<RoleEnum> validTargets,
       GuessType what,
       Cost? costIfRight,
       Cost? costIfWrong,
@@ -2618,6 +2696,7 @@ class _$GuessCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? whenS = freezed,
     Object? everyClause = freezed,
     Object? timesClause = freezed,
+    Object? validTargets = freezed,
     Object? what = freezed,
     Object? costIfRight = freezed,
     Object? costIfWrong = freezed,
@@ -2645,6 +2724,10 @@ class _$GuessCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           ? _value.timesClause
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
+      validTargets: validTargets == freezed
+          ? _value.validTargets
+          : validTargets // ignore: cast_nullable_to_non_nullable
+              as List<RoleEnum>,
       what: what == freezed
           ? _value.what
           : what // ignore: cast_nullable_to_non_nullable
@@ -2694,6 +2777,7 @@ class _$Guess extends Guess {
       required this.whenS,
       this.everyClause,
       this.timesClause,
+      required this.validTargets,
       required this.what,
       this.costIfRight,
       this.costIfWrong,
@@ -2727,6 +2811,8 @@ class _$Guess extends Guess {
   @override
   final TimesClause? timesClause;
   @override
+  final List<RoleEnum> validTargets;
+  @override
   final GuessType what;
   @override
   final Cost? costIfRight;
@@ -2747,7 +2833,7 @@ class _$Guess extends Guess {
 
   @override
   String toString() {
-    return 'Ability.guess(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, what: $what, costIfRight: $costIfRight, costIfWrong: $costIfWrong, costOnIfRight: $costOnIfRight, costOnIfWrong: $costOnIfWrong, whenClause: $whenClause, fromClause: $fromClause, ifClause: $ifClause, untilClause: $untilClause)';
+    return 'Ability.guess(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, validTargets: $validTargets, what: $what, costIfRight: $costIfRight, costIfWrong: $costIfWrong, costOnIfRight: $costOnIfRight, costOnIfWrong: $costOnIfWrong, whenClause: $whenClause, fromClause: $fromClause, ifClause: $ifClause, untilClause: $untilClause)';
   }
 
   @override
@@ -2764,6 +2850,9 @@ class _$Guess extends Guess {
             (identical(other.timesClause, timesClause) ||
                 const DeepCollectionEquality()
                     .equals(other.timesClause, timesClause)) &&
+            (identical(other.validTargets, validTargets) ||
+                const DeepCollectionEquality()
+                    .equals(other.validTargets, validTargets)) &&
             (identical(other.what, what) ||
                 const DeepCollectionEquality().equals(other.what, what)) &&
             (identical(other.costIfRight, costIfRight) ||
@@ -2799,6 +2888,7 @@ class _$Guess extends Guess {
       const DeepCollectionEquality().hash(whenS) ^
       const DeepCollectionEquality().hash(everyClause) ^
       const DeepCollectionEquality().hash(timesClause) ^
+      const DeepCollectionEquality().hash(validTargets) ^
       const DeepCollectionEquality().hash(what) ^
       const DeepCollectionEquality().hash(costIfRight) ^
       const DeepCollectionEquality().hash(costIfWrong) ^
@@ -2818,14 +2908,14 @@ class _$Guess extends Guess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -2838,7 +2928,7 @@ class _$Guess extends Guess {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -2858,6 +2948,7 @@ class _$Guess extends Guess {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -2875,7 +2966,7 @@ class _$Guess extends Guess {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -2910,6 +3001,7 @@ class _$Guess extends Guess {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -2920,6 +3012,7 @@ class _$Guess extends Guess {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -2929,6 +3022,7 @@ class _$Guess extends Guess {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
@@ -2939,6 +3033,7 @@ class _$Guess extends Guess {
         whenS,
         everyClause,
         timesClause,
+        validTargets,
         what,
         costIfRight,
         costIfWrong,
@@ -2954,14 +3049,14 @@ class _$Guess extends Guess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -2974,7 +3069,7 @@ class _$Guess extends Guess {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -2994,6 +3089,7 @@ class _$Guess extends Guess {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -3011,7 +3107,7 @@ class _$Guess extends Guess {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -3046,6 +3142,7 @@ class _$Guess extends Guess {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -3056,6 +3153,7 @@ class _$Guess extends Guess {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -3065,6 +3163,7 @@ class _$Guess extends Guess {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -3077,6 +3176,7 @@ class _$Guess extends Guess {
           whenS,
           everyClause,
           timesClause,
+          validTargets,
           what,
           costIfRight,
           costIfWrong,
@@ -3142,6 +3242,7 @@ abstract class Guess extends Ability {
       required Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      required List<RoleEnum> validTargets,
       required GuessType what,
       Cost? costIfRight,
       Cost? costIfWrong,
@@ -3163,6 +3264,8 @@ abstract class Guess extends Ability {
   EveryClause? get everyClause => throw _privateConstructorUsedError;
   @override
   TimesClause? get timesClause => throw _privateConstructorUsedError;
+  @override
+  List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   GuessType get what => throw _privateConstructorUsedError;
   Cost? get costIfRight => throw _privateConstructorUsedError;
   Cost? get costIfWrong => throw _privateConstructorUsedError;
@@ -3189,7 +3292,7 @@ abstract class $ChangeCopyWith<$Res> implements $AbilityCopyWith<$Res> {
       TimesClause? timesClause,
       AbilityType what,
       ChangeType change,
-      List<RoleEnum> forWho,
+      List<RoleEnum> validTargets,
       WhenClause? whenClause,
       FromClause? fromClause,
       IFClause? ifClause,
@@ -3213,7 +3316,7 @@ class _$ChangeCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? timesClause = freezed,
     Object? what = freezed,
     Object? change = freezed,
-    Object? forWho = freezed,
+    Object? validTargets = freezed,
     Object? whenClause = freezed,
     Object? fromClause = freezed,
     Object? ifClause = freezed,
@@ -3244,9 +3347,9 @@ class _$ChangeCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           ? _value.change
           : change // ignore: cast_nullable_to_non_nullable
               as ChangeType,
-      forWho: forWho == freezed
-          ? _value.forWho
-          : forWho // ignore: cast_nullable_to_non_nullable
+      validTargets: validTargets == freezed
+          ? _value.validTargets
+          : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       whenClause: whenClause == freezed
           ? _value.whenClause
@@ -3279,7 +3382,7 @@ class _$Change extends Change {
       this.timesClause,
       required this.what,
       required this.change,
-      required this.forWho,
+      required this.validTargets,
       this.whenClause,
       this.fromClause,
       this.ifClause,
@@ -3312,7 +3415,7 @@ class _$Change extends Change {
   @override
   final ChangeType change;
   @override
-  final List<RoleEnum> forWho;
+  final List<RoleEnum> validTargets;
   @override
   final WhenClause? whenClause;
   @override
@@ -3324,7 +3427,7 @@ class _$Change extends Change {
 
   @override
   String toString() {
-    return 'Ability.change(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, what: $what, change: $change, forWho: $forWho, whenClause: $whenClause, fromClause: $fromClause, ifClause: $ifClause, untilClause: $untilClause)';
+    return 'Ability.change(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, what: $what, change: $change, validTargets: $validTargets, whenClause: $whenClause, fromClause: $fromClause, ifClause: $ifClause, untilClause: $untilClause)';
   }
 
   @override
@@ -3345,8 +3448,9 @@ class _$Change extends Change {
                 const DeepCollectionEquality().equals(other.what, what)) &&
             (identical(other.change, change) ||
                 const DeepCollectionEquality().equals(other.change, change)) &&
-            (identical(other.forWho, forWho) ||
-                const DeepCollectionEquality().equals(other.forWho, forWho)) &&
+            (identical(other.validTargets, validTargets) ||
+                const DeepCollectionEquality()
+                    .equals(other.validTargets, validTargets)) &&
             (identical(other.whenClause, whenClause) ||
                 const DeepCollectionEquality()
                     .equals(other.whenClause, whenClause)) &&
@@ -3370,7 +3474,7 @@ class _$Change extends Change {
       const DeepCollectionEquality().hash(timesClause) ^
       const DeepCollectionEquality().hash(what) ^
       const DeepCollectionEquality().hash(change) ^
-      const DeepCollectionEquality().hash(forWho) ^
+      const DeepCollectionEquality().hash(validTargets) ^
       const DeepCollectionEquality().hash(whenClause) ^
       const DeepCollectionEquality().hash(fromClause) ^
       const DeepCollectionEquality().hash(ifClause) ^
@@ -3385,14 +3489,14 @@ class _$Change extends Change {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -3405,7 +3509,7 @@ class _$Change extends Change {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -3425,6 +3529,7 @@ class _$Change extends Change {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -3442,7 +3547,7 @@ class _$Change extends Change {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -3477,6 +3582,7 @@ class _$Change extends Change {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -3487,6 +3593,7 @@ class _$Change extends Change {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -3496,27 +3603,28 @@ class _$Change extends Change {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
         reserve,
   }) {
     return change(type, whenS, everyClause, timesClause, what, this.change,
-        forWho, whenClause, fromClause, ifClause, untilClause);
+        validTargets, whenClause, fromClause, ifClause, untilClause);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -3529,7 +3637,7 @@ class _$Change extends Change {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -3549,6 +3657,7 @@ class _$Change extends Change {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -3566,7 +3675,7 @@ class _$Change extends Change {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -3601,6 +3710,7 @@ class _$Change extends Change {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -3611,6 +3721,7 @@ class _$Change extends Change {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -3620,6 +3731,7 @@ class _$Change extends Change {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -3628,7 +3740,7 @@ class _$Change extends Change {
   }) {
     if (change != null) {
       return change(type, whenS, everyClause, timesClause, what, this.change,
-          forWho, whenClause, fromClause, ifClause, untilClause);
+          validTargets, whenClause, fromClause, ifClause, untilClause);
     }
     return orElse();
   }
@@ -3687,7 +3799,7 @@ abstract class Change extends Ability {
       TimesClause? timesClause,
       required AbilityType what,
       required ChangeType change,
-      required List<RoleEnum> forWho,
+      required List<RoleEnum> validTargets,
       WhenClause? whenClause,
       FromClause? fromClause,
       IFClause? ifClause,
@@ -3706,7 +3818,8 @@ abstract class Change extends Ability {
   TimesClause? get timesClause => throw _privateConstructorUsedError;
   AbilityType get what => throw _privateConstructorUsedError;
   ChangeType get change => throw _privateConstructorUsedError;
-  List<RoleEnum> get forWho => throw _privateConstructorUsedError;
+  @override
+  List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   WhenClause? get whenClause => throw _privateConstructorUsedError;
   FromClause? get fromClause => throw _privateConstructorUsedError;
   IFClause? get ifClause => throw _privateConstructorUsedError;
@@ -3953,14 +4066,14 @@ class _$Kill extends Kill {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -3973,7 +4086,7 @@ class _$Kill extends Kill {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -3993,6 +4106,7 @@ class _$Kill extends Kill {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -4010,7 +4124,7 @@ class _$Kill extends Kill {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -4045,6 +4159,7 @@ class _$Kill extends Kill {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -4055,6 +4170,7 @@ class _$Kill extends Kill {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -4064,6 +4180,7 @@ class _$Kill extends Kill {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
@@ -4089,14 +4206,14 @@ class _$Kill extends Kill {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -4109,7 +4226,7 @@ class _$Kill extends Kill {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -4129,6 +4246,7 @@ class _$Kill extends Kill {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -4146,7 +4264,7 @@ class _$Kill extends Kill {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -4181,6 +4299,7 @@ class _$Kill extends Kill {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -4191,6 +4310,7 @@ class _$Kill extends Kill {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -4200,6 +4320,7 @@ class _$Kill extends Kill {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -4298,6 +4419,7 @@ abstract class Kill extends Ability {
   EveryClause? get everyClause => throw _privateConstructorUsedError;
   @override
   TimesClause? get timesClause => throw _privateConstructorUsedError;
+  @override
   List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   int get effectesAfter => throw _privateConstructorUsedError;
   Stage get effectesAfterStage => throw _privateConstructorUsedError;
@@ -4466,14 +4588,14 @@ class _$Disable extends Disable {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -4486,7 +4608,7 @@ class _$Disable extends Disable {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -4506,6 +4628,7 @@ class _$Disable extends Disable {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -4523,7 +4646,7 @@ class _$Disable extends Disable {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -4558,6 +4681,7 @@ class _$Disable extends Disable {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -4568,6 +4692,7 @@ class _$Disable extends Disable {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -4577,6 +4702,7 @@ class _$Disable extends Disable {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
@@ -4590,14 +4716,14 @@ class _$Disable extends Disable {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -4610,7 +4736,7 @@ class _$Disable extends Disable {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -4630,6 +4756,7 @@ class _$Disable extends Disable {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -4647,7 +4774,7 @@ class _$Disable extends Disable {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -4682,6 +4809,7 @@ class _$Disable extends Disable {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -4692,6 +4820,7 @@ class _$Disable extends Disable {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -4701,6 +4830,7 @@ class _$Disable extends Disable {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -4782,6 +4912,7 @@ abstract class Disable extends Ability {
   @override
   TimesClause? get timesClause => throw _privateConstructorUsedError;
   List<Action> get fromActions => throw _privateConstructorUsedError;
+  @override
   List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   IFClause? get ifClause => throw _privateConstructorUsedError;
   @override
@@ -4800,6 +4931,7 @@ abstract class $ActivationCopyWith<$Res> implements $AbilityCopyWith<$Res> {
       Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      List<RoleEnum> validTargets,
       Action whenActivates,
       Who whoGains,
       AbilityType can,
@@ -4821,6 +4953,7 @@ class _$ActivationCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? whenS = freezed,
     Object? everyClause = freezed,
     Object? timesClause = freezed,
+    Object? validTargets = freezed,
     Object? whenActivates = freezed,
     Object? whoGains = freezed,
     Object? can = freezed,
@@ -4843,6 +4976,10 @@ class _$ActivationCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           ? _value.timesClause
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
+      validTargets: validTargets == freezed
+          ? _value.validTargets
+          : validTargets // ignore: cast_nullable_to_non_nullable
+              as List<RoleEnum>,
       whenActivates: whenActivates == freezed
           ? _value.whenActivates
           : whenActivates // ignore: cast_nullable_to_non_nullable
@@ -4872,6 +5009,7 @@ class _$Activation extends Activation {
       required this.whenS,
       this.everyClause,
       this.timesClause,
+      this.validTargets = const [],
       required this.whenActivates,
       required this.whoGains,
       required this.can,
@@ -4894,6 +5032,9 @@ class _$Activation extends Activation {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<RoleEnum> validTargets;
   @override
   final Action whenActivates;
   @override
@@ -4905,7 +5046,7 @@ class _$Activation extends Activation {
 
   @override
   String toString() {
-    return 'Ability.activation(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, whenActivates: $whenActivates, whoGains: $whoGains, can: $can, ifClause: $ifClause)';
+    return 'Ability.activation(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, validTargets: $validTargets, whenActivates: $whenActivates, whoGains: $whoGains, can: $can, ifClause: $ifClause)';
   }
 
   @override
@@ -4922,6 +5063,9 @@ class _$Activation extends Activation {
             (identical(other.timesClause, timesClause) ||
                 const DeepCollectionEquality()
                     .equals(other.timesClause, timesClause)) &&
+            (identical(other.validTargets, validTargets) ||
+                const DeepCollectionEquality()
+                    .equals(other.validTargets, validTargets)) &&
             (identical(other.whenActivates, whenActivates) ||
                 const DeepCollectionEquality()
                     .equals(other.whenActivates, whenActivates)) &&
@@ -4942,6 +5086,7 @@ class _$Activation extends Activation {
       const DeepCollectionEquality().hash(whenS) ^
       const DeepCollectionEquality().hash(everyClause) ^
       const DeepCollectionEquality().hash(timesClause) ^
+      const DeepCollectionEquality().hash(validTargets) ^
       const DeepCollectionEquality().hash(whenActivates) ^
       const DeepCollectionEquality().hash(whoGains) ^
       const DeepCollectionEquality().hash(can) ^
@@ -4956,14 +5101,14 @@ class _$Activation extends Activation {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -4976,7 +5121,7 @@ class _$Activation extends Activation {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -4996,6 +5141,7 @@ class _$Activation extends Activation {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -5013,7 +5159,7 @@ class _$Activation extends Activation {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -5048,6 +5194,7 @@ class _$Activation extends Activation {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -5058,6 +5205,7 @@ class _$Activation extends Activation {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -5067,27 +5215,28 @@ class _$Activation extends Activation {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
         reserve,
   }) {
-    return activation(type, whenS, everyClause, timesClause, whenActivates,
-        whoGains, can, ifClause);
+    return activation(type, whenS, everyClause, timesClause, validTargets,
+        whenActivates, whoGains, can, ifClause);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -5100,7 +5249,7 @@ class _$Activation extends Activation {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -5120,6 +5269,7 @@ class _$Activation extends Activation {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -5137,7 +5287,7 @@ class _$Activation extends Activation {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -5172,6 +5322,7 @@ class _$Activation extends Activation {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -5182,6 +5333,7 @@ class _$Activation extends Activation {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -5191,6 +5343,7 @@ class _$Activation extends Activation {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -5198,8 +5351,8 @@ class _$Activation extends Activation {
     required TResult orElse(),
   }) {
     if (activation != null) {
-      return activation(type, whenS, everyClause, timesClause, whenActivates,
-          whoGains, can, ifClause);
+      return activation(type, whenS, everyClause, timesClause, validTargets,
+          whenActivates, whoGains, can, ifClause);
     }
     return orElse();
   }
@@ -5256,6 +5409,7 @@ abstract class Activation extends Ability {
       required Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      List<RoleEnum> validTargets,
       required Action whenActivates,
       required Who whoGains,
       required AbilityType can,
@@ -5273,6 +5427,8 @@ abstract class Activation extends Ability {
   EveryClause? get everyClause => throw _privateConstructorUsedError;
   @override
   TimesClause? get timesClause => throw _privateConstructorUsedError;
+  @override
+  List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   Action get whenActivates => throw _privateConstructorUsedError;
   Who get whoGains => throw _privateConstructorUsedError;
   AbilityType get can => throw _privateConstructorUsedError;
@@ -5293,6 +5449,7 @@ abstract class $GiveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
       Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      List<RoleEnum> validTargets,
       Action action,
       Stage whenAction,
       IFClause? ifClause});
@@ -5313,6 +5470,7 @@ class _$GiveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? whenS = freezed,
     Object? everyClause = freezed,
     Object? timesClause = freezed,
+    Object? validTargets = freezed,
     Object? action = freezed,
     Object? whenAction = freezed,
     Object? ifClause = freezed,
@@ -5334,6 +5492,10 @@ class _$GiveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           ? _value.timesClause
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
+      validTargets: validTargets == freezed
+          ? _value.validTargets
+          : validTargets // ignore: cast_nullable_to_non_nullable
+              as List<RoleEnum>,
       action: action == freezed
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -5359,6 +5521,7 @@ class _$Give extends Give {
       required this.whenS,
       this.everyClause,
       this.timesClause,
+      required this.validTargets,
       required this.action,
       required this.whenAction,
       this.ifClause})
@@ -5380,6 +5543,8 @@ class _$Give extends Give {
   @override
   final TimesClause? timesClause;
   @override
+  final List<RoleEnum> validTargets;
+  @override
   final Action action;
   @override
   final Stage whenAction;
@@ -5388,7 +5553,7 @@ class _$Give extends Give {
 
   @override
   String toString() {
-    return 'Ability.give(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, action: $action, whenAction: $whenAction, ifClause: $ifClause)';
+    return 'Ability.give(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, validTargets: $validTargets, action: $action, whenAction: $whenAction, ifClause: $ifClause)';
   }
 
   @override
@@ -5405,6 +5570,9 @@ class _$Give extends Give {
             (identical(other.timesClause, timesClause) ||
                 const DeepCollectionEquality()
                     .equals(other.timesClause, timesClause)) &&
+            (identical(other.validTargets, validTargets) ||
+                const DeepCollectionEquality()
+                    .equals(other.validTargets, validTargets)) &&
             (identical(other.action, action) ||
                 const DeepCollectionEquality().equals(other.action, action)) &&
             (identical(other.whenAction, whenAction) ||
@@ -5422,6 +5590,7 @@ class _$Give extends Give {
       const DeepCollectionEquality().hash(whenS) ^
       const DeepCollectionEquality().hash(everyClause) ^
       const DeepCollectionEquality().hash(timesClause) ^
+      const DeepCollectionEquality().hash(validTargets) ^
       const DeepCollectionEquality().hash(action) ^
       const DeepCollectionEquality().hash(whenAction) ^
       const DeepCollectionEquality().hash(ifClause);
@@ -5435,14 +5604,14 @@ class _$Give extends Give {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -5455,7 +5624,7 @@ class _$Give extends Give {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -5475,6 +5644,7 @@ class _$Give extends Give {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -5492,7 +5662,7 @@ class _$Give extends Give {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -5527,6 +5697,7 @@ class _$Give extends Give {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -5537,6 +5708,7 @@ class _$Give extends Give {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -5546,27 +5718,28 @@ class _$Give extends Give {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
         reserve,
   }) {
-    return give(
-        type, whenS, everyClause, timesClause, action, whenAction, ifClause);
+    return give(type, whenS, everyClause, timesClause, validTargets, action,
+        whenAction, ifClause);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -5579,7 +5752,7 @@ class _$Give extends Give {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -5599,6 +5772,7 @@ class _$Give extends Give {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -5616,7 +5790,7 @@ class _$Give extends Give {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -5651,6 +5825,7 @@ class _$Give extends Give {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -5661,6 +5836,7 @@ class _$Give extends Give {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -5670,6 +5846,7 @@ class _$Give extends Give {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -5677,8 +5854,8 @@ class _$Give extends Give {
     required TResult orElse(),
   }) {
     if (give != null) {
-      return give(
-          type, whenS, everyClause, timesClause, action, whenAction, ifClause);
+      return give(type, whenS, everyClause, timesClause, validTargets, action,
+          whenAction, ifClause);
     }
     return orElse();
   }
@@ -5735,6 +5912,7 @@ abstract class Give extends Ability {
       required Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      required List<RoleEnum> validTargets,
       required Action action,
       required Stage whenAction,
       IFClause? ifClause}) = _$Give;
@@ -5750,6 +5928,8 @@ abstract class Give extends Ability {
   EveryClause? get everyClause => throw _privateConstructorUsedError;
   @override
   TimesClause? get timesClause => throw _privateConstructorUsedError;
+  @override
+  List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   Action get action => throw _privateConstructorUsedError;
   Stage get whenAction => throw _privateConstructorUsedError;
   IFClause? get ifClause => throw _privateConstructorUsedError;
@@ -5768,6 +5948,7 @@ abstract class $ReserveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
       Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      List<RoleEnum> validTargets,
       RoleEnum role,
       int priority,
       IFClause? ifClause});
@@ -5788,6 +5969,7 @@ class _$ReserveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? whenS = freezed,
     Object? everyClause = freezed,
     Object? timesClause = freezed,
+    Object? validTargets = freezed,
     Object? role = freezed,
     Object? priority = freezed,
     Object? ifClause = freezed,
@@ -5809,6 +5991,10 @@ class _$ReserveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           ? _value.timesClause
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
+      validTargets: validTargets == freezed
+          ? _value.validTargets
+          : validTargets // ignore: cast_nullable_to_non_nullable
+              as List<RoleEnum>,
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -5834,6 +6020,7 @@ class _$Reserve extends Reserve {
       this.whenS = Stage.All,
       this.everyClause,
       this.timesClause,
+      this.validTargets = const [],
       required this.role,
       required this.priority,
       this.ifClause})
@@ -5856,6 +6043,9 @@ class _$Reserve extends Reserve {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<RoleEnum> validTargets;
   @override
   final RoleEnum role;
   @override
@@ -5865,7 +6055,7 @@ class _$Reserve extends Reserve {
 
   @override
   String toString() {
-    return 'Ability.reserve(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, role: $role, priority: $priority, ifClause: $ifClause)';
+    return 'Ability.reserve(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, validTargets: $validTargets, role: $role, priority: $priority, ifClause: $ifClause)';
   }
 
   @override
@@ -5882,6 +6072,9 @@ class _$Reserve extends Reserve {
             (identical(other.timesClause, timesClause) ||
                 const DeepCollectionEquality()
                     .equals(other.timesClause, timesClause)) &&
+            (identical(other.validTargets, validTargets) ||
+                const DeepCollectionEquality()
+                    .equals(other.validTargets, validTargets)) &&
             (identical(other.role, role) ||
                 const DeepCollectionEquality().equals(other.role, role)) &&
             (identical(other.priority, priority) ||
@@ -5899,6 +6092,7 @@ class _$Reserve extends Reserve {
       const DeepCollectionEquality().hash(whenS) ^
       const DeepCollectionEquality().hash(everyClause) ^
       const DeepCollectionEquality().hash(timesClause) ^
+      const DeepCollectionEquality().hash(validTargets) ^
       const DeepCollectionEquality().hash(role) ^
       const DeepCollectionEquality().hash(priority) ^
       const DeepCollectionEquality().hash(ifClause);
@@ -5912,14 +6106,14 @@ class _$Reserve extends Reserve {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)
+            TimesClause? timesClause, List<RoleEnum> validTargets)
         $default, {
     required TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -5932,7 +6126,7 @@ class _$Reserve extends Reserve {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)
@@ -5952,6 +6146,7 @@ class _$Reserve extends Reserve {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -5969,7 +6164,7 @@ class _$Reserve extends Reserve {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -6004,6 +6199,7 @@ class _$Reserve extends Reserve {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -6014,6 +6210,7 @@ class _$Reserve extends Reserve {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)
@@ -6023,27 +6220,28 @@ class _$Reserve extends Reserve {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)
         reserve,
   }) {
-    return reserve(
-        type, whenS, everyClause, timesClause, role, priority, ifClause);
+    return reserve(type, whenS, everyClause, timesClause, validTargets, role,
+        priority, ifClause);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
-            TimesClause? timesClause)?
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
         $default, {
     TResult Function(
             AbilityType type,
             Stage whenS,
             List<Action> saveFrom,
             SelfClause selfClause,
-            List<RoleEnum> whoWillBeSaved,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromActionClause? fromClause,
             UntilClause? untilClause,
@@ -6056,7 +6254,7 @@ class _$Reserve extends Reserve {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
-            RoleEnum whichRoleEnum,
+            List<RoleEnum> validTargets,
             AbilityType by,
             Who onWho,
             Cost? cost)?
@@ -6076,6 +6274,7 @@ class _$Reserve extends Reserve {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             GuessType what,
             Cost? costIfRight,
             Cost? costIfWrong,
@@ -6093,7 +6292,7 @@ class _$Reserve extends Reserve {
             TimesClause? timesClause,
             AbilityType what,
             ChangeType change,
-            List<RoleEnum> forWho,
+            List<RoleEnum> validTargets,
             WhenClause? whenClause,
             FromClause? fromClause,
             IFClause? ifClause,
@@ -6128,6 +6327,7 @@ class _$Reserve extends Reserve {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action whenActivates,
             Who whoGains,
             AbilityType can,
@@ -6138,6 +6338,7 @@ class _$Reserve extends Reserve {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             Action action,
             Stage whenAction,
             IFClause? ifClause)?
@@ -6147,6 +6348,7 @@ class _$Reserve extends Reserve {
             Stage whenS,
             EveryClause? everyClause,
             TimesClause? timesClause,
+            List<RoleEnum> validTargets,
             RoleEnum role,
             int priority,
             IFClause? ifClause)?
@@ -6154,8 +6356,8 @@ class _$Reserve extends Reserve {
     required TResult orElse(),
   }) {
     if (reserve != null) {
-      return reserve(
-          type, whenS, everyClause, timesClause, role, priority, ifClause);
+      return reserve(type, whenS, everyClause, timesClause, validTargets, role,
+          priority, ifClause);
     }
     return orElse();
   }
@@ -6212,6 +6414,7 @@ abstract class Reserve extends Ability {
       Stage whenS,
       EveryClause? everyClause,
       TimesClause? timesClause,
+      List<RoleEnum> validTargets,
       required RoleEnum role,
       required int priority,
       IFClause? ifClause}) = _$Reserve;
@@ -6227,6 +6430,8 @@ abstract class Reserve extends Ability {
   EveryClause? get everyClause => throw _privateConstructorUsedError;
   @override
   TimesClause? get timesClause => throw _privateConstructorUsedError;
+  @override
+  List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   RoleEnum get role => throw _privateConstructorUsedError;
   int get priority => throw _privateConstructorUsedError;
   IFClause? get ifClause => throw _privateConstructorUsedError;

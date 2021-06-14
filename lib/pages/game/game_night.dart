@@ -1,17 +1,18 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_comentator/widgets/dialogs/cant_take_action_dialog.dart';
+import 'package:flutter_comentator/widgets/dialogs/guess_resualt_dialog.dart';
 import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 
 import '../../core/mafia_engine.dart';
-import '../../core/roles.dart';
 import '../../models/ability/ability.dart';
 import '../../models/enums.dart';
 import '../../models/player/player.dart';
 import '../../providers/controllers/app_controller.dart';
 import '../../utils/helpers.dart';
+import '../../widgets/dialogs/ability_pre_picker.dart';
+import '../../widgets/dialogs/cant_take_action_dialog.dart';
 import '../../widgets/dialogs/player_picker_dialog.dart';
 
 class GameNightBinding implements Bindings {
@@ -26,11 +27,20 @@ class GameNightController extends GetxController {
   final players = Rx<List<Player>>([]);
   final mafiaEngine = Rx<MafiaEngine>(MafiaEngine(players: []));
   final markedActions = Rx<Map<String, Tuple3>>({});
+  final actionsDetails = Rx<Map<String, Map<String, dynamic>>>({});
+  final protectedPlayers = Rx<List<String>>([]);
+  final changedDirPlayers = Rx<List<String>>([]);
+  final blockedPlayers = Rx<List<String>>([]);
 
   @override
   @mustCallSuper
   void onInit() async {
     super.onInit();
+    players.value = _helper.players.value;
+    mafiaEngine.value = _helper.mafiaEngine.value;
+  }
+
+  void updatePlayers() {
     players.value = _helper.players.value;
     mafiaEngine.value = _helper.mafiaEngine.value;
   }
@@ -47,6 +57,127 @@ class GameNightController extends GetxController {
     _helper.players.value = players.value;
     _helper.mafiaEngine.value = mafiaEngine.value;
   }
+
+  Future<void> guessDialog(
+      BuildContext context, double height, double width, bool res) async {
+    return baseFlash(
+      context,
+      (controller) => GuessResaultDialog(
+        height: height,
+        width: width,
+        result: res,
+      ),
+      boxShadows: <BoxShadow>[],
+      dismissHorizental: true,
+    );
+  }
+
+  void adddf(RoleEnum role, List<String> names) {
+    if (role == RoleEnum.Guardian) {
+      protectedPlayers.value.addAll(names);
+      print("Protected Players $protectedPlayers");
+    } else if (role == RoleEnum.RoleBlocker) {
+      protectedPlayers.value.addAll(names);
+      print("Protected Players $protectedPlayers");
+    } 
+  }
+
+  Future<void> abilityOnPress(
+      Player player,
+      Ability ability,
+      BuildContext context,
+      double height,
+      double width,
+      Rx<String> selectedName,
+      String key) async {
+    var selectedNames =
+        Rx<List<String>>(["first", "second", "third", "fourth"]);
+    var playerPicker = (bool optional, List<Player> validPlayers,
+        PlayerPickerType pickerType, Map<String, dynamic> details) async {
+      var pPicker = (int index) => baseFlash(
+            context,
+            (control) => PlayerPickerDialog(
+              height: height * 0.6,
+              width: width * 0.7,
+              onValuePicked: (t) {
+                selectedNames.value[index] = t;
+                selectedNames.update((val) {});
+                var targetIndex = mafiaEngine.value.players
+                    .indexWhere((element) => element.name == t);
+                if (targetIndex != -1) {
+                  var value = Tuple3(targetIndex, int.parse(key.split("-")[0]),
+                      int.parse(key.split("-")[1]));
+                  markedActions.value[
+                          "${indexToString(index)}-${value.value2}-${value.value3}"] =
+                      value;
+                  print(selectedNames);
+                }
+                control.dismiss();
+              },
+              players: validPlayers,
+              restOptions: [if (optional) "none".tr],
+            ),
+            boxShadows: <BoxShadow>[],
+            dismissHorizental: true,
+          );
+      if (pickerType == PlayerPickerType.MoreThanOnePlayer) {
+        baseFlash(
+          context,
+          (controller) => MorePlayerPickerDialog(
+            height: height * 0.35,
+            width: width * 0.75,
+            onPress: (index) {
+              pPicker(index);
+            },
+            names: selectedNames,
+            length: details["players_count"],
+            dismiss: () {
+              controller.dismiss();
+            },
+            submit: () {
+              selectedName.value = selectedNames.value
+                  .getRange(0, details["players_count"])
+                  .join(", ");
+              selectedName.update((val) {});
+              controller.dismiss();
+            },
+          ),
+          boxShadows: <BoxShadow>[],
+          dismissHorizental: true,
+        );
+      } else if (pickerType == PlayerPickerType.Normal) {
+        await pPicker(0);
+        if (selectedNames.value[0] != "first") {
+          selectedName.value = selectedNames.value[0];
+          selectedName.update((val) {});
+        }
+        // guessDialog(context, height * 0.4, width * 0.5, false);
+      }
+    };
+
+
+
+    mafiaEngine.value.selectTargetDialog(ability, player, players.value,
+        (optional, validPlayers, pickerType, details) async {
+      await baseFlash(
+        context,
+        (control) => CantTakeActionDialog(
+          height: height * 0.4,
+          width: width * 0.73,
+          dismiss: () {
+            control.dismiss();
+          },
+          forceAction: () async {
+            control.dismiss();
+            await playerPicker(optional, validPlayers, pickerType, details);
+          },
+        ),
+        boxShadows: <BoxShadow>[],
+      );
+    }, (optional, validPlayers, pickerType, details) async {
+      await playerPicker(optional, validPlayers, pickerType, details);
+    });
+  }
 }
 
 class GameNightView extends GetView<GameNightController> {
@@ -58,18 +189,23 @@ class GameNightView extends GetView<GameNightController> {
     beforeMafiaWake.sort();
     afterMafiaWake.sort();
     var res = <Widget>[];
-    beforeMafiaWake.forEach((el) {
+
+    beforeMafiaWake.toSet().forEach((el) {
       var these = abilities.entries.where((element) => element.value == el);
       res.addAll(these.map<Widget>(
         (e) {
+          var player = controller
+              .mafiaEngine.value.players[int.parse(e.key.split("-")[0])];
+          var ability = player.role!.abilities[int.parse(e.key.split("-")[1])];
           var selectedName = "".obs;
           return PlayerAbilityTile(
-            name: controller.mafiaEngine.value.players
-                .firstWhere((element) => element.name == e.key.split("-")[0])
-                .name,
+            name: "${player.roleName}(${player.name})",
             selectedName: selectedName,
             height: height,
-            onPress: () {},
+            onPress: () async {
+              await controller.abilityOnPress(
+                  player, ability, context, height, width, selectedName, e.key);
+            },
             width: width,
           );
         },
@@ -85,14 +221,18 @@ class GameNightView extends GetView<GameNightController> {
       var these = abilities.entries.where((element) => element.value == 4);
       res.addAll(these.map<Widget>(
         (e) {
+          var player = controller
+              .mafiaEngine.value.players[int.parse(e.key.split("-")[0])];
+          var ability = player.role!.abilities[int.parse(e.key.split("-")[1])];
           var selectedName = "".obs;
           return PlayerAbilityTile(
-            name: controller.mafiaEngine.value.players
-                .firstWhere((element) => element.name == e.key.split("-")[0])
-                .name,
+            name: "${player.roleName}(${player.name})",
             selectedName: selectedName,
             height: height,
-            onPress: () {},
+            onPress: () async {
+              await controller.abilityOnPress(
+                  player, ability, context, height, width, selectedName, e.key);
+            },
             width: width,
             nested: true,
           );
@@ -117,106 +257,9 @@ class GameNightView extends GetView<GameNightController> {
             name: "${player.roleName}(${player.name})",
             height: height,
             selectedName: selectedName,
-            onPress: () {
-              if (ability.type == AbilityType.Kill) {
-                var abi = ability as Kill;
-                var validPlayers = <Player>[];
-                Player? resPlayer;
-                if (abi.validTargets.contains(RoleEnum.All)) {
-                  validPlayers.addAll(controller.players.value);
-                } else if (abi.validTargets.contains(RoleEnum.Himself)) {
-                  validPlayers.add(player);
-                } else if (abi.validTargets.contains(RoleEnum.ExceptHimself)) {
-                  validPlayers.addAll(controller.players.value
-                      .where((element) => element.name != player.name));
-                } else if (abi.validTargets.contains(RoleEnum.City)) {
-                  validPlayers.addAll(controller.players.value.where(
-                      (element) =>
-                          cityRoles.any((e) => e.name == element.roleName)));
-                } else if (abi.validTargets.contains(RoleEnum.City)) {
-                  validPlayers.addAll(controller.players.value.where(
-                      (element) =>
-                          mafiaRoles.any((e) => e.name == element.roleName)));
-                }
-                var optional =
-                    ability.everyClause == null && ability.timesClause != null;
-                if (validPlayers.length == 1) {
-                  resPlayer = validPlayers[0];
-                } else if (validPlayers.length > 1) {
-                  var canTakeAction =
-                      controller.mafiaEngine.value.canTakeAction(ability);
-                  print(canTakeAction);
-                  if (!canTakeAction.value1) {
-                    baseFlash(
-                      context,
-                      (control) => CantTakeActionDialog(
-                        height: height * 0.4,
-                        width: width * 0.73,
-                        dismiss: () {
-                          control.dismiss();
-                        },
-                        forceAction: () {
-                          control.dismiss();
-                          baseFlash(
-                            context,
-                            (control) => PlayerPickerDialog(
-                              height: height * 0.6,
-                              width: width * 0.7,
-                              onValuePicked: (t) {
-                                selectedName.value = t;
-                                print(selectedName.value);
-                                var targetIndex = controller
-                                    .mafiaEngine.value.players
-                                    .indexWhere((element) => element.name == t);
-                                var value = Tuple3(
-                                    targetIndex,
-                                    int.parse(e.key.split("-")[0]),
-                                    int.parse(e.key.split("-")[1]));
-                                controller.markedActions.value[
-                                        "first-${value.value2}-${value.value3}"] =
-                                    value;
-                                print(controller.markedActions);
-                                control.dismiss();
-                              },
-                              players: validPlayers,
-                              restOptions: [if (optional) "none".tr],
-                            ),
-                            boxShadows: <BoxShadow>[],
-                            dismissHorizental: true,
-                          );
-                        },
-                      ),
-                      boxShadows: <BoxShadow>[],
-                    );
-                  } else {
-                    baseFlash(
-                      context,
-                      (control) => PlayerPickerDialog(
-                        height: height * 0.6,
-                        width: width * 0.7,
-                        onValuePicked: (t) {
-                          selectedName.value = t;
-                          print(selectedName.value);
-                          var targetIndex = controller.mafiaEngine.value.players
-                              .indexWhere((element) => element.name == t);
-                          var value = Tuple3(
-                              targetIndex,
-                              int.parse(e.key.split("-")[0]),
-                              int.parse(e.key.split("-")[1]));
-                          controller.markedActions.value[
-                              "first-${value.value2}-${value.value3}"] = value;
-                          print(controller.markedActions);
-                          control.dismiss();
-                        },
-                        players: validPlayers,
-                        restOptions: [if (optional) "none".tr],
-                      ),
-                      boxShadows: <BoxShadow>[],
-                      dismissHorizental: true,
-                    );
-                  }
-                }
-              }
+            onPress: () async {
+              await controller.abilityOnPress(
+                  player, ability, context, height, width, selectedName, e.key);
             },
             width: width,
             nested: true,
@@ -224,7 +267,7 @@ class GameNightView extends GetView<GameNightController> {
         },
       ));
     }
-    afterMafiaWake.forEach((el) {
+    afterMafiaWake.toSet().forEach((el) {
       var these = abilities.entries.where((element) => element.value == el);
       res.addAll(these.map<Widget>(
         (e) {
@@ -236,7 +279,10 @@ class GameNightView extends GetView<GameNightController> {
             name: "${player.roleName}(${player.name})",
             selectedName: selectedName,
             height: height,
-            onPress: () {},
+            onPress: () async {
+              await controller.abilityOnPress(
+                  player, ability, context, height, width, selectedName, e.key);
+            },
             width: width,
           );
         },
@@ -250,6 +296,9 @@ class GameNightView extends GetView<GameNightController> {
     if (controller.mafiaEngine.value.currentStage != Stage.Night) {
       controller.mafiaEngine.value.currentStage = Stage.Night;
     }
+    // controller.updatePlayers();
+    // print(controller.mafiaEngine.value.players);
+    // print(controller._helper.mafiaEngine.value.players);
     var abilities = controller.mafiaEngine.value.availableActionForStage();
     return WillPopScope(
       onWillPop: () async {
@@ -275,12 +324,17 @@ class GameNightView extends GetView<GameNightController> {
               ConstrainedBox(
                 constraints: BoxConstraints(
                     minHeight: cs.maxHeight, minWidth: cs.maxWidth),
-                child: Column(
-                  children: <Widget>[
-                    ...abilitiesToWidget(
-                        context, abilities.value1, cs.maxHeight, cs.maxWidth),
-                  ],
-                ).pSy(y: cs.maxHeight * 0.04, x: cs.maxWidth * 0.04),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      ...abilitiesToWidget(
+                          context, abilities.value1, cs.maxHeight, cs.maxWidth),
+                      Container(
+                        height: cs.maxHeight * 0.12,
+                      ),
+                    ],
+                  ).pSy(y: cs.maxHeight * 0.04, x: cs.maxWidth * 0.04),
+                ),
               ),
               Positioned(
                 bottom: cs.maxHeight * 0.03,
@@ -300,7 +354,9 @@ class GameNightView extends GetView<GameNightController> {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      print(controller.markedActions);
+                    },
                   ),
                 ),
               ),

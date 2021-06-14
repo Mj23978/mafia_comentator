@@ -147,6 +147,10 @@ class AppStrings extends Translations {
       "can_take_action_messagee": "This Player Cant Use His/Her Ability Do You Wanna Let Him/Her To Use It ?",
       "player_picker_title": "Player Picker",
       "search": "Search",
+      "no_player_found": "No Player Found",
+      "pick_players": "اPick Players",
+      "submit": "Submit",
+      "player_ability_blocked_message": "This Player Ability Had Been Blocked By Another Player, Do You Wanna Let Him/Her To Use It ?",
    },
     "fa_IR": {
       "citizen_des": "شهروند کسی را در بازی نمیشناسد و باید سعی کند مافیا را شناسایی کند و فقط قدرت رای دادن و صحبت کردن دارد",
@@ -181,9 +185,9 @@ class AppStrings extends Translations {
       "hero_name": "قهرمان",
       "soldier_des": "جانشن تک تیرانداز است وقتی تک تیرانداز بمیرد جایگزین او میشود",
       "soldier_name": "سرباز",
-      "nurse_des": "جانشن دکتر است وقتی تک تیرانداز بمیرد جایگزین او میشود",
+      "nurse_des": "جانشن دکتر است وقتی تک دکتر بمیرد جایگزین او میشود",
       "nurse_name": "پرستار",
-      "deputy_des": "جانشن کاراگاه است وقتی تک تیرانداز بمیرد جایگزین او میشود",
+      "deputy_des": "جانشن کاراگاه است وقتی کاراگاه بمیرد جایگزین او میشود",
       "deputy_name": "معاون",
       "psycho_des": "او در یک شب تصمیم به کشتن یک نفر میگیرد و ان را با هر سایدی میکشد بدون هیچ عواقبی",
       "psycho_name": "روانی",
@@ -291,6 +295,10 @@ class AppStrings extends Translations {
       "no": "خیر",
       "player_picker_title": "انتخاب بازیکن",
       "search": "جستجو",
+      "no_player_found": "هیچ بازیکنی یافت نشد",
+      "pick_players": "انتخاب بازیکنان",
+      "submit": "ثبت",
+      "player_ability_blocked_message": "قابلیت این بازیکن از طرف بازیکن دیگر گرفته شده ایا میخواهید به این بازیکن اجازه استفاده از قابلیتش را بدهید ؟"
     }
   };
   

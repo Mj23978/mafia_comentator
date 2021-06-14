@@ -173,7 +173,7 @@ class ShowRolesView extends GetView<ShowRolesController> {
               () => GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 1.2,
-                    crossAxisCount: gridTileCount(cs.maxWidth, 135),
+                    crossAxisCount: gridTileCount(cs.maxWidth, 118),
                     mainAxisSpacing: 5.0,
                     crossAxisSpacing: 5.0,
                   ),

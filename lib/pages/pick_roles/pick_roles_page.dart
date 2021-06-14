@@ -281,7 +281,7 @@ class PickRolesView extends GetView<PickRolesController> {
                       childAspectRatio: 3.5,
                       mainAxisSpacing: 5.0,
                       crossAxisSpacing: 5.0,
-                      crossAxisCount: gridTileCount(cs.maxWidth, 148.0),
+                      crossAxisCount: gridTileCount(cs.maxWidth, 125.0),
                     ),
                   ),
                   SliverToBoxAdapter(
@@ -343,7 +343,7 @@ class PickRolesView extends GetView<PickRolesController> {
                       childAspectRatio: 3.5,
                       mainAxisSpacing: 5.0,
                       crossAxisSpacing: 5.0,
-                      crossAxisCount: gridTileCount(cs.maxWidth, 148),
+                      crossAxisCount: gridTileCount(cs.maxWidth, 125),
                     ),
                   ),
                   SliverToBoxAdapter(child: (cs.maxHeight * 0.15).heightBox)
@@ -361,15 +361,20 @@ class PickRolesView extends GetView<PickRolesController> {
                   child: TextButton(
                     child: Text("pick_show_roles".tr,
                         style: textStyle(16, color: Colors.white)),
-                    onPressed: () => controller._detailedRolesCount(
-                      context,
-                      cs.maxWidth * 0.65,
-                      (cs.maxHeight *
+                    onPressed: () {
+                      var minHeight = (cs.maxHeight *
                               0.05 *
                               (controller._getCityRolesLength() +
                                   controller._getMafiaRolesLength())) +
-                          (cs.maxHeight * 0.26),
-                    ),
+                          (cs.maxHeight * 0.26);
+                      controller._detailedRolesCount(
+                        context,
+                        cs.maxWidth * 0.78,
+                        cs.maxHeight * 0.65 > minHeight
+                            ? minHeight
+                            : cs.maxHeight * 0.65,
+                      );
+                    },
                   ),
                 ),
               ),

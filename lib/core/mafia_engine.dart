@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_comentator/core/roles.dart';
 
 import '../models/ability/ability.dart';
 import '../models/enums.dart';
 import '../models/player/player.dart';
 import '../models/role/role.dart';
 import '../models/stage_action/stage_action.dart';
+import 'roles.dart';
 
 class MafiaEngine {
   List<Player> players;
@@ -138,7 +138,7 @@ class MafiaEngine {
             save.saveFrom.contains(Action.RoleBlock)) {
           orderIndex.putIfAbsent('$playerIndex-$abilityIndex', () => 3);
         }
-        if (save.whoWillBeSaved.contains(RoleEnum.Himself)) {
+        if (save.validTargets.contains(RoleEnum.Himself)) {
           setAbility.putIfAbsent('$playerIndex-$abilityIndex', () => -1);
         } else {
           orderIndex.putIfAbsent('$playerIndex-$abilityIndex', () => 7);
@@ -208,27 +208,102 @@ class MafiaEngine {
       if (ability.everyClause!.lastStageUsed == currentDay) {
         if (ability.everyClause!.stageDone <
             ability.everyClause!.howManyEveryStage) {
-          resAbility = ability.copyWith(everyClause: ability.everyClause!
-              .copyWith(stageDone: ability.everyClause!.stageDone + 1));
+          resAbility = ability.copyWith(
+              everyClause: ability.everyClause!
+                  .copyWith(stageDone: ability.everyClause!.stageDone + 1));
           return Tuple2<bool, Ability>(true, resAbility);
         }
       } else if (ability.everyClause!.lastStageUsed < currentDay) {
         ability.everyClause!.copyWith(lastStageUsed: currentDay);
         if (ability.everyClause!.stageDone <
             ability.everyClause!.howManyEveryStage) {
-          resAbility = ability.copyWith(everyClause: ability.everyClause!
-              .copyWith(stageDone: ability.everyClause!.stageDone + 1, lastStageUsed: currentDay));
+          resAbility = ability.copyWith(
+              everyClause: ability.everyClause!.copyWith(
+                  stageDone: ability.everyClause!.stageDone + 1,
+                  lastStageUsed: currentDay));
           return Tuple2<bool, Ability>(true, resAbility);
         }
       }
     } else if (ability.timesClause != null) {
       if (ability.timesClause!.done < ability.timesClause!.howManyEveryStage) {
-        resAbility = ability.copyWith(timesClause: ability.timesClause!
-              .copyWith(done: ability.timesClause!.done + 1));
+        resAbility = ability.copyWith(
+            timesClause: ability.timesClause!
+                .copyWith(done: ability.timesClause!.done + 1));
         return Tuple2<bool, Ability>(true, resAbility);
       }
     }
     print('Action Cant Be Created');
     return Tuple2<bool, Ability>(false, resAbility);
   }
+
+  selectTargetDialog(
+    Ability ability,
+    Player player,
+    List<Player> players,
+    void Function(bool, List<Player>, PlayerPickerType, Map<String, dynamic>)
+        cantActionFunc,
+    void Function(bool, List<Player>, PlayerPickerType, Map<String, dynamic>)
+        canActionFunc,
+  ) {
+    Player? resPlayer;
+    var validPlayers = getValidTargets(ability, player);
+    var optional = ability.everyClause == null && ability.timesClause != null;
+    var canAction = canTakeAction(ability);
+    print(canAction);
+    var pickerType = PlayerPickerType.Normal;
+    Map<String, dynamic> details = {};
+    if (optional) {
+      if (ability.timesClause!.howManyEveryStage > 1) {
+        pickerType =PlayerPickerType.MoreThanOnePlayer;
+        details["players_count"] = ability.timesClause!.howManyEveryStage;
+      }
+    } else {
+      if (ability.everyClause!.howManyEveryStage > 1) {
+        pickerType =PlayerPickerType.MoreThanOnePlayer;
+        details["players_count"] = ability.everyClause!.howManyEveryStage;
+      }
+    }
+    if (!canAction.value1) {
+      cantActionFunc(optional, validPlayers, pickerType, details);
+    } else {
+      canActionFunc(optional, validPlayers, pickerType, details);
+    }
+  }
+
+  List<Player> getValidTargets(Ability abi, Player player) {
+    var validPlayers = <Player>[];
+    if (abi.validTargets.contains(RoleEnum.All)) {
+      validPlayers.addAll(players);
+    }
+    if (abi.validTargets.contains(RoleEnum.Himself)) {
+      validPlayers.add(player);
+    }
+    if (abi.validTargets.contains(RoleEnum.ExceptHimself)) {
+      validPlayers
+          .addAll(players.where((element) => element.name != player.name));
+    }
+    if (abi.validTargets.contains(RoleEnum.City)) {
+      validPlayers.addAll(players.where(
+          (element) => cityRoles.any((e) => e.name == element.roleName)));
+    }
+    if (abi.validTargets.contains(RoleEnum.MafiaSide)) {
+      validPlayers.addAll(players.where(
+          (element) => mafiaRoles.any((e) => e.name == element.roleName)));
+    }
+    if (abi.validTargets.contains(RoleEnum.Citizen)) {
+      validPlayers.addAll(players
+          .where((element) => element.role!.nameEnum == RoleEnum.Citizen));
+    }
+    if (abi.validTargets.contains(RoleEnum.Armor)) {
+      validPlayers.addAll(
+          players.where((element) => element.role!.nameEnum == RoleEnum.Armor));
+    }
+    return validPlayers;
+  }
+}
+
+enum PlayerPickerType {
+  Normal,
+  MoreThanOnePlayer,
+  PlayerAndGuessType,
 }

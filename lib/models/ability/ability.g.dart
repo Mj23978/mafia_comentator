@@ -16,6 +16,10 @@ _$_Ability _$_$_AbilityFromJson(Map<String, dynamic> json) {
     timesClause: json['timesClause'] == null
         ? null
         : TimesClause.fromJson(json['timesClause'] as Map<String, dynamic>),
+    validTargets: (json['validTargets'] as List<dynamic>?)
+            ?.map((e) => _$enumDecode(_$RoleEnumEnumMap, e))
+            .toList() ??
+        [],
   );
 }
 
@@ -25,6 +29,8 @@ Map<String, dynamic> _$_$_AbilityToJson(_$_Ability instance) =>
       'whenS': _$StageEnumMap[instance.whenS],
       'everyClause': instance.everyClause,
       'timesClause': instance.timesClause,
+      'validTargets':
+          instance.validTargets.map((e) => _$RoleEnumEnumMap[e]).toList(),
     };
 
 K _$enumDecode<K, V>(
@@ -79,80 +85,6 @@ const _$StageEnumMap = {
   Stage.None: 'None',
 };
 
-_$Save _$_$SaveFromJson(Map<String, dynamic> json) {
-  return _$Save(
-    type: _$enumDecodeNullable(_$AbilityTypeEnumMap, json['type']) ??
-        AbilityType.Save,
-    whenS: _$enumDecode(_$StageEnumMap, json['whenS']),
-    saveFrom: (json['saveFrom'] as List<dynamic>)
-        .map((e) => _$enumDecode(_$ActionEnumMap, e))
-        .toList(),
-    selfClause: SelfClause.fromJson(json['selfClause'] as Map<String, dynamic>),
-    whoWillBeSaved: (json['whoWillBeSaved'] as List<dynamic>)
-        .map((e) => _$enumDecode(_$RoleEnumEnumMap, e))
-        .toList(),
-    whenClause: json['whenClause'] == null
-        ? null
-        : WhenClause.fromJson(json['whenClause'] as Map<String, dynamic>),
-    fromClause: json['fromClause'] == null
-        ? null
-        : FromActionClause.fromJson(json['fromClause'] as Map<String, dynamic>),
-    untilClause: json['untilClause'] == null
-        ? null
-        : UntilClause.fromJson(json['untilClause'] as Map<String, dynamic>),
-    everyClause: json['everyClause'] == null
-        ? null
-        : EveryClause.fromJson(json['everyClause'] as Map<String, dynamic>),
-    timesClause: json['timesClause'] == null
-        ? null
-        : TimesClause.fromJson(json['timesClause'] as Map<String, dynamic>),
-    ifClause: json['ifClause'] == null
-        ? null
-        : IFClause.fromJson(json['ifClause'] as Map<String, dynamic>),
-  );
-}
-
-Map<String, dynamic> _$_$SaveToJson(_$Save instance) => <String, dynamic>{
-      'type': _$AbilityTypeEnumMap[instance.type],
-      'whenS': _$StageEnumMap[instance.whenS],
-      'saveFrom': instance.saveFrom.map((e) => _$ActionEnumMap[e]).toList(),
-      'selfClause': instance.selfClause,
-      'whoWillBeSaved':
-          instance.whoWillBeSaved.map((e) => _$RoleEnumEnumMap[e]).toList(),
-      'whenClause': instance.whenClause,
-      'fromClause': instance.fromClause,
-      'untilClause': instance.untilClause,
-      'everyClause': instance.everyClause,
-      'timesClause': instance.timesClause,
-      'ifClause': instance.ifClause,
-    };
-
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
-}
-
-const _$ActionEnumMap = {
-  Action.Killing: 'Killing',
-  Action.Silnce: 'Silnce',
-  Action.Disable: 'Disable',
-  Action.VotingOut: 'VotingOut',
-  Action.RoleBlock: 'RoleBlock',
-  Action.Talking: 'Talking',
-  Action.Voting: 'Voting',
-  Action.Die: 'Die',
-  Action.GuessedWrong: 'GuessedWrong',
-  Action.HisAction: 'HisAction',
-  Action.Everything: 'Everything',
-  Action.Nothing: 'Nothing',
-};
-
 const _$RoleEnumEnumMap = {
   RoleEnum.Lecter: 'Lecter',
   RoleEnum.Doctor: 'Doctor',
@@ -198,6 +130,80 @@ const _$RoleEnumEnumMap = {
   RoleEnum.PickedPlayer: 'PickedPlayer',
 };
 
+_$Save _$_$SaveFromJson(Map<String, dynamic> json) {
+  return _$Save(
+    type: _$enumDecodeNullable(_$AbilityTypeEnumMap, json['type']) ??
+        AbilityType.Save,
+    whenS: _$enumDecode(_$StageEnumMap, json['whenS']),
+    saveFrom: (json['saveFrom'] as List<dynamic>)
+        .map((e) => _$enumDecode(_$ActionEnumMap, e))
+        .toList(),
+    selfClause: SelfClause.fromJson(json['selfClause'] as Map<String, dynamic>),
+    validTargets: (json['validTargets'] as List<dynamic>)
+        .map((e) => _$enumDecode(_$RoleEnumEnumMap, e))
+        .toList(),
+    whenClause: json['whenClause'] == null
+        ? null
+        : WhenClause.fromJson(json['whenClause'] as Map<String, dynamic>),
+    fromClause: json['fromClause'] == null
+        ? null
+        : FromActionClause.fromJson(json['fromClause'] as Map<String, dynamic>),
+    untilClause: json['untilClause'] == null
+        ? null
+        : UntilClause.fromJson(json['untilClause'] as Map<String, dynamic>),
+    everyClause: json['everyClause'] == null
+        ? null
+        : EveryClause.fromJson(json['everyClause'] as Map<String, dynamic>),
+    timesClause: json['timesClause'] == null
+        ? null
+        : TimesClause.fromJson(json['timesClause'] as Map<String, dynamic>),
+    ifClause: json['ifClause'] == null
+        ? null
+        : IFClause.fromJson(json['ifClause'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$SaveToJson(_$Save instance) => <String, dynamic>{
+      'type': _$AbilityTypeEnumMap[instance.type],
+      'whenS': _$StageEnumMap[instance.whenS],
+      'saveFrom': instance.saveFrom.map((e) => _$ActionEnumMap[e]).toList(),
+      'selfClause': instance.selfClause,
+      'validTargets':
+          instance.validTargets.map((e) => _$RoleEnumEnumMap[e]).toList(),
+      'whenClause': instance.whenClause,
+      'fromClause': instance.fromClause,
+      'untilClause': instance.untilClause,
+      'everyClause': instance.everyClause,
+      'timesClause': instance.timesClause,
+      'ifClause': instance.ifClause,
+    };
+
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$ActionEnumMap = {
+  Action.Killing: 'Killing',
+  Action.Silnce: 'Silnce',
+  Action.Disable: 'Disable',
+  Action.VotingOut: 'VotingOut',
+  Action.RoleBlock: 'RoleBlock',
+  Action.Talking: 'Talking',
+  Action.Voting: 'Voting',
+  Action.Die: 'Die',
+  Action.GuessedWrong: 'GuessedWrong',
+  Action.HisAction: 'HisAction',
+  Action.Everything: 'Everything',
+  Action.Nothing: 'Nothing',
+};
+
 _$Counter _$_$CounterFromJson(Map<String, dynamic> json) {
   return _$Counter(
     type: _$enumDecodeNullable(_$AbilityTypeEnumMap, json['type']) ??
@@ -209,7 +215,9 @@ _$Counter _$_$CounterFromJson(Map<String, dynamic> json) {
     timesClause: json['timesClause'] == null
         ? null
         : TimesClause.fromJson(json['timesClause'] as Map<String, dynamic>),
-    whichRoleEnum: _$enumDecode(_$RoleEnumEnumMap, json['whichRoleEnum']),
+    validTargets: (json['validTargets'] as List<dynamic>)
+        .map((e) => _$enumDecode(_$RoleEnumEnumMap, e))
+        .toList(),
     by: _$enumDecode(_$AbilityTypeEnumMap, json['by']),
     onWho: _$enumDecode(_$WhoEnumMap, json['onWho']),
     cost: _$enumDecodeNullable(_$CostEnumMap, json['cost']),
@@ -221,7 +229,8 @@ Map<String, dynamic> _$_$CounterToJson(_$Counter instance) => <String, dynamic>{
       'whenS': _$StageEnumMap[instance.whenS],
       'everyClause': instance.everyClause,
       'timesClause': instance.timesClause,
-      'whichRoleEnum': _$RoleEnumEnumMap[instance.whichRoleEnum],
+      'validTargets':
+          instance.validTargets.map((e) => _$RoleEnumEnumMap[e]).toList(),
       'by': _$AbilityTypeEnumMap[instance.by],
       'onWho': _$WhoEnumMap[instance.onWho],
       'cost': _$CostEnumMap[instance.cost],
@@ -294,6 +303,9 @@ _$Guess _$_$GuessFromJson(Map<String, dynamic> json) {
     timesClause: json['timesClause'] == null
         ? null
         : TimesClause.fromJson(json['timesClause'] as Map<String, dynamic>),
+    validTargets: (json['validTargets'] as List<dynamic>)
+        .map((e) => _$enumDecode(_$RoleEnumEnumMap, e))
+        .toList(),
     what: _$enumDecode(_$GuessTypeEnumMap, json['what']),
     costIfRight: _$enumDecodeNullable(_$CostEnumMap, json['costIfRight']),
     costIfWrong: _$enumDecodeNullable(_$CostEnumMap, json['costIfWrong']),
@@ -319,6 +331,8 @@ Map<String, dynamic> _$_$GuessToJson(_$Guess instance) => <String, dynamic>{
       'whenS': _$StageEnumMap[instance.whenS],
       'everyClause': instance.everyClause,
       'timesClause': instance.timesClause,
+      'validTargets':
+          instance.validTargets.map((e) => _$RoleEnumEnumMap[e]).toList(),
       'what': _$GuessTypeEnumMap[instance.what],
       'costIfRight': _$CostEnumMap[instance.costIfRight],
       'costIfWrong': _$CostEnumMap[instance.costIfWrong],
@@ -348,7 +362,7 @@ _$Change _$_$ChangeFromJson(Map<String, dynamic> json) {
         : TimesClause.fromJson(json['timesClause'] as Map<String, dynamic>),
     what: _$enumDecode(_$AbilityTypeEnumMap, json['what']),
     change: _$enumDecode(_$ChangeTypeEnumMap, json['change']),
-    forWho: (json['forWho'] as List<dynamic>)
+    validTargets: (json['validTargets'] as List<dynamic>)
         .map((e) => _$enumDecode(_$RoleEnumEnumMap, e))
         .toList(),
     whenClause: json['whenClause'] == null
@@ -373,7 +387,8 @@ Map<String, dynamic> _$_$ChangeToJson(_$Change instance) => <String, dynamic>{
       'timesClause': instance.timesClause,
       'what': _$AbilityTypeEnumMap[instance.what],
       'change': _$ChangeTypeEnumMap[instance.change],
-      'forWho': instance.forWho.map((e) => _$RoleEnumEnumMap[e]).toList(),
+      'validTargets':
+          instance.validTargets.map((e) => _$RoleEnumEnumMap[e]).toList(),
       'whenClause': instance.whenClause,
       'fromClause': instance.fromClause,
       'ifClause': instance.ifClause,
@@ -486,6 +501,10 @@ _$Activation _$_$ActivationFromJson(Map<String, dynamic> json) {
     timesClause: json['timesClause'] == null
         ? null
         : TimesClause.fromJson(json['timesClause'] as Map<String, dynamic>),
+    validTargets: (json['validTargets'] as List<dynamic>?)
+            ?.map((e) => _$enumDecode(_$RoleEnumEnumMap, e))
+            .toList() ??
+        [],
     whenActivates: _$enumDecode(_$ActionEnumMap, json['whenActivates']),
     whoGains: _$enumDecode(_$WhoEnumMap, json['whoGains']),
     can: _$enumDecode(_$AbilityTypeEnumMap, json['can']),
@@ -501,6 +520,8 @@ Map<String, dynamic> _$_$ActivationToJson(_$Activation instance) =>
       'whenS': _$StageEnumMap[instance.whenS],
       'everyClause': instance.everyClause,
       'timesClause': instance.timesClause,
+      'validTargets':
+          instance.validTargets.map((e) => _$RoleEnumEnumMap[e]).toList(),
       'whenActivates': _$ActionEnumMap[instance.whenActivates],
       'whoGains': _$WhoEnumMap[instance.whoGains],
       'can': _$AbilityTypeEnumMap[instance.can],
@@ -518,6 +539,9 @@ _$Give _$_$GiveFromJson(Map<String, dynamic> json) {
     timesClause: json['timesClause'] == null
         ? null
         : TimesClause.fromJson(json['timesClause'] as Map<String, dynamic>),
+    validTargets: (json['validTargets'] as List<dynamic>)
+        .map((e) => _$enumDecode(_$RoleEnumEnumMap, e))
+        .toList(),
     action: _$enumDecode(_$ActionEnumMap, json['action']),
     whenAction: _$enumDecode(_$StageEnumMap, json['whenAction']),
     ifClause: json['ifClause'] == null
@@ -531,6 +555,8 @@ Map<String, dynamic> _$_$GiveToJson(_$Give instance) => <String, dynamic>{
       'whenS': _$StageEnumMap[instance.whenS],
       'everyClause': instance.everyClause,
       'timesClause': instance.timesClause,
+      'validTargets':
+          instance.validTargets.map((e) => _$RoleEnumEnumMap[e]).toList(),
       'action': _$ActionEnumMap[instance.action],
       'whenAction': _$StageEnumMap[instance.whenAction],
       'ifClause': instance.ifClause,
@@ -547,6 +573,10 @@ _$Reserve _$_$ReserveFromJson(Map<String, dynamic> json) {
     timesClause: json['timesClause'] == null
         ? null
         : TimesClause.fromJson(json['timesClause'] as Map<String, dynamic>),
+    validTargets: (json['validTargets'] as List<dynamic>?)
+            ?.map((e) => _$enumDecode(_$RoleEnumEnumMap, e))
+            .toList() ??
+        [],
     role: _$enumDecode(_$RoleEnumEnumMap, json['role']),
     priority: json['priority'] as int,
     ifClause: json['ifClause'] == null
@@ -560,6 +590,8 @@ Map<String, dynamic> _$_$ReserveToJson(_$Reserve instance) => <String, dynamic>{
       'whenS': _$StageEnumMap[instance.whenS],
       'everyClause': instance.everyClause,
       'timesClause': instance.timesClause,
+      'validTargets':
+          instance.validTargets.map((e) => _$RoleEnumEnumMap[e]).toList(),
       'role': _$RoleEnumEnumMap[instance.role],
       'priority': instance.priority,
       'ifClause': instance.ifClause,

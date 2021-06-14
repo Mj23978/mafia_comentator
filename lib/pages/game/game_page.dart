@@ -101,21 +101,25 @@ class GameController extends GetxController {
 
   void finishGame() {
     Get.offNamed('/home');
+      _helper.players.value = [];
+    _helper.mafiaEngine.value = MafiaEngine(players: []);
   }
 
   void goNight() {
     mafiaEngine.value.currentStage = Stage.Night;
     doneVoting.value = false;
     print("Go To Night ${doneVoting.value}");
+    print("df" + "${_helper.mafiaEngine.value.players[0]}");
+    print("df3" + "${mafiaEngine.value.players[0].toString()}");
     _helper.players.value = players.value;
     _helper.mafiaEngine.value = mafiaEngine.value;
     Get.toNamed("/game-night");
   }
 
-  void fastFinish(BuildContext context, double width, double height) {
+  Future<void> fastFinish(BuildContext context, double width, double height) async {
     print("${mafiaEngine.value.currentDay}");
     print("${mafiaEngine.value.currentStage}");
-    baseFlash(
+    await baseFlash(
       context,
       (controller) => FastFinishDialog(
         height: height,
@@ -364,8 +368,7 @@ class GameController extends GetxController {
             },
             success: () {
               controller.dismiss();
-              _helper.players.value = players.value;
-              Get.toNamed("/game-night");
+              goNight();
             }),
         boxShadows: <BoxShadow>[],
         dismissHorizental: true,
@@ -404,98 +407,104 @@ class GameView extends GetView<GameController> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, cs) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('day'.tr, style: textStyle(18)),
-          centerTitle: true,
-          elevation: 0,
-          shadowColor: Colors.transparent,
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            icon: Icon(
-              Ionicons.moon,
-              color: Color(0xff222333),
-            ),
-            onPressed: () {
-              controller.toNight(
-                  context, cs.maxWidth * 0.75, cs.maxHeight * 0.4);
-            },
-          ),
-          actions: [
-            IconButton(
-              icon: SvgPicture.asset(
-                "assets/icons/mask.svg",
+      return WillPopScope(
+        onWillPop: () async {
+        await controller.fastFinish(context, cs.maxWidth * 0.8, cs.maxHeight * 0.45);
+        return false;
+      },
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('day'.tr, style: textStyle(18)),
+            centerTitle: true,
+            elevation: 0,
+            shadowColor: Colors.transparent,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              icon: Icon(
+                Ionicons.moon,
                 color: Color(0xff222333),
               ),
               onPressed: () {
-                controller.toggleRoles();
+                controller.toNight(
+                    context, cs.maxWidth * 0.75, cs.maxHeight * 0.4);
               },
             ),
-            Transform.rotate(
-              angle: pi / 2.0,
-              child: Icon(Icons.read_more_outlined),
-            ).opacity(0.001),
-          ],
-        ),
-        backgroundColor: Color(0xffE6E6EC),
-        body: Stack(
-          children: [
-            Obx(
-              () => GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisExtent: cs.maxHeight * 0.085,
-                  crossAxisCount: gridTileCount(cs.maxWidth, 380),
-                  mainAxisSpacing: 7.0,
-                  crossAxisSpacing: 5.0,
+            actions: [
+              IconButton(
+                icon: SvgPicture.asset(
+                  "assets/icons/mask.svg",
+                  color: Color(0xff222333),
                 ),
-                itemCount: controller.players.value.length,
-                itemBuilder: (context, index) {
-                  var player = controller.players.value[index];
-                  return Obx(
-                    () => GameListTile(
-                      onCheck: (value) {
-                        if (!player.alive) {
-                          controller.revivePlayer(context, cs.maxWidth * 0.7,
-                              cs.maxHeight * 0.35, index);
-                        } else {
-                          controller.killConfirm(context, cs.maxWidth * 0.7,
-                              cs.maxHeight * 0.35, [index], false);
-                        }
-                      },
-                      value: player.alive,
-                      roleText: Text(
-                        player.roleName ?? "Null",
-                        style: textStyle(15),
-                      ),
-                      playerText: Text(
-                        player.name,
-                        style: textStyle(15),
-                      ),
-                      showRole: controller.showRoles.value,
-                    ),
-                  );
+                onPressed: () {
+                  controller.toggleRoles();
                 },
-              ).pSy(x: 12, y: 4),
-            ).pLTRB(0, 0, 0, cs.maxHeight * 0.262),
-            Positioned(
-              bottom: cs.maxHeight * 0.06,
-              right: 0,
-              child: GameInfoTile(
-                height: cs.maxHeight,
-                width: cs.maxWidth,
-                controller: controller,
               ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: GameDayBottomNav(
-                controller: controller,
-                height: cs.maxHeight,
-                width: cs.maxWidth,
+              Transform.rotate(
+                angle: pi / 2.0,
+                child: Icon(Icons.read_more_outlined),
+              ).opacity(0.001),
+            ],
+          ),
+          backgroundColor: Color(0xffE6E6EC),
+          body: Stack(
+            children: [
+              Obx(
+                () => GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisExtent: cs.maxHeight * 0.085,
+                    crossAxisCount: gridTileCount(cs.maxWidth, 380),
+                    mainAxisSpacing: 7.0,
+                    crossAxisSpacing: 5.0,
+                  ),
+                  itemCount: controller.players.value.length,
+                  itemBuilder: (context, index) {
+                    var player = controller.players.value[index];
+                    return Obx(
+                      () => GameListTile(
+                        onCheck: (value) {
+                          if (!player.alive) {
+                            controller.revivePlayer(context, cs.maxWidth * 0.7,
+                                cs.maxHeight * 0.35, index);
+                          } else {
+                            controller.killConfirm(context, cs.maxWidth * 0.7,
+                                cs.maxHeight * 0.35, [index], false);
+                          }
+                        },
+                        value: player.alive,
+                        roleText: Text(
+                          player.roleName ?? "Null",
+                          style: textStyle(15),
+                        ),
+                        playerText: Text(
+                          player.name,
+                          style: textStyle(15),
+                        ),
+                        showRole: controller.showRoles.value,
+                      ),
+                    );
+                  },
+                ).pSy(x: 12, y: 4),
+              ).pLTRB(0, 0, 0, cs.maxHeight * 0.262),
+              Positioned(
+                bottom: cs.maxHeight * 0.06,
+                right: 0,
+                child: GameInfoTile(
+                  height: cs.maxHeight,
+                  width: cs.maxWidth,
+                  controller: controller,
+                ),
               ),
-            ),
-          ],
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: GameDayBottomNav(
+                  controller: controller,
+                  height: cs.maxHeight,
+                  width: cs.maxWidth,
+                ),
+              ),
+            ],
+          ),
         ),
       );
     });

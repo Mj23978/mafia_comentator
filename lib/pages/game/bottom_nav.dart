@@ -46,8 +46,8 @@ class GameDayBottomNav extends StatelessWidget {
                     (height * 0.08 * (controller.players.value.length / 3));
               controller.stageVotes(
                 context,
-                width * 0.7,
-                desiredHeight > (height * 0.75) ? height * 0.75 : desiredHeight,
+                width * 0.8,
+                desiredHeight > (height * 0.72) ? height * 0.72 : desiredHeight,
               );
             },
             child: SvgPicture.asset(
@@ -59,7 +59,7 @@ class GameDayBottomNav extends StatelessWidget {
             onPressed: () {
               controller.killPlayer(
                 context,
-                width * 0.7,
+                width * 0.76,
                 height * 0.25 +
                     (height * 0.08 * (controller.players.value.length / 3)),
               );

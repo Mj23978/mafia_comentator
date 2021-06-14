@@ -3,29 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
 import 'package:get/get.dart';
 
-import '../../models/player/player.dart';
+import '../../models/enums.dart';
 import '../../utils/helpers.dart';
 
-class PlayerPickerDialog extends StatefulWidget {
-  final ValueChanged<String> onValuePicked;
+class RolePickerDialog extends StatefulWidget {
+  final ValueChanged<RoleEnum> onValuePicked;
   final String? semanticLabel;
   final bool isSearchable;
-  final Color? searchCursorColor;
-  final List<Player> players;
-  final List<String> restOptions;
+  final List<RoleEnum> roles;
   final double height;
   final double width;
 
-  PlayerPickerDialog({
+  RolePickerDialog({
     Key? key,
     required this.height,
     required this.width,
     required this.onValuePicked,
-    required this.players,
-    required this.restOptions,
+    required this.roles,
     this.isSearchable = true,
     this.semanticLabel,
-    this.searchCursorColor,
   }) : super(key: key);
 
   @override
@@ -34,14 +30,14 @@ class PlayerPickerDialog extends StatefulWidget {
   }
 }
 
-class SingleChoiceDialogState extends State<PlayerPickerDialog> {
-  late List<Player> _allPlayers;
-  late List<Player> _filteredPlayers;
+class SingleChoiceDialogState extends State<RolePickerDialog> {
+  late List<RoleEnum> _allRoles;
+  late List<RoleEnum> _filteredRoles;
 
   @override
   void initState() {
-    _allPlayers = widget.players;
-    _filteredPlayers = _allPlayers;
+    _allRoles = widget.roles;
+    _filteredRoles = _allRoles;
     super.initState();
   }
 
@@ -58,8 +54,8 @@ class SingleChoiceDialogState extends State<PlayerPickerDialog> {
       ),
       child: Semantics(
         namesRoute: true,
-        hint: "Player Picker",
-        label: "Player Picker",
+        hint: "Role Picker",
+        label: "Role Picker",
         child: DefaultTextStyle(
           style: textStyle(14, weight: FontWeight.w400, color: Colors.white),
           child: SingleChildScrollView(
@@ -70,13 +66,12 @@ class SingleChoiceDialogState extends State<PlayerPickerDialog> {
               children: <Widget>[
                 Center(
                   child: Text(
-                    "player_picker_title".tr,
+                    "role_picker_title".tr,
                     style: textStyle(15, color: Colors.white),
                   ),
                 ).pLTRB(0, 2, 0, 4),
                 if (widget.isSearchable)
                   TextField(
-                    cursorColor: widget.searchCursorColor,
                     decoration: InputDecoration(
                       hintText: " " + 'search'.tr,
                       hintStyle: textStyle(
@@ -94,14 +89,11 @@ class SingleChoiceDialogState extends State<PlayerPickerDialog> {
                     onChanged: (String value) {
                       setState(
                         () {
-                          _filteredPlayers = _allPlayers
-                              .where((Player player) =>
-                                  player.name
-                                      .toLowerCase()
-                                      .startsWith(value.toLowerCase()) ||
-                                  player.roleName!
-                                      .toLowerCase()
-                                      .startsWith(value.toLowerCase()))
+                          _filteredRoles = _allRoles
+                              .where((RoleEnum role) => role
+                                  .toString()
+                                  .toLowerCase()
+                                  .startsWith(value.toLowerCase()))
                               .toList();
                         },
                       );
@@ -117,28 +109,20 @@ class SingleChoiceDialogState extends State<PlayerPickerDialog> {
   }
 
   _buildContent(BuildContext context) {
-    return _filteredPlayers.isNotEmpty || widget.restOptions.isNotEmpty
+    return _filteredRoles.isNotEmpty
         ? ListView(
             shrinkWrap: true,
             children: [
-              ..._filteredPlayers
+              ..._filteredRoles
                   .map<Widget>(
                     (item) => SimpleDialogOption(
-                      child: Text("${item.roleName}(${item.name})"),
+                      child: Text("$item"),
                       onPressed: () {
-                        widget.onValuePicked(item.name);
+                        widget.onValuePicked(item);
                       },
                     ),
                   )
                   .toList(),
-              ...widget.restOptions.map<Widget>(
-                (item) => SimpleDialogOption(
-                  child: Text(item),
-                  onPressed: () {
-                    widget.onValuePicked(item);
-                  },
-                ),
-              )
             ],
           ).pLTRB(0, 4, 0, 0)
         : Center(

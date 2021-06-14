@@ -23,7 +23,7 @@ final List<CityRole> cityRoles = [
       Save(
         saveFrom: [Action.Killing],
         selfClause: SelfClause(time: 2),
-        whoWillBeSaved: [RoleEnum.All],
+        validTargets: [RoleEnum.All],
         whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 2),
       ),
@@ -38,7 +38,7 @@ final List<CityRole> cityRoles = [
       Save(
         saveFrom: [Action.Everything],
         selfClause: SelfClause(time: 1),
-        whoWillBeSaved: [RoleEnum.All],
+        validTargets: [RoleEnum.All],
         whenS: Stage.Night,
         everyClause: EveryClause(time: 2, howManyEveryStage: 1),
       ),
@@ -53,7 +53,7 @@ final List<CityRole> cityRoles = [
       Save(
         saveFrom: [Action.RoleBlock],
         selfClause: SelfClause(time: 0),
-        whoWillBeSaved: [RoleEnum.All],
+        validTargets: [RoleEnum.All],
         whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 2),
         ifClause: IFClause(
@@ -65,7 +65,7 @@ final List<CityRole> cityRoles = [
       Save(
         saveFrom: [Action.VotingOut],
         selfClause: SelfClause(time: -1),
-        whoWillBeSaved: [RoleEnum.Himself],
+        validTargets: [RoleEnum.Himself],
         whenS: Stage.Vote,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       ),
@@ -80,14 +80,14 @@ final List<CityRole> cityRoles = [
       Save(
         saveFrom: [Action.VotingOut],
         selfClause: SelfClause(time: -1),
-        whoWillBeSaved: [RoleEnum.Himself],
+        validTargets: [RoleEnum.Himself],
         whenS: Stage.Vote,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       ),
       Save(
         saveFrom: [Action.Killing],
         selfClause: SelfClause(time: -1),
-        whoWillBeSaved: [RoleEnum.Himself],
+        validTargets: [RoleEnum.Himself],
         whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
@@ -102,7 +102,7 @@ final List<CityRole> cityRoles = [
       Save(
         saveFrom: [Action.Disable, Action.Silnce],
         selfClause: SelfClause(time: -1),
-        whoWillBeSaved: [RoleEnum.All],
+        validTargets: [RoleEnum.All],
         whenS: Stage.Night,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       ),
@@ -115,7 +115,7 @@ final List<CityRole> cityRoles = [
     nameEnum: RoleEnum.Devoted,
     abilities: [
       Counter(
-        whichRoleEnum: RoleEnum.Terrorist,
+        validTargets: [RoleEnum.Terrorist],
         by: AbilityType.Save,
         onWho: Who.Target,
         whenS: Stage.Day,
@@ -131,7 +131,7 @@ final List<CityRole> cityRoles = [
     nameEnum: RoleEnum.Journalist,
     abilities: [
       Counter(
-        whichRoleEnum: RoleEnum.Negotiator,
+        validTargets: [RoleEnum.Negotiator],
         by: AbilityType.Guess,
         onWho: Who.Target,
         whenS: Stage.Night,
@@ -164,10 +164,11 @@ final List<CityRole> cityRoles = [
     abilities: [
       Guess(
           what: GuessType.Side,
+          validTargets: [RoleEnum.All],
           whenS: Stage.Night,
           timesClause: TimesClause(time: 1, howManyEveryStage: 3),
           ifClause:
-              IFClause(action: Action.HisAction, target: [RoleEnum.MafiaSide])),
+              IFClause(action: Action.HisAction, target: [RoleEnum.MafiaSide]),),
     ],
   ),
   CityRole(
@@ -177,6 +178,7 @@ final List<CityRole> cityRoles = [
     nameEnum: RoleEnum.Detective,
     abilities: [
       Guess(
+          validTargets: [RoleEnum.ExceptHimself],
         what: GuessType.Side,
         whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
@@ -191,7 +193,7 @@ final List<CityRole> cityRoles = [
     abilities: [
       Change(
         what: AbilityType.All,
-        forWho: [RoleEnum.Himself],
+        validTargets: [RoleEnum.ExceptHimself],
         whenS: Stage.Night,
         change: ChangeType.Direction,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
@@ -275,6 +277,7 @@ final List<CityRole> cityRoles = [
       Give(
         action: Action.Killing,
         whenS: Stage.Night,
+        validTargets: [RoleEnum.ExceptHimself],
         whenAction: Stage.Day,
         timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       )
@@ -318,7 +321,7 @@ final List<MafiaRole> mafiaRoles = [
       Save(
         saveFrom: [Action.Killing],
         selfClause: SelfClause(time: 1),
-        whoWillBeSaved: [RoleEnum.MafiaSide],
+        validTargets: [RoleEnum.MafiaSide],
         whenS: Stage.Night,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
       ),
@@ -351,9 +354,10 @@ final List<MafiaRole> mafiaRoles = [
       Guess(
         what: GuessType.Role,
         whenS: Stage.Night,
+        validTargets: [RoleEnum.ExceptHimself],
         costIfRight: Cost.Die,
         costOnIfRight: CostOn.Target,
-        everyClause: EveryClause(time: 1, howManyEveryStage: 1),
+        timesClause: TimesClause(time: 1, howManyEveryStage: 1),
       ),
     ],
   ),
@@ -366,7 +370,7 @@ final List<MafiaRole> mafiaRoles = [
       Reserve(role: RoleEnum.GodFather, priority: 2),
       Change(
         what: AbilityType.Guess,
-        forWho: [RoleEnum.All],
+        validTargets: [RoleEnum.All],
         whenS: Stage.Night,
         change: ChangeType.Resault,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
@@ -382,7 +386,7 @@ final List<MafiaRole> mafiaRoles = [
       Reserve(role: RoleEnum.GodFather, priority: 2),
       Change(
         what: AbilityType.Guess,
-        forWho: [RoleEnum.All],
+        validTargets: [RoleEnum.All],
         whenS: Stage.Night,
         change: ChangeType.Resault,
         everyClause: EveryClause(time: 1, howManyEveryStage: 1),
