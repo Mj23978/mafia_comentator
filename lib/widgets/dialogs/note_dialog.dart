@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../utils/helpers.dart';
 
 class NoteDialog extends StatelessWidget {
   final double height;
   final double width;
-  final Rx<String> text;
+  final String text;
   final Function0<void> save;
   final Function0<void> delete;
   final Function0<void> dismiss;
@@ -40,8 +40,9 @@ class NoteDialog extends StatelessWidget {
           children: [
             (height * 0.01).heightBox,
             Text(
-              "note".tr,
+              "note".tr(),
               style: textStyle(
+                context,
                 16,
                 color: Colors.white,
               ),
@@ -54,8 +55,8 @@ class NoteDialog extends StatelessWidget {
                 maxLines: null,
                 minLines: null,
                 decoration: InputDecoration(
-                  hintText: "some_text".tr,
-                  hintStyle: textStyle(15),
+                  hintText: "some_text".tr(),
+                  hintStyle: textStyle(context, 15),
                   border: OutlineInputBorder(borderSide: BorderSide.none),
                 ),
                 controller: textEditingController,
@@ -63,7 +64,7 @@ class NoteDialog extends StatelessWidget {
                 expands: true,
                 textAlign: TextAlign.start,
                 textAlignVertical: TextAlignVertical.top,
-                style: textStyle(14, color: Colors.white),
+                style: textStyle(context, 14, color: Colors.white),
               ),
             ),
             Container(
@@ -78,8 +79,8 @@ class NoteDialog extends StatelessWidget {
                           color: Colors.green,
                           borderRadius: BorderRadius.circular(8)),
                       child: Text(
-                        "save".tr,
-                        style: textStyle(14, color: Colors.white),
+                        "save".tr(),
+                        style: textStyle(context, 14, color: Colors.white),
                       ).pSy(x: 8.0, y: 4.0),
                     ),
                     onPressed: save,
@@ -92,8 +93,8 @@ class NoteDialog extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        "delete".tr,
-                        style: textStyle(14, color: Colors.white),
+                        "delete".tr(),
+                        style: textStyle(context, 14, color: Colors.white),
                       ).pSy(x: 8.0, y: 4.0),
                     ),
                     onPressed: delete,
@@ -105,8 +106,8 @@ class NoteDialog extends StatelessWidget {
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(8)),
                       child: Text(
-                        "exit".tr,
-                        style: textStyle(14, color: Colors.white),
+                        "exit".tr(),
+                        style: textStyle(context, 14, color: Colors.white),
                       ).pSy(x: 8.0, y: 4.0),
                     ),
                     onPressed: dismiss,

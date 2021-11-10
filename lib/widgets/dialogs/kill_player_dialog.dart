@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
 
 import '../../models/player/player.dart';
 import '../../utils/helpers.dart';
@@ -9,12 +9,12 @@ import '../../utils/helpers.dart';
 class KillPlayerDialog extends StatelessWidget {
   final double height;
   final double width;
-  final Rx<List<Player>> players;
+  final List<Player> players;
   final Function2<double, double, int> gridTileCount;
   final Function0<void> killFunc;
   final Function0<void> dismiss;
   final List<int>? indexes;
-  final Rx<List<int>> selectedIndexes;
+  final List<int> selectedIndexes;
 
   const KillPlayerDialog({
     Key? key,
@@ -30,6 +30,7 @@ class KillPlayerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var alivePlayers = players.where((element) => element.alive).toList();
     return Container(
       width: width,
       height: height,
@@ -44,8 +45,9 @@ class KillPlayerDialog extends StatelessWidget {
           SliverToBoxAdapter(
             child: Center(
               child: Text(
-                "kill_player".tr,
+                "kill_player".tr(),
                 style: textStyle(
+                  context,
                   18,
                   color: Colors.red,
                 ),
@@ -53,22 +55,19 @@ class KillPlayerDialog extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(child: (height * 0.1).heightBox),
-          Obx(() {
-            var alivePlayers =
-                players.value.where((element) => element.alive).toList();
-            return SliverGrid(
+          SliverGrid(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  var selected = selectedIndexes.value.contains(index);
+                  var selected = selectedIndexes.contains(index);
                   return InkWell(
                     onTap: () {
-                      if (selectedIndexes.value.contains(index)) {
-                        selectedIndexes.value.remove(index);
+                      if (selectedIndexes.contains(index)) {
+                        selectedIndexes.remove(index);
                       } else {
-                        selectedIndexes.value.add(index);
+                        selectedIndexes.add(index);
                       }
-                      selectedIndexes.update((val) {});
-                      players.update((val) {});
+                      // selectedIndexes.update((val) {});
+                      // players.update((val) {});
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -82,6 +81,7 @@ class KillPlayerDialog extends StatelessWidget {
                         child: Text(
                           alivePlayers[index].name,
                           style: textStyle(
+                            context,
                             13,
                             weight: FontWeight.w400,
                             color: Colors.white,
@@ -99,8 +99,7 @@ class KillPlayerDialog extends StatelessWidget {
                 mainAxisSpacing: 5.0,
                 crossAxisSpacing: 5.0,
               ),
-            );
-          }),
+            ),
           SliverToBoxAdapter(child: (height * 0.1).heightBox),
           SliverToBoxAdapter(
             child: Container(
@@ -115,8 +114,8 @@ class KillPlayerDialog extends StatelessWidget {
                           color: Colors.red,
                           borderRadius: BorderRadius.circular(8)),
                       child: Text(
-                        "kill".tr,
-                        style: textStyle(14,
+                        "kill".tr(),
+                        style: textStyle(context, 14,
                             weight: FontWeight.w500, color: Colors.white),
                       ).pSy(x: 8.0, y: 4.0),
                     ),
@@ -130,8 +129,8 @@ class KillPlayerDialog extends StatelessWidget {
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(8)),
                       child: Text(
-                        "dismiss".tr,
-                        style: textStyle(14,
+                        "dismiss".tr(),
+                        style: textStyle(context, 14,
                             weight: FontWeight.w500, color: Colors.white),
                       ).pSy(x: 8.0, y: 4.0),
                     ),

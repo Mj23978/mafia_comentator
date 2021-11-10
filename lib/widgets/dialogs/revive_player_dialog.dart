@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../utils/helpers.dart';
 
@@ -31,16 +31,17 @@ class RevivePlayerDialog extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "revive_player".tr,
+            "revive_player".tr(),
             style: textStyle(
+              context,
               18,
               color: Colors.green,
             ),
           ),
           Spacer(),
           Text(
-            "revive_player_message".tr,
-            style: textStyle(14, color: Colors.white),
+            "revive".tr(),
+            style: textStyle(context, 14, color: Colors.white),
           ).pSy(x: width * 0.04),
           Spacer(),
           Container(
@@ -55,8 +56,7 @@ class RevivePlayerDialog extends StatelessWidget {
                         color: Colors.green,
                         borderRadius: BorderRadius.circular(8)),
                     child: Text(
-                      "revive".tr,
-                      style: textStyle(14, color: Colors.white),
+                      "revive", style: textStyle(context, 14, color: Colors.white),
                     ).pSy(x: 8.0, y: 4.0),
                   ),
                   onPressed: reviveFunc,
@@ -67,8 +67,7 @@ class RevivePlayerDialog extends StatelessWidget {
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(8)),
                     child: Text(
-                      "dismiss".tr,
-                      style: textStyle(14, color: Colors.white),
+                      "dismis", style: textStyle(context, 14, color: Colors.white),
                     ).pSy(x: 8.0, y: 4.0),
                   ),
                   onPressed: dismiss,

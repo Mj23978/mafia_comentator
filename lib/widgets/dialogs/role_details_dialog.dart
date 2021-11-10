@@ -1,7 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../utils/helpers.dart';
 import '../../utils/extensions.dart';
@@ -13,7 +12,7 @@ class RoleDetails extends StatelessWidget {
   final String roleDes;
   final String roleSide;
   final Color color;
-  final Function0<void> dismiss;
+  final void Function() dismiss;
 
   const RoleDetails({
     Key? key,
@@ -41,10 +40,11 @@ class RoleDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(roleName, style: textStyle(16, color: Colors.white)),
+              Text(roleName,
+                  style: textStyle(context, 16, color: Colors.white)),
               (width * 0.07).widthBox,
               Text(roleSide,
-                  style: textStyle(12,
+                  style: textStyle(context, 12,
                       color: Colors.white, weight: FontWeight.w400)),
               Spacer(),
               IconButton(
@@ -62,7 +62,7 @@ class RoleDetails extends StatelessWidget {
             color: color,
           ),
           Text(roleDes,
-                  style: textStyle(14,
+                  style: textStyle(context, 14,
                       color: Colors.white, weight: FontWeight.w400))
               .pSy(x: 15.0, y: 4.0)
               .flex(5 + (roleDes.length / 40).round()),
@@ -76,8 +76,8 @@ class RoleDetails extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  "understand".tr,
-                  style: textStyle(14, color: Colors.white),
+                  "understand".tr(),
+                  style: textStyle(context, 14, color: Colors.white),
                 ).pSy(y: 3),
               ),
             ),

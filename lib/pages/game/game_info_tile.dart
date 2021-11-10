@@ -1,15 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
 
+import '../../core/notifiers/game_provider.dart';
 import '../../utils/extensions.dart';
 import '../../utils/helpers.dart';
-import 'game_page.dart';
 
 class GameInfoTile extends StatelessWidget {
   final double height;
   final double width;
-  final GameController controller;
+  final GameProvider controller;
 
   const GameInfoTile({
     Key? key,
@@ -35,17 +35,16 @@ class GameInfoTile extends StatelessWidget {
       child: Row(
         children: [
           // Spacer(),
-          Obx(
-            () => Column(
+          Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Text(
-                  "status_query".trParams(
-                          {"count": controller.statusQuery.toString()}) ??
-                      "",
+                  "status_query".tr(namedArgs:
+                          {"count": controller.statusQuery.toString()}) ,
                   style: textStyle(
+                    context,
                     14,
                     weight: FontWeight.w400,
                     color: Colors.white,
@@ -53,10 +52,10 @@ class GameInfoTile extends StatelessWidget {
                 ).flex(3),
                 Spacer(),
                 Text(
-                  "alive_players".trParams(
-                          {"count": controller.alivePlayers().toString()}) ??
-                      "",
+                  "alive_players".tr(namedArgs:
+                          {"count": controller.alivePlayers().toString()}) ,
                   style: textStyle(
+                    context,
                     14,
                     weight: FontWeight.w400,
                     color: Colors.white,
@@ -64,22 +63,20 @@ class GameInfoTile extends StatelessWidget {
                 ).flex(3),
                 Spacer(),
                 Text(
-                  "eleminated_players".trParams({
+                  "eleminated_players".tr(namedArgs:{
                         "count": controller.eleminatedPlayers().toString()
-                      }) ??
-                      "",
+                      }) ,
                   style: textStyle(
+                    context,
                     14,
                     weight: FontWeight.w400,
                     color: Colors.white,
                   ),
                 ).flex(3),
               ],
-            ),
           ),
           Spacer(flex: 2),
-          Obx(
-            () => Column(
+          Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -88,7 +85,8 @@ class GameInfoTile extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        controller.statusQuery.value++;
+                        controller.statusQuery++;
+                        controller.notifyListeners();
                       },
                       child: Icon(
                         Icons.add,
@@ -99,8 +97,9 @@ class GameInfoTile extends StatelessWidget {
                     (width * 0.05).widthBox,
                     InkWell(
                       onTap: () {
-                        if (controller.statusQuery.value > 0) {
-                          controller.statusQuery.value--;
+                        if (controller.statusQuery > 0) {
+                          controller.statusQuery--;
+                          controller.notifyListeners();
                         }
                       },
                       child: Icon(
@@ -116,10 +115,10 @@ class GameInfoTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "city_count".trParams(
-                              {"count": controller.aliveCity().toString()}) ??
-                          "",
+                      "city_count".tr(namedArgs:
+                              {"count": controller.aliveCity().toString()}),
                       style: textStyle(
+                        context,
                         13,
                         weight: FontWeight.w400,
                         color: Colors.white,
@@ -127,10 +126,10 @@ class GameInfoTile extends StatelessWidget {
                     ),
                     15.0.widthBox,
                     Text(
-                      "mafia_count".trParams(
-                              {"count": controller.aliveMafia().toString()}) ??
-                          "",
+                      "mafia_count".tr(namedArgs:
+                              {"count": controller.aliveMafia().toString()}),
                       style: textStyle(
+                        context,
                         13,
                         weight: FontWeight.w400,
                         color: Colors.white,
@@ -143,11 +142,11 @@ class GameInfoTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "city_count".trParams({
+                      "city_count".tr(namedArgs:{
                             "count": controller.eleminatedCity().toString()
-                          }) ??
-                          "",
+                          }),
                       style: textStyle(
+                        context,
                         13,
                         weight: FontWeight.w400,
                         color: Colors.white,
@@ -155,11 +154,11 @@ class GameInfoTile extends StatelessWidget {
                     ),
                     15.0.widthBox,
                     Text(
-                      "mafia_count".trParams({
+                      "mafia_count".tr(namedArgs: {
                             "count": controller.eleminatedMafia().toString()
-                          }) ??
-                          "",
+                          }),
                       style: textStyle(
+                        context,
                         13,
                         weight: FontWeight.w400,
                         color: Colors.white,
@@ -168,9 +167,7 @@ class GameInfoTile extends StatelessWidget {
                   ],
                 ).flex(3),
               ],
-            ).flex(3),
-          ),
-          // Spacer(),
+            ).flex(3),          // Spacer(),
         ],
       ),
     );

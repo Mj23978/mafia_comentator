@@ -1,32 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_comentator/core/providers.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
-import 'package:hive/hive.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../config/localization/language.dart';
 import '../../utils/helpers.dart';
-import '../../utils/keys.dart';
 import '../../widgets/dialogs/language_picker_dialog.dart';
 
-class SettingsBinding implements Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut<SettingsController>(() => SettingsController());
-  }
-}
 
-class SettingsController extends GetxController {
-  Box confBox = Hive.box(DBKeys.hive_config);
-  var _displayName = ''.obs;
+class SettingsView extends ConsumerWidget {
 
-  @override
-  @mustCallSuper
-  void onInit() async {
-    super.onInit();
-  }
-}
-
-class SettingsView extends GetView<SettingsController> {
   Widget _buildRowFixTitleRadio(List<Map<String, dynamic>> items, var value,
       ValueChanged<String> onValueChanged) {
     return Container(
@@ -55,7 +39,8 @@ class SettingsView extends GetView<SettingsController> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final app = ref.watch(appProvider);
     return LayoutBuilder(builder: (context, cs) {
       return Scaffold(
         appBar: AppBar(
@@ -64,8 +49,8 @@ class SettingsView extends GetView<SettingsController> {
           shadowColor: Colors.transparent,
           centerTitle: true,
           title: Text(
-            "settings".tr,
-            style: textStyle(17),
+            "settings".tr(),
+            style: textStyle(context, 17),
           ),
           // actionsIconTheme: IconThemeData(color: Colors.amberAccent),
           iconTheme: IconThemeData(color: Color(0xff222333)),
@@ -86,9 +71,9 @@ class SettingsView extends GetView<SettingsController> {
                           isSearchable: true,
                           languages: [Languages.persian, Languages.english],
                           onValuePicked: (language) {
-                            Get.updateLocale(
+                            EasyLocalization.of(context)!.setLocale(
                                 Locale(language.isoCode, language.countryCode));
-                            controller.confBox.put(
+                            app.conf.put(
                                 "local",
                                 Locale(language.isoCode, language.countryCode)
                                     .toString());
@@ -110,8 +95,9 @@ class SettingsView extends GetView<SettingsController> {
                           Icon(Icons.language, color: Color(0xff233444)),
                           (cs.maxWidth * 0.06).widthBox,
                           Text(
-                            "language".tr,
-                            style: textStyle(15, weight: FontWeight.w400),
+                            "language".tr(),
+                            style:
+                                textStyle(context, 15, weight: FontWeight.w400),
                           ),
                         ],
                       ).pSy(x: cs.maxWidth * 0.03, y: cs.maxHeight * 0.02),

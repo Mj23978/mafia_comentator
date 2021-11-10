@@ -1,47 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../providers/controllers/app_controller.dart';
+import '../../core/providers.dart';
 import '../../utils/extensions.dart';
 import '../../utils/helpers.dart';
 import '../../widgets/add_checkbox.dart';
 
-class AddRoleBinding implements Bindings {
+class AddRoleView extends ConsumerWidget {
   @override
-  void dependencies() {
-    Get.lazyPut<AddRoleController>(() => AddRoleController());
-  }
-}
-
-class AddRoleController extends GetxController {
-  final _helper = Get.find<AppController>();
-  FocusNode textFocusNode = FocusNode();
-  final roleNameTextEditing = TextEditingController();
-  final roleDesTextEditing = TextEditingController();
-
-  @override
-  @mustCallSuper
-  void onInit() async {
-    super.onInit();
-  }
-
-  @override
-  void dispose() {
-    print('Dispose Add player widget!');
-    // _players.value.clear();
-    super.dispose();
-  }
-
-  void _submitRoleName() {}
-
-  void _submitRoleDescription() {}
-}
-
-class AddRoleView extends GetView<AddRoleController> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final controller = ref.watch(addRoleProvider);
     return LayoutBuilder(builder: (context, cs) {
       return Scaffold(
         appBar: AppBar(
@@ -51,7 +20,7 @@ class AddRoleView extends GetView<AddRoleController> {
           centerTitle: true,
           title: Text(
             "Add Role",
-            style: textStyle(17),
+            style: textStyle(context, 17),
           ),
           // actionsIconTheme: IconThemeData(color: Colors.amberAccent),
           iconTheme: IconThemeData(color: Color(0xff222333)),
@@ -66,7 +35,7 @@ class AddRoleView extends GetView<AddRoleController> {
               children: <Widget>[
                 Container(
                   width: cs.maxWidth,
-                  child: Text("Side :", style: textStyle(16)),
+                  child: Text("Side :", style: textStyle(context, 16)),
                 ).pSy(y: cs.maxHeight * 0.00),
                 Container(
                   child: Row(
@@ -97,7 +66,7 @@ class AddRoleView extends GetView<AddRoleController> {
                 ).pLTRB(0, 0, 0, cs.maxHeight * 0.015),
                 Container(
                   width: cs.maxWidth,
-                  child: Text("Role Name :", style: textStyle(16)),
+                  child: Text("Role Name :", style: textStyle(context, 16)),
                 ).pLTRB(0, 0, 0, cs.maxHeight * 0.01),
                 Container(
                   child: TextField(
@@ -115,7 +84,7 @@ class AddRoleView extends GetView<AddRoleController> {
                         Container(
                             child: Text(
                           "Wake Group :",
-                          style: textStyle(16),
+                          style: textStyle(context, 16),
                         )).flex(2),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -150,7 +119,7 @@ class AddRoleView extends GetView<AddRoleController> {
                       Container(
                           child: Text(
                         "Abilities :",
-                        style: textStyle(16),
+                        style: textStyle(context, 16),
                       )),
                       Spacer(),
                       AddCheckBox(

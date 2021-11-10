@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../models/player/player.dart';
 import '../../utils/helpers.dart';
@@ -9,8 +9,8 @@ import '../../utils/helpers.dart';
 class PlayersVote extends StatelessWidget {
   final double height;
   final double width;
-  final Rx<int> minimumVote;
-  final Rx<Map<Player, int>> players;
+  final int minimumVote;
+  final Map<Player, int> players;
   final Function0<void> submitVotes;
   final Function1<Player, void> increment;
   final Function1<Player, void> decrement;
@@ -39,40 +39,38 @@ class PlayersVote extends StatelessWidget {
         // color: Colors.blue,
       ),
       child: SingleChildScrollView(
-        child: Obx(
-          () => Column(
+        child: Column(
             children: [
               4.0.heightBox,
               Text(
-                "stage_votes".tr,
+                "stage_votes".tr(),
                 style: textStyle(
+                  context,
                   16,
                   color: Colors.white,
                 ),
               ),
               8.0.heightBox,
-              Obx(
-                () => PlayerVoteTile(
+              PlayerVoteTile(
                   height: height,
                   width: width,
-                  count: minimumVote.value,
-                  playerName: "minimum_vote".tr,
+                  count: minimumVote,
+                  playerName: "minimum_vote".tr(),
                   increment: () {
-                    minimumVote.value += 1;
-                    minimumVote.update((val) {});
+                    // minimumVote.value += 1;
+                    // minimumVote.update((val) {});
                     print(minimumVote);
                   },
                   decrement: () {
-                    if (minimumVote.value > 0) {
-                      minimumVote.value -= 1;
-                      minimumVote.update((val) {});
-                    }
+                    // if (minimumVote.value > 0) {
+                    //   minimumVote.value -= 1;
+                      // minimumVote.update((val) {});
+                    // }
                     print(minimumVote);
                   },
-                ),
-              ),
+                  ),
               8.0.heightBox,
-              ...players.value
+              ...players
                   .map<String, Widget>(
                     (e, count) => MapEntry(
                       e.name,
@@ -103,8 +101,8 @@ class PlayersVote extends StatelessWidget {
                             color: Colors.green,
                             borderRadius: BorderRadius.circular(8)),
                         child: Text(
-                          "submit_votes".tr,
-                          style: textStyle(14, color: Colors.white),
+                          "submit_votes".tr(),
+                          style: textStyle(context, 14, color: Colors.white),
                         ).pSy(x: 8.0, y: 4.0),
                       ),
                       onPressed: submitVotes,
@@ -116,8 +114,8 @@ class PlayersVote extends StatelessWidget {
                             color: Colors.red,
                             borderRadius: BorderRadius.circular(8)),
                         child: Text(
-                          "dismiss".tr,
-                          style: textStyle(14, color: Colors.white),
+                          "dismiss".tr(),
+                          style: textStyle(context, 14, color: Colors.white),
                         ).pSy(x: 8.0, y: 4.0),
                       ),
                       onPressed: dismiss,
@@ -131,7 +129,6 @@ class PlayersVote extends StatelessWidget {
             ],
           ).pSy(x: 20.0, y: 10.0),
         ),
-      ),
     );
   }
 }
@@ -165,6 +162,7 @@ class PlayerVoteTile extends StatelessWidget {
             child: Text(
               "${playerName}",
               style: textStyle(
+                context,
                 12,
                 color: Colors.white,
               ),
@@ -186,6 +184,7 @@ class PlayerVoteTile extends StatelessWidget {
               Text(
                 "$count",
                 style: textStyle(
+                  context,
                   16,
                   color: Colors.white,
                 ),

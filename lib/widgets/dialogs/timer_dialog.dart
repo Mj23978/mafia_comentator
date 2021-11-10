@@ -1,17 +1,18 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart' show Tuple2;
+import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../utils/helpers.dart';
 
 class TimerDialog extends StatefulWidget {
   final double height;
   final double width;
-  final Rx<Duration> counter;
+  final Duration counter;
   final void Function() dismiss;
 
   const TimerDialog({
@@ -41,7 +42,7 @@ class _TimerDialogState extends State<TimerDialog> {
 
   @override
   initState() {
-    controller = CounterController(start: widget.counter.value + 1.seconds);
+    controller = CounterController(start: widget.counter + 1.seconds);
     timer = Timer.periodic(controller.tickingStep, (Timer timer) {
       timer.cancel();
     });
@@ -96,8 +97,9 @@ class _TimerDialogState extends State<TimerDialog> {
               SliverToBoxAdapter(
                 child: Center(
                   child: Text(
-                    "time_tracker".tr,
+                    "time_tracker".tr(),
                     style: textStyle(
+                      context,
                       16,
                       color: Colors.white,
                     ),
@@ -106,17 +108,16 @@ class _TimerDialogState extends State<TimerDialog> {
               ),
               // SliverToBoxAdapter(child: (widget.height * 0.07).heightBox),
               SliverToBoxAdapter(
-                child: Obx(() {
-                  return Center(
+                child: Center(
                     child: Text(
-                      "${durationToString(formatDuration(widget.counter.value - (timer.isActive ? timer.tick.seconds : 0.seconds)))}",
+                      "${durationToString(formatDuration(widget.counter - (timer.isActive ? timer.tick.seconds : 0.seconds)))}",
                       style: textStyle(
+                        context,
                         50,
                         color: Colors.white,
                       ),
                     ).pSy(x: widget.width * 0.04),
-                  );
-                }),
+                  ),
               ),
               // SliverToBoxAdapter(child: (widget.height * 0.07).heightBox),
               SliverToBoxAdapter(
@@ -126,8 +127,8 @@ class _TimerDialogState extends State<TimerDialog> {
                     InkWell(
                       onTap: () {
                         timer.cancel();
-                        widget.counter.value = widget.counter.value + 5.seconds;
-                        widget.counter.update((val) {});
+                        // widget.counter.value = widget.counter.value + 5.seconds;
+                        // widget.counter.update((val) {});
                       },
                       child: Icon(
                         Icons.add,
@@ -141,11 +142,11 @@ class _TimerDialogState extends State<TimerDialog> {
                     InkWell(
                       onTap: () {
                         timer.cancel();
-                        if (widget.counter.value >= 5.seconds) {
-                          widget.counter.value =
-                              widget.counter.value - 5.seconds;
-                          widget.counter.update((val) {});
-                        }
+                        // if (widget.counter >= 5.seconds) {
+                        //   widget.counter =
+                        //       widget.counter - 5.seconds;
+                        //   widget.counter.update((val) {});
+                        // }
                       },
                       child: Icon(
                         Icons.horizontal_rule_outlined,
@@ -172,13 +173,13 @@ class _TimerDialogState extends State<TimerDialog> {
                               color: Colors.green,
                               borderRadius: BorderRadius.circular(8)),
                           child: Text(
-                            "start".tr,
-                            style: textStyle(14, color: Colors.white),
+                            "start".tr(),
+                            style: textStyle(context, 14, color: Colors.white),
                           ).pSy(x: 8.0, y: 4.0),
                         ),
                         onPressed: () {
                           controller = CounterController(
-                              start: widget.counter.value + 1.seconds);
+                              start: widget.counter + 1.seconds);
                           // CounterController(start: 5.seconds);
                           _timerBuild();
                           print(timer.isActive);
@@ -191,8 +192,8 @@ class _TimerDialogState extends State<TimerDialog> {
                               color: Colors.red,
                               borderRadius: BorderRadius.circular(8)),
                           child: Text(
-                            "dismiss".tr,
-                            style: textStyle(14, color: Colors.white),
+                            "dismiss".tr(),
+                            style: textStyle(context, 14, color: Colors.white),
                           ).pSy(x: 8.0, y: 4.0),
                         ),
                         onPressed: () {

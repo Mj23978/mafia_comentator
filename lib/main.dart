@@ -1,24 +1,22 @@
+import 'package:beamer/beamer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:theme_provider/theme_provider.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-import 'config/localization/translations.dart';
-import 'config/theme/themes.dart';
 import 'pages/not_found/not_found_view.dart';
 import 'pages/routes.dart';
-import 'providers/controllers/app_controller.dart';
+import 'utils/helpers.dart';
 import 'utils/keys.dart';
-import 'utils/logger_utils.dart';
-import 'utils/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   setPathUrlStrategy();
   if (!kIsWeb) {
     final appDocDir = await getApplicationDocumentsDirectory();
@@ -29,48 +27,69 @@ void main() async {
   await Hive.openBox(DBKeys.hive_config);
   await Hive.openBox(DBKeys.home_players);
   initConfig();
-  Get.put(AppController(), permanent: true);
-  runApp(MyApp());
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale("en", "US"), Locale("fa", "IR")],
+      path: 'assets/translations',
+      fallbackLocale: Locale("en", "US"),
+      child: ProviderScope(
+        child: MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
+  final RouteInformationParser<BeamState> parser = BeamerParser();
+  final routerDelegate = BeamerDelegate(
+      initialPath: '/home',
+      locationBuilder: BeamerLocationBuilder(beamLocations: [
+        HomeLocation(),
+        MafiaIntroLocation(),
+        MafiaGameLocation(),
+        LastStationLocation(),
+      ]),
+      listener: (info, delegate) {
+        print("[Beamer] ${info.uri}");
+      },
+      notFoundPage: BeamPage(key: ValueKey("404"), child: NotFoundPage()),
+      // guards: [
+      //   BeamGuard(
+      //     pathPatterns: ['/$firstRoute/$secondRoute'],
+      //     check: (_, __) => read(navigationToSecondProvider).state,
+      //   ),
+      // ],
+      );
+
   @override
   Widget build(BuildContext context) {
-    return ThemeProvider(
-      defaultThemeId: "light_theme",
-      themes: <AppTheme>[
-        AppTheme.light(id: "light_theme"),
-        AppTheme.dark(id: "dark_theme"),
-        firstCustomTheme(),
-        secondCustomTheme(),
-      ],
-      child: ValueListenableBuilder<Box>(
+    return ValueListenableBuilder<Box>(
         valueListenable: Hive.box(DBKeys.hive_config).listenable(),
         builder: (context, box, child) {
-          var locale = box.get("local").split("_");
-          print(locale);
-          return GetMaterialApp(
-            locale: Locale(locale[0], locale[1]),
-            fallbackLocale: Locale("en", "US"),
-            supportedLocales: [Locale("en", "US"), Locale("fa", "IR")],
-            translations: AppStrings(),
+          // var locale = box.get("local").split("_");
+          // print(locale);
+          return MaterialApp.router(
+            routeInformationParser: parser,
+            routerDelegate: routerDelegate,
+            locale: context.locale,
+            supportedLocales: context.supportedLocales,
+            // backButtonDispatcher: BeamerBackButtonDispatcher(delegate: routerDelegate), 
+            backButtonDispatcher: BeamerBackButtonDispatcher(delegate: routerDelegate), 
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
+              ...context.localizationDelegates,
             ],
             debugShowCheckedModeBanner: false,
-            unknownRoute: GetPage(name: 'not-found', page: () => NotFound()),
-            enableLog: true,
             theme: mDefaultTheme,
-            transitionDuration: 300.milliseconds,
-            logWriterCallback: Logger.write,
-            initialRoute: AppPages.init,
-            getPages: AppPages.routes,
+            // unknownRoute: GetPage(name: 'not-found', page: () => NotFound()),
+            // enableLog: true,
+            // transitionDuration: 300.milliseconds,
+            // logWriterCallback: Logger.write,
+            // getPages: AppPages.routes,
           );
-        }
-      ),
-    );
+        });
   }
 }
 

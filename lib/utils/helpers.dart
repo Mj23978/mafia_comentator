@@ -1,7 +1,8 @@
+import 'dart:math' as math;
 import 'package:dartz/dartz.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 dynamic enumFromString(String? value, dynamic t) {
@@ -10,11 +11,13 @@ dynamic enumFromString(String? value, dynamic t) {
 }
 
 TextStyle textStyle(
+  BuildContext context,
   double size, {
   color = const Color(0xff222333),
   weight = FontWeight.w500,
 }) {
-  if (["fa", "ar"].contains(Get.locale?.languageCode)) {
+  if (["fa", "ar"]
+      .contains(EasyLocalization.of(context)!.currentLocale!.languageCode)) {
     return GoogleFonts.lalezar(
         fontSize: size, fontWeight: weight, color: color);
   }
@@ -58,20 +61,33 @@ Future baseFlash(
   );
 }
 
+Color string2Color(String colorString) {
+  int value = 0x00000000;
+  if (colorString.isNotEmpty) {
+    if (colorString[0] == '#') {
+      colorString = colorString.substring(1);
+    }
+    value = int.tryParse(colorString, radix: 16)!;
+    if (value < 0xFF000000) {
+      value += 0xFF000000;
+    }
+  }
+  return Color(value);
+}
 
 String indexToString(int index) {
   switch (index) {
     case 0:
-     return "first";
+      return "first";
     case 1:
-     return "second";
+      return "second";
     case 2:
-     return "third";
+      return "third";
     case 3:
-     return "fourth";
+      return "fourth";
     case 4:
-     return "fifth";
+      return "fifth";
     default:
-     return "first";
+      return "first";
   }
 }

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../utils/helpers.dart';
 
@@ -33,16 +33,17 @@ class DoneShowRolesDialog extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "success".tr,
+            "success".tr(),
             style: textStyle(
+              context,
               18,
               color: Colors.green,
             ),
           ),
           Spacer(),
           Text(
-            "done_show_message".tr,
-            style: textStyle(14, color: Colors.white),
+            "done_show_message".tr(),
+            style: textStyle(context, 14, color: Colors.white),
           ).pSy(x: width * 0.04),
           Spacer(),
           TextButton(
@@ -52,8 +53,8 @@ class DoneShowRolesDialog extends StatelessWidget {
                   color: Colors.green, borderRadius: BorderRadius.circular(8)),
               child: Center(
                 child: Text(
-                  "go_comentator_page".tr,
-                  style: textStyle(14, color: Colors.white),
+                  "go_comentator_page".tr(),
+                  style: textStyle(context, 14, color: Colors.white),
                 ).pSy(x: 8.0, y: 4.0),
               ),
             ),
@@ -67,8 +68,8 @@ class DoneShowRolesDialog extends StatelessWidget {
                   color: Colors.black, borderRadius: BorderRadius.circular(8)),
               child: Center(
                 child: Text(
-                  "refresh_roles".tr,
-                  style: textStyle(14, color: Colors.white),
+                  "refresh_roles".tr(),
+                  style: textStyle(context, 14, color: Colors.white),
                 ).pSy(x: 8.0, y: 4.0),
               ),
             ),

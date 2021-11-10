@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../core/notifiers/game_provider.dart';
 import '../../utils/extensions.dart';
-import 'game_page.dart';
 
 class GameDayBottomNav extends StatelessWidget {
   final double height;
   final double width;
-  final GameController controller;
+  final GameProvider controller;
 
   const GameDayBottomNav({
     Key? key,
@@ -43,7 +43,7 @@ class GameDayBottomNav extends StatelessWidget {
           TextButton(
             onPressed: () {
               var desiredHeight = height * 0.42 +
-                    (height * 0.08 * (controller.players.value.length / 3));
+                    (height * 0.08 * (controller.players.length / 3));
               controller.stageVotes(
                 context,
                 width * 0.8,
@@ -61,7 +61,7 @@ class GameDayBottomNav extends StatelessWidget {
                 context,
                 width * 0.76,
                 height * 0.25 +
-                    (height * 0.08 * (controller.players.value.length / 3)),
+                    (height * 0.08 * (controller.players.length / 3)),
               );
             },
             child: SvgPicture.asset(

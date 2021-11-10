@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
 
 import '../../utils/helpers.dart';
 
@@ -33,17 +33,17 @@ class KillConfirmDialog extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "kill_player".tr,
+            "kill_player".tr(),
             style: textStyle(
+              context,
               18,
               color: Colors.red,
             ),
           ),
           Spacer(),
           Text(
-            "kill_player_message".trParams({"players": players.toString()}) ??
-                "",
-            style: textStyle(14, color: Colors.white),
+            "kill_player_message".tr(namedArgs: {"players": players.toString()}),
+            style: textStyle(context, 14, color: Colors.white),
           ).pSy(x: width * 0.04),
           Spacer(),
           Container(
@@ -58,8 +58,8 @@ class KillConfirmDialog extends StatelessWidget {
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(8)),
                     child: Text(
-                      "kill".tr,
-                      style: textStyle(14, color: Colors.white),
+                      "kill".tr(),
+                      style: textStyle(context, 14, color: Colors.white),
                     ).pSy(x: 8.0, y: 4.0),
                   ),
                   onPressed: killFunc,
@@ -70,8 +70,8 @@ class KillConfirmDialog extends StatelessWidget {
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(8)),
                     child: Text(
-                      "dismiss".tr,
-                      style: textStyle(14, color: Colors.white),
+                      "dismiss".tr(),
+                      style: textStyle(context, 14, color: Colors.white),
                     ).pSy(x: 8.0, y: 4.0),
                   ),
                   onPressed: dismiss,

@@ -1,7 +1,7 @@
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../utils/helpers.dart';
 
@@ -27,8 +27,8 @@ void showAppSnackbar(BuildContext context, Color backgroundColor, Widget text,
           // showProgressIndicator: true,
           primaryAction: TextButton(
             onPressed: () => controller.dismiss(),
-            child:
-                Text('dismiss'.tr, style: textStyle(15, color: Colors.white)),
+            child: Text('dismiss'.tr(),
+                style: textStyle(context, 15, color: Colors.white)),
           ),
         ).pSy(x: 10),
       );

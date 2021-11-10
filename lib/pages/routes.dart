@@ -1,71 +1,116 @@
-import 'package:get/get.dart';
+import 'package:beamer/beamer.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'add_role/add_role_page.dart';
 import 'game/game_page.dart';
-import 'home/home_page.dart';
+import 'games/all_games_page.dart';
+import 'games/last_station_event_details.dart';
+import 'games/last_station_events.dart';
+import 'games/last_station_hero_details.dart';
+import 'games/last_station_heros.dart';
+import 'games/last_station_page.dart';
+import 'games/mafia_game_page.dart';
+import 'games/mafia_hero_details.dart';
+import 'games/mafia_heros.dart';
 import 'pick_roles/pick_roles_page.dart';
 import 'settings/settings_page.dart';
 import 'show_roles/show_roles_page.dart';
-import 'game/game_night.dart';
+import 'splash_view.dart';
 
-class AppPages {
-  static String init = Routes.Home.nameToRoute();
+final navigationToSecondProvider = StateProvider<bool>((ref) => false);
+final navigationToThirdProvider = StateProvider<bool>((ref) => false);
 
-  static final routes = [
-    GetPage(
-      name: '/home',
-      title: 'Home View',
-      page: () => HomeView(),
-      binding: HomeBinding(),
-    ),
-    GetPage(
-      name: '/settings',
-      title: 'Settings View',
-      page: () => SettingsView(),
-      binding: SettingsBinding(),
-    ),
-    GetPage(
-      name: '/pick-roles',
-      title: 'Pick Roles View',
-      page: () => PickRolesView(),
-      binding: PickRolesBinding(),
-    ),
-    GetPage(
-      name: '/add-role',
-      title: 'Add Role View',
-      page: () => AddRoleView(),
-      binding: AddRoleBinding(),
-    ),
-    GetPage(
-      name: '/show-roles',
-      title: 'Show Roles View',
-      page: () => ShowRolesView(),
-      binding: ShowRolesBinding(),
-    ),
-    GetPage(
-      name: '/game',
-      title: 'Game View',
-      page: () => GameView(),
-      binding: GameBinding(),
-    ),
-    GetPage(
-      name: '/game-night',
-      title: 'Game Night',
-      page: () => GameNightView(),
-      binding: GameNightBinding(),
-    ),
+class HomeLocation extends BeamLocation<BeamState> {
+
+  @override
+  List<Pattern> get pathBlueprints => [
+    '/',
+    '/home',  
+    '/settings',  
   ];
+
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    return [
+      BeamPage(key: ValueKey("Splash"), child: SplashView()),
+      if (state.uri.pathSegments.contains("home"))
+        BeamPage(key: ValueKey("Home"), child: AllGamesView()),
+      if (state.uri.pathSegments.contains("settings"))
+        BeamPage(key: ValueKey("Settings"), child: SettingsView()),
+    ];
+  }
 }
 
-abstract class Routes {
-  static const Home = 'Home';
-  static const Game = 'Game';
-  static const ShowRoles = 'ShowRoles';
-  static const PickRoles = 'PickRoles';
-  static const Settings = 'Settings';
-  static const NotFound = 'not-found';
+class MafiaIntroLocation extends BeamLocation<BeamState> {
+
+  @override
+  List<Pattern> get pathBlueprints => [
+    '/mafia',
+    '/mafia/heros/*',
+    '/mafia/rules/*',
+    '/mafia/pick-roles',
+    '/mafia/show-roles',
+  ];
+
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    return [
+      BeamPage(key: ValueKey("Mafia"), child: MafiaView()),
+      if (state.uri.pathSegments.contains("heros"))
+        BeamPage(key: ValueKey("Mafia Heros"), child: MafiaHerosView()),
+        if (state.uri.pathSegments.contains("details"))
+          BeamPage(key: ValueKey("Mafia Hero Details"), child: MafiaHeroDetailsView()),
+      if (state.uri.pathSegments.contains("pick-roles"))
+        BeamPage(key: ValueKey("Mafia Pick Roles"), child: PickRolesView()),
+      if (state.uri.pathSegments.contains("show-roles"))
+        BeamPage(key: ValueKey("Mafia Show Roles"), child: ShowRolesView()),
+    ];
+  }
 }
 
-extension RoutesExtension on String {
-  String nameToRoute() => '/${toLowerCase()}';
+class MafiaGameLocation extends BeamLocation<BeamState> {
+
+  @override
+  List<Pattern> get pathBlueprints => [
+    '/mafia/game',
+  ];
+
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    return [
+      BeamPage(key: ValueKey("Mafia Game"), child: GameView()),
+      // if (state.uri.pathSegments.contains("heros"))
+      //   BeamPage(key: ValueKey("Mafia Heros"), child: MafiaHerosView()),
+    ];
+  }
+}
+
+class LastStationLocation extends BeamLocation<BeamState> {
+
+  @override
+  List<Pattern> get pathBlueprints => [
+    '/last-station',
+    '/last-station/rules',
+    '/last-station/heros',
+    '/last-station/heros/*',
+    '/last-station/events',
+    '/last-station/events/*',
+  ];
+
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    return [
+      BeamPage(key: ValueKey("Last Station"), child: LastStationView()),
+      // if (state.uri.pathSegments.contains("rules"))
+      //   BeamPage(key: ValueKey("Last Station Rules"), child: LastStationRulesView()),
+      if (state.uri.pathSegments.contains("heros"))
+        BeamPage(key: ValueKey("Last Station Heros"), child: LastStationHerosView()),
+        if (state.uri.pathSegments.contains("heros") && state.uri.pathSegments.contains("details"))
+          BeamPage(key: ValueKey("Last Station Hero Details"), child: LastStationHeroDetailsView()),
+      if (state.uri.pathSegments.contains("events"))
+        BeamPage(key: ValueKey("Last Station Events"), child: LastStationEventsView()),
+        if (state.uri.pathSegments.contains("events") && state.uri.pathSegments.contains("details"))
+          BeamPage(key: ValueKey("Last Station Event Details"), child: LastStationEventDetailsView()),
+    ];
+  }
 }

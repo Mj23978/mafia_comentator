@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../models/enums.dart';
 import '../../utils/helpers.dart';
@@ -57,7 +57,8 @@ class SingleChoiceDialogState extends State<RolePickerDialog> {
         hint: "Role Picker",
         label: "Role Picker",
         child: DefaultTextStyle(
-          style: textStyle(14, weight: FontWeight.w400, color: Colors.white),
+          style: textStyle(context, 14,
+              weight: FontWeight.w400, color: Colors.white),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -66,15 +67,16 @@ class SingleChoiceDialogState extends State<RolePickerDialog> {
               children: <Widget>[
                 Center(
                   child: Text(
-                    "role_picker_title".tr,
-                    style: textStyle(15, color: Colors.white),
+                    "role_picker_title".tr(),
+                    style: textStyle(context, 15, color: Colors.white),
                   ),
                 ).pLTRB(0, 2, 0, 4),
                 if (widget.isSearchable)
                   TextField(
                     decoration: InputDecoration(
-                      hintText: " " + 'search'.tr,
+                      hintText: " " + 'search'.tr(),
                       hintStyle: textStyle(
+                        context,
                         15,
                         color: Colors.white,
                       ),
@@ -85,7 +87,7 @@ class SingleChoiceDialogState extends State<RolePickerDialog> {
                         ),
                       ),
                     ),
-                    style: textStyle(14, color: Colors.white),
+                    style: textStyle(context, 14, color: Colors.white),
                     onChanged: (String value) {
                       setState(
                         () {
@@ -127,8 +129,8 @@ class SingleChoiceDialogState extends State<RolePickerDialog> {
           ).pLTRB(0, 4, 0, 0)
         : Center(
             child: Text(
-              'no_player_found'.tr,
-              style: textStyle(15, color: Colors.white),
+              'no_player_found'.tr(),
+              style: textStyle(context, 15, color: Colors.white),
             ),
           ).pLTRB(0, 8, 0, 0);
   }

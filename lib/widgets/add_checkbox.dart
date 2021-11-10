@@ -37,7 +37,7 @@ class AddCheckBox extends StatelessWidget {
               5.0.widthBox,
               Text(
                 name,
-                style: textStyle(14),
+                style: textStyle(context, 14),
               ),
             ],
           ],

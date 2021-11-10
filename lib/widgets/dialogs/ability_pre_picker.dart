@@ -2,7 +2,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_uix/flutter_uix.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../utils/helpers.dart';
 
@@ -13,18 +13,18 @@ class MorePlayerPickerDialog extends StatelessWidget {
   final Function1<int, void> onPress;
   final Function0<void> dismiss;
   final Function0<void> submit;
-  final Rx<List<String>> names;
+  final List<String> names;
 
-  const MorePlayerPickerDialog({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.length,
-    required this.onPress,
-    required this.dismiss,
-    required this.submit,
-    required this.names
-  }) : super(key: key);
+  const MorePlayerPickerDialog(
+      {Key? key,
+      required this.height,
+      required this.width,
+      required this.length,
+      required this.onPress,
+      required this.dismiss,
+      required this.submit,
+      required this.names})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +42,9 @@ class MorePlayerPickerDialog extends StatelessWidget {
           SliverToBoxAdapter(
             child: Center(
               child: Text(
-                "pick_players".tr,
+                "pick_players".tr(),
                 style: textStyle(
+                  context,
                   18,
                   color: Colors.white,
                 ),
@@ -68,13 +69,12 @@ class MorePlayerPickerDialog extends StatelessWidget {
                     ),
                     padding: EdgeInsets.symmetric(
                         horizontal: width * 0.04, vertical: height * 0.01),
-                    child: Obx(
-                      () => Text(
-                    names.value.length > length && names.value[index] != indexToString(index) 
-                        ? names.value[index]
-                        : "select_a_player".tr,
-                      style: textStyle(13),
-                    ),
+                    child: Text(
+                      names.length > length &&
+                              names[index] != indexToString(index)
+                          ? names[index]
+                          : "select_a_player".tr(),
+                      style: textStyle(context, 13),
                     ),
                   ),
                 );
@@ -91,38 +91,40 @@ class MorePlayerPickerDialog extends StatelessWidget {
           SliverToBoxAdapter(
             child: (height * 0.06).heightBox,
           ),
-          SliverToBoxAdapter(child: Container(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.07),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Text(
-                      "save".tr,
-                      style: textStyle(14, color: Colors.white),
-                    ).pSy(x: 8.0, y: 4.0),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.07),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Text(
+                        "save".tr(),
+                        style: textStyle(context, 14, color: Colors.white),
+                      ).pSy(x: 8.0, y: 4.0),
+                    ),
+                    onPressed: submit,
                   ),
-                  onPressed: submit,
-                ),
-                TextButton(
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Text(
-                      "dismiss".tr,
-                      style: textStyle(14, color: Colors.white),
-                    ).pSy(x: 8.0, y: 4.0),
+                  TextButton(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Text(
+                        "dismiss".tr(),
+                        style: textStyle(context, 14, color: Colors.white),
+                      ).pSy(x: 8.0, y: 4.0),
+                    ),
+                    onPressed: dismiss,
                   ),
-                  onPressed: dismiss,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),)
+          )
         ],
       ),
     );

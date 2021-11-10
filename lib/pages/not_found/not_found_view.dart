@@ -1,22 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_comentator/utils/helpers.dart';
-import 'package:get/get.dart';
+import 'package:beamer/beamer.dart';
 
-class NotFound extends StatelessWidget {
+import '../../utils/helpers.dart';
+
+class NotFoundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final state = context.beamLocationHistory.reversed.toList()[1].state;
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Page Not Found',
-                style: textStyle(22, weight: FontWeight.w400)),
+                style: textStyle(context, 22, weight: FontWeight.w400)),
             const SizedBox(height: 25),
             ElevatedButton(
-              child: Text('Back to ${Get.routing.previous}',
-                  style: textStyle(16, weight: FontWeight.w400)),
-              onPressed: () => Get.back(),
+              child: Text(
+                  'Back to ${state.uri}',
+                  style: textStyle(context, 16, weight: FontWeight.w400)),
+              onPressed: () {
+                // if (context.) {
+                  context.beamBack();
+                // } else {
+                // context.beamToNamed(
+                //   context.beamLocationHistory.reversed
+                //       .toList()[1]
+                //       .state
+                //       .uri
+                //       .toString(),
+                //   stacked: false,
+                //   replaceCurrent: true,
+                // );
+                // }
+              },
             )
           ],
         ),

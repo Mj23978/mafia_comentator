@@ -1,7 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../models/role/role.dart';
 import '../utils/helpers.dart';
@@ -10,9 +9,9 @@ class RoleNumberDetails extends StatelessWidget {
   final double height;
   final double width;
   final int playersCount;
-  final Rx<List<Role>> selectedRoles;
-  final Function0<void> submitRoles;
-  final Function0<void> dismiss;
+  final List<Role> selectedRoles;
+  final void Function() submitRoles;
+  final void Function() dismiss;
 
   const RoleNumberDetails({
     Key? key,
@@ -32,37 +31,36 @@ class RoleNumberDetails extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0), color: Colors.white),
       child: SingleChildScrollView(
-        child: Obx(
-          () => Column(
+        child: Column(
             children: [
               4.0.heightBox,
               // "Players Count : ${players.value.length}"
               Text(
                   "players_count"
-                          .trParams({"count": playersCount.toString()}) ??
-                      "",
-                  style: textStyle(16)),
+                          .tr(namedArgs: {"count": playersCount.toString()}),
+                  style: textStyle(context, 16)),
               8.0.heightBox,
-              ...selectedRoles.value.map(
+              ...selectedRoles.map(
                 (e) => Container(
                   width: width,
                   child: [
                     Flexible(
                       child: Container(
                           width: width * 0.35,
-                          child: Text("${e.name}", style: textStyle(12))),
+                          child:
+                              Text("${e.name}", style: textStyle(context, 12))),
                     ),
                     Flexible(
                       child: Row(
                         children: [
                           InkWell(
                             onTap: () {
-                              var index = selectedRoles.value.indexWhere(
-                                  (element) => element.name == e.name);
-                              var resSelected = selectedRoles.value[index];
-                              selectedRoles.value[index] = resSelected.copyWith(
-                                  count: resSelected.count + 1);
-                              selectedRoles.update((val) {});
+                              // var index = selectedRoles.value.indexWhere(
+                              //     (element) => element.name == e.name);
+                              // var resSelected = selectedRoles.value[index];
+                              // selectedRoles.value[index] = resSelected.copyWith(
+                              //     count: resSelected.count + 1);
+                              // selectedRoles.update((val) {});
                             },
                             // onTap: increment,
                             child: Icon(
@@ -74,19 +72,19 @@ class RoleNumberDetails extends StatelessWidget {
                           (width * 0.05).widthBox,
                           Text(
                             "${e.count}",
-                            style: textStyle(15),
+                            style: textStyle(context, 15),
                           ),
                           (width * 0.05).widthBox,
                           InkWell(
                             onTap: () {
-                              var index = selectedRoles.value.indexWhere(
-                                  (element) => element.name == e.name);
-                              if ((selectedRoles.value[index].count) > 1) {
-                                var resSelected = selectedRoles.value[index];
-                                selectedRoles.value[index] = resSelected
-                                    .copyWith(count: resSelected.count - 1);
-                              }
-                              selectedRoles.update((val) {});
+                              // var index = selectedRoles.value.indexWhere(
+                              //     (element) => element.name == e.name);
+                              // if ((selectedRoles.value[index].count) > 1) {
+                              //   var resSelected = selectedRoles.value[index];
+                              //   selectedRoles.value[index] = resSelected
+                              //       .copyWith(count: resSelected.count - 1);
+                              // }
+                              // selectedRoles.update((val) {});
                             },
                             // onTap: decrement,
                             child: Icon(
@@ -121,8 +119,8 @@ class RoleNumberDetails extends StatelessWidget {
                             color: Colors.green,
                             borderRadius: BorderRadius.circular(8)),
                         child: Text(
-                          "submit_roles".tr,
-                          style: textStyle(14, color: Colors.white),
+                          "submit_roles".tr(),
+                          style: textStyle(context, 14, color: Colors.white),
                         ).pSy(x: 8.0, y: 4.0),
                       ),
                       onPressed: submitRoles,
@@ -134,8 +132,8 @@ class RoleNumberDetails extends StatelessWidget {
                             color: Colors.red,
                             borderRadius: BorderRadius.circular(8)),
                         child: Text(
-                          "dismiss".tr,
-                          style: textStyle(14, color: Colors.white),
+                          "dismiss".tr(),
+                          style: textStyle(context, 14, color: Colors.white),
                         ).pSy(x: 8.0, y: 4.0),
                       ),
                       onPressed: dismiss,
@@ -152,7 +150,6 @@ class RoleNumberDetails extends StatelessWidget {
             ],
           ).pSy(x: 20.0, y: 10.0),
         ),
-      ),
     );
   }
 }

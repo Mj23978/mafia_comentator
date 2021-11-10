@@ -1,7 +1,7 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uix/flutter_uix.dart';
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../utils/helpers.dart';
 
@@ -28,19 +28,17 @@ class AddDialogPickRoles extends StatelessWidget {
         children: [
           Flexible(
             flex: 3,
-            child: Obx(
-              () => Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Checkbox(
-                    value: value,
-                    onChanged: onChanged,
-                    side: BorderSide(width: 2, color: Colors.green),
-                    activeColor: Colors.green,
-                  ),
-                  Text("city".tr, style: textStyle(14)),
-                ],
-              ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Checkbox(
+                  value: value,
+                  onChanged: onChanged,
+                  side: BorderSide(width: 2, color: Colors.green),
+                  activeColor: Colors.green,
+                ),
+                Text("city".tr(), style: textStyle(context, 14)),
+              ],
             ),
           ),
           Flexible(

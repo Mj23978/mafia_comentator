@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_comentator/config/theme/flare.dart';
+
+import '../rive/flare.dart';
 
 class GuessResaultDialog extends StatelessWidget {
   final double height;
