@@ -1,16 +1,32 @@
-# flutter_comentator
+# Flutter Commentator
 
-A new Flutter project.
 
-## Getting Started
+## Features
+*  Switch Theme (Dark and Light) 
+*  Localization
+*  Animation With Rive 🔥
+*  Persistant Storage With Hive
 
-This project is a starting point for a Flutter application.
+## Screenshots
+<p float="left">
+<img src="assets/screenshots/HomePage.png" width="200">
+<img src="assets/screenshots/Settings.png" width="200">
+<img src="assets/screenshots/HomePage-En.png" width="200">
+<img src="assets/screenshots/LastStation.png" width="200">     
+<img src="assets/screenshots/LastStation-Players.png" width="200">     
+<img src="assets/screenshots/LastStation-Player.png" width="200">     
+<img src="assets/screenshots/Mafia-Roles.png" width="200">
+<img src="assets/screenshots/Players.png" width="200">
+<img src="assets/screenshots/Roles.png" width="200">
+<img src="assets/screenshots/Show-Roles.png" width="200">
+<img src="assets/screenshots/Commentator.png" width="200">
+<img src="assets/screenshots/Commentator2.png" width="200">
+</p>
 
-A few resources to get you started if this is your first Flutter project:
+## Todo
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [ ] Complete Mafia Engine for Automatic Calculation of Role Actions
+- [ ] Complete the Redesign UI
+- [x] Dark Mode 
+- [ ] Turn Role Page To PageView for scroll beetwen Roles 
+- [ ] Add Profile 
