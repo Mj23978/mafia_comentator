@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'ability.dart';
 
@@ -10,10 +12,10 @@ part of 'ability.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Ability _$AbilityFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String) {
+  switch (json['runtimeType']) {
     case 'default':
       return _Ability.fromJson(json);
     case 'save':
@@ -38,280 +40,10 @@ Ability _$AbilityFromJson(Map<String, dynamic> json) {
       return Reserve.fromJson(json);
 
     default:
-      throw FallThroughError();
+      throw CheckedFromJsonException(json, 'runtimeType', 'Ability',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
-
-/// @nodoc
-class _$AbilityTearOff {
-  const _$AbilityTearOff();
-
-  _Ability call(
-      {required AbilityType type,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      List<RoleEnum> validTargets = const []}) {
-    return _Ability(
-      type: type,
-      whenS: whenS,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      validTargets: validTargets,
-    );
-  }
-
-  Save save(
-      {AbilityType type = AbilityType.Save,
-      required Stage whenS,
-      required List<Action> saveFrom,
-      required SelfClause selfClause,
-      required List<RoleEnum> validTargets,
-      WhenClause? whenClause,
-      FromActionClause? fromClause,
-      UntilClause? untilClause,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      IFClause? ifClause}) {
-    return Save(
-      type: type,
-      whenS: whenS,
-      saveFrom: saveFrom,
-      selfClause: selfClause,
-      validTargets: validTargets,
-      whenClause: whenClause,
-      fromClause: fromClause,
-      untilClause: untilClause,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      ifClause: ifClause,
-    );
-  }
-
-  Counter counter(
-      {AbilityType type = AbilityType.Counter,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<RoleEnum> validTargets,
-      required AbilityType by,
-      required Who onWho,
-      Cost? cost}) {
-    return Counter(
-      type: type,
-      whenS: whenS,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      validTargets: validTargets,
-      by: by,
-      onWho: onWho,
-      cost: cost,
-    );
-  }
-
-  Recrute recrute(
-      {AbilityType type = AbilityType.Recrute,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<RoleEnum> validTargets,
-      required bool willBeConverted,
-      CostOn costOnHimOrAll = CostOn.None,
-      Cost? costTypeIfNotValid}) {
-    return Recrute(
-      type: type,
-      whenS: whenS,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      validTargets: validTargets,
-      willBeConverted: willBeConverted,
-      costOnHimOrAll: costOnHimOrAll,
-      costTypeIfNotValid: costTypeIfNotValid,
-    );
-  }
-
-  Guess guess(
-      {AbilityType type = AbilityType.Guess,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<RoleEnum> validTargets,
-      required GuessType what,
-      Cost? costIfRight,
-      Cost? costIfWrong,
-      CostOn? costOnIfRight,
-      CostOn? costOnIfWrong,
-      WhenClause? whenClause,
-      FromActionClause? fromClause,
-      IFClause? ifClause,
-      UntilClause? untilClause}) {
-    return Guess(
-      type: type,
-      whenS: whenS,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      validTargets: validTargets,
-      what: what,
-      costIfRight: costIfRight,
-      costIfWrong: costIfWrong,
-      costOnIfRight: costOnIfRight,
-      costOnIfWrong: costOnIfWrong,
-      whenClause: whenClause,
-      fromClause: fromClause,
-      ifClause: ifClause,
-      untilClause: untilClause,
-    );
-  }
-
-  Change change(
-      {AbilityType type = AbilityType.Change,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required AbilityType what,
-      required ChangeType change,
-      required List<RoleEnum> validTargets,
-      WhenClause? whenClause,
-      FromClause? fromClause,
-      IFClause? ifClause,
-      UntilClause? untilClause}) {
-    return Change(
-      type: type,
-      whenS: whenS,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      what: what,
-      change: change,
-      validTargets: validTargets,
-      whenClause: whenClause,
-      fromClause: fromClause,
-      ifClause: ifClause,
-      untilClause: untilClause,
-    );
-  }
-
-  Kill kill(
-      {AbilityType type = AbilityType.Kill,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<RoleEnum> validTargets,
-      required int effectesAfter,
-      required Stage effectesAfterStage,
-      List<RoleEnum> cantSaveBy = const [],
-      Cost? costTypeForKill,
-      Cost? costTypeIfWrong,
-      WhenClause? whenClause,
-      IFClause? ifClause,
-      UntilClause? untilClause}) {
-    return Kill(
-      type: type,
-      whenS: whenS,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      validTargets: validTargets,
-      effectesAfter: effectesAfter,
-      effectesAfterStage: effectesAfterStage,
-      cantSaveBy: cantSaveBy,
-      costTypeForKill: costTypeForKill,
-      costTypeIfWrong: costTypeIfWrong,
-      whenClause: whenClause,
-      ifClause: ifClause,
-      untilClause: untilClause,
-    );
-  }
-
-  Disable disable(
-      {AbilityType type = AbilityType.Disable,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<Action> fromActions,
-      required List<RoleEnum> validTargets,
-      IFClause? ifClause}) {
-    return Disable(
-      type: type,
-      whenS: whenS,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      fromActions: fromActions,
-      validTargets: validTargets,
-      ifClause: ifClause,
-    );
-  }
-
-  Activation activation(
-      {AbilityType type = AbilityType.Activation,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      List<RoleEnum> validTargets = const [],
-      required Action whenActivates,
-      required Who whoGains,
-      required AbilityType can,
-      IFClause? ifClause}) {
-    return Activation(
-      type: type,
-      whenS: whenS,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      validTargets: validTargets,
-      whenActivates: whenActivates,
-      whoGains: whoGains,
-      can: can,
-      ifClause: ifClause,
-    );
-  }
-
-  Give give(
-      {AbilityType type = AbilityType.Give,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<RoleEnum> validTargets,
-      required Action action,
-      required Stage whenAction,
-      IFClause? ifClause}) {
-    return Give(
-      type: type,
-      whenS: whenS,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      validTargets: validTargets,
-      action: action,
-      whenAction: whenAction,
-      ifClause: ifClause,
-    );
-  }
-
-  Reserve reserve(
-      {AbilityType type = AbilityType.Reserve,
-      Stage whenS = Stage.All,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      List<RoleEnum> validTargets = const [],
-      required RoleEnum role,
-      required int priority,
-      IFClause? ifClause}) {
-    return Reserve(
-      type: type,
-      whenS: whenS,
-      everyClause: everyClause,
-      timesClause: timesClause,
-      validTargets: validTargets,
-      role: role,
-      priority: priority,
-      ifClause: ifClause,
-    );
-  }
-
-  Ability fromJson(Map<String, Object> json) {
-    return Ability.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Ability = _$AbilityTearOff();
 
 /// @nodoc
 mixin _$Ability {
@@ -320,7 +52,6 @@ mixin _$Ability {
   EveryClause? get everyClause => throw _privateConstructorUsedError;
   TimesClause? get timesClause => throw _privateConstructorUsedError;
   List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
@@ -442,6 +173,130 @@ mixin _$Ability {
             RoleEnum role,
             int priority,
             IFClause? ifClause)
+        reserve,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
         reserve,
   }) =>
       throw _privateConstructorUsedError;
@@ -586,6 +441,21 @@ mixin _$Ability {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -660,9 +530,10 @@ class _$AbilityCopyWithImpl<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AbilityCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory _$AbilityCopyWith(_Ability value, $Res Function(_Ability) then) =
-      __$AbilityCopyWithImpl<$Res>;
+abstract class _$$_AbilityCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$_AbilityCopyWith(
+          _$_Ability value, $Res Function(_$_Ability) then) =
+      __$$_AbilityCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -673,13 +544,13 @@ abstract class _$AbilityCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AbilityCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements _$AbilityCopyWith<$Res> {
-  __$AbilityCopyWithImpl(_Ability _value, $Res Function(_Ability) _then)
-      : super(_value, (v) => _then(v as _Ability));
+class __$$_AbilityCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$_AbilityCopyWith<$Res> {
+  __$$_AbilityCopyWithImpl(_$_Ability _value, $Res Function(_$_Ability) _then)
+      : super(_value, (v) => _then(v as _$_Ability));
 
   @override
-  _Ability get _value => super._value as _Ability;
+  _$_Ability get _value => super._value as _$_Ability;
 
   @override
   $Res call({
@@ -689,7 +560,7 @@ class __$AbilityCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? timesClause = freezed,
     Object? validTargets = freezed,
   }) {
-    return _then(_Ability(
+    return _then(_$_Ability(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -707,27 +578,29 @@ class __$AbilityCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_Ability extends _Ability {
   const _$_Ability(
       {required this.type,
       required this.whenS,
       this.everyClause,
       this.timesClause,
-      this.validTargets = const []})
-      : super._();
+      final List<RoleEnum> validTargets = const [],
+      final String? $type})
+      : _validTargets = validTargets,
+        $type = $type ?? 'default',
+        super._();
 
   factory _$_Ability.fromJson(Map<String, dynamic> json) =>
-      _$_$_AbilityFromJson(json);
+      _$$_AbilityFromJson(json);
 
   @override
   final AbilityType type;
@@ -737,9 +610,16 @@ class _$_Ability extends _Ability {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
-  @JsonKey(defaultValue: const [])
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  @JsonKey()
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -749,35 +629,32 @@ class _$_Ability extends _Ability {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Ability &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)));
+        (other.runtimeType == runtimeType &&
+            other is _$_Ability &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(validTargets);
 
   @JsonKey(ignore: true)
   @override
-  _$AbilityCopyWith<_Ability> get copyWith =>
-      __$AbilityCopyWithImpl<_Ability>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(_validTargets));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_AbilityCopyWith<_$_Ability> get copyWith =>
+      __$$_AbilityCopyWithImpl<_$_Ability>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -904,6 +781,133 @@ class _$_Ability extends _Ability {
         reserve,
   }) {
     return $default(type, whenS, everyClause, timesClause, validTargets);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return $default?.call(type, whenS, everyClause, timesClause, validTargets);
   }
 
   @override
@@ -1057,6 +1061,24 @@ class _$_Ability extends _Ability {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -1079,17 +1101,17 @@ class _$_Ability extends _Ability {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AbilityToJson(this)..['runtimeType'] = 'default';
+    return _$$_AbilityToJson(this);
   }
 }
 
 abstract class _Ability extends Ability {
   const factory _Ability(
-      {required AbilityType type,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      List<RoleEnum> validTargets}) = _$_Ability;
+      {required final AbilityType type,
+      required final Stage whenS,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      final List<RoleEnum> validTargets}) = _$_Ability;
   const _Ability._() : super._();
 
   factory _Ability.fromJson(Map<String, dynamic> json) = _$_Ability.fromJson;
@@ -1106,14 +1128,14 @@ abstract class _Ability extends Ability {
   List<RoleEnum> get validTargets => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AbilityCopyWith<_Ability> get copyWith =>
+  _$$_AbilityCopyWith<_$_Ability> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SaveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory $SaveCopyWith(Save value, $Res Function(Save) then) =
-      _$SaveCopyWithImpl<$Res>;
+abstract class _$$SaveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$SaveCopyWith(_$Save value, $Res Function(_$Save) then) =
+      __$$SaveCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -1130,13 +1152,13 @@ abstract class $SaveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SaveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements $SaveCopyWith<$Res> {
-  _$SaveCopyWithImpl(Save _value, $Res Function(Save) _then)
-      : super(_value, (v) => _then(v as Save));
+class __$$SaveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$SaveCopyWith<$Res> {
+  __$$SaveCopyWithImpl(_$Save _value, $Res Function(_$Save) _then)
+      : super(_value, (v) => _then(v as _$Save));
 
   @override
-  Save get _value => super._value as Save;
+  _$Save get _value => super._value as _$Save;
 
   @override
   $Res call({
@@ -1152,7 +1174,7 @@ class _$SaveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? timesClause = freezed,
     Object? ifClause = freezed,
   }) {
-    return _then(Save(
+    return _then(_$Save(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1162,7 +1184,7 @@ class _$SaveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : whenS // ignore: cast_nullable_to_non_nullable
               as Stage,
       saveFrom: saveFrom == freezed
-          ? _value.saveFrom
+          ? _value._saveFrom
           : saveFrom // ignore: cast_nullable_to_non_nullable
               as List<Action>,
       selfClause: selfClause == freezed
@@ -1170,7 +1192,7 @@ class _$SaveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : selfClause // ignore: cast_nullable_to_non_nullable
               as SelfClause,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       whenClause: whenClause == freezed
@@ -1201,22 +1223,22 @@ class _$SaveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$Save extends Save {
   const _$Save(
       {this.type = AbilityType.Save,
       required this.whenS,
-      required this.saveFrom,
+      required final List<Action> saveFrom,
       required this.selfClause,
-      required this.validTargets,
+      required final List<RoleEnum> validTargets,
       this.whenClause,
       this.fromClause,
       this.untilClause,
       this.everyClause,
       this.timesClause,
-      this.ifClause})
+      this.ifClause,
+      final String? $type})
       : assert(everyClause != null ||
             timesClause != null ||
             whenClause != null ||
@@ -1225,21 +1247,34 @@ class _$Save extends Save {
             'Cant Use Every Clause with Times Clause'),
         assert(everyClause != null ? timesClause == null : true,
             'Cant Use Times Clause with Every Clause'),
+        _saveFrom = saveFrom,
+        _validTargets = validTargets,
+        $type = $type ?? 'save',
         super._();
 
-  factory _$Save.fromJson(Map<String, dynamic> json) => _$_$SaveFromJson(json);
+  factory _$Save.fromJson(Map<String, dynamic> json) => _$$SaveFromJson(json);
 
-  @JsonKey(defaultValue: AbilityType.Save)
   @override
+  @JsonKey()
   final AbilityType type;
   @override
   final Stage whenS;
+  final List<Action> _saveFrom;
   @override
-  final List<Action> saveFrom;
+  List<Action> get saveFrom {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_saveFrom);
+  }
+
   @override
   final SelfClause selfClause;
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
   @override
   final WhenClause? whenClause;
   @override
@@ -1253,6 +1288,9 @@ class _$Save extends Save {
   @override
   final IFClause? ifClause;
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
     return 'Ability.save(type: $type, whenS: $whenS, saveFrom: $saveFrom, selfClause: $selfClause, validTargets: $validTargets, whenClause: $whenClause, fromClause: $fromClause, untilClause: $untilClause, everyClause: $everyClause, timesClause: $timesClause, ifClause: $ifClause)';
@@ -1261,59 +1299,48 @@ class _$Save extends Save {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Save &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.saveFrom, saveFrom) ||
-                const DeepCollectionEquality()
-                    .equals(other.saveFrom, saveFrom)) &&
-            (identical(other.selfClause, selfClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.selfClause, selfClause)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)) &&
-            (identical(other.whenClause, whenClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.whenClause, whenClause)) &&
-            (identical(other.fromClause, fromClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.fromClause, fromClause)) &&
-            (identical(other.untilClause, untilClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.untilClause, untilClause)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.ifClause, ifClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.ifClause, ifClause)));
+        (other.runtimeType == runtimeType &&
+            other is _$Save &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality().equals(other._saveFrom, _saveFrom) &&
+            const DeepCollectionEquality()
+                .equals(other.selfClause, selfClause) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets) &&
+            const DeepCollectionEquality()
+                .equals(other.whenClause, whenClause) &&
+            const DeepCollectionEquality()
+                .equals(other.fromClause, fromClause) &&
+            const DeepCollectionEquality()
+                .equals(other.untilClause, untilClause) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality().equals(other.ifClause, ifClause));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(saveFrom) ^
-      const DeepCollectionEquality().hash(selfClause) ^
-      const DeepCollectionEquality().hash(validTargets) ^
-      const DeepCollectionEquality().hash(whenClause) ^
-      const DeepCollectionEquality().hash(fromClause) ^
-      const DeepCollectionEquality().hash(untilClause) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(ifClause);
 
   @JsonKey(ignore: true)
   @override
-  $SaveCopyWith<Save> get copyWith =>
-      _$SaveCopyWithImpl<Save>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(_saveFrom),
+      const DeepCollectionEquality().hash(selfClause),
+      const DeepCollectionEquality().hash(_validTargets),
+      const DeepCollectionEquality().hash(whenClause),
+      const DeepCollectionEquality().hash(fromClause),
+      const DeepCollectionEquality().hash(untilClause),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(ifClause));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$SaveCopyWith<_$Save> get copyWith =>
+      __$$SaveCopyWithImpl<_$Save>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1441,6 +1468,144 @@ class _$Save extends Save {
   }) {
     return save(type, whenS, saveFrom, selfClause, validTargets, whenClause,
         fromClause, untilClause, everyClause, timesClause, ifClause);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return save?.call(
+        type,
+        whenS,
+        saveFrom,
+        selfClause,
+        validTargets,
+        whenClause,
+        fromClause,
+        untilClause,
+        everyClause,
+        timesClause,
+        ifClause);
   }
 
   @override
@@ -1595,6 +1760,24 @@ class _$Save extends Save {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return save?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -1617,23 +1800,23 @@ class _$Save extends Save {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$SaveToJson(this)..['runtimeType'] = 'save';
+    return _$$SaveToJson(this);
   }
 }
 
 abstract class Save extends Ability {
   const factory Save(
-      {AbilityType type,
-      required Stage whenS,
-      required List<Action> saveFrom,
-      required SelfClause selfClause,
-      required List<RoleEnum> validTargets,
-      WhenClause? whenClause,
-      FromActionClause? fromClause,
-      UntilClause? untilClause,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      IFClause? ifClause}) = _$Save;
+      {final AbilityType type,
+      required final Stage whenS,
+      required final List<Action> saveFrom,
+      required final SelfClause selfClause,
+      required final List<RoleEnum> validTargets,
+      final WhenClause? whenClause,
+      final FromActionClause? fromClause,
+      final UntilClause? untilClause,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      final IFClause? ifClause}) = _$Save;
   const Save._() : super._();
 
   factory Save.fromJson(Map<String, dynamic> json) = _$Save.fromJson;
@@ -1656,13 +1839,13 @@ abstract class Save extends Ability {
   IFClause? get ifClause => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $SaveCopyWith<Save> get copyWith => throw _privateConstructorUsedError;
+  _$$SaveCopyWith<_$Save> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CounterCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory $CounterCopyWith(Counter value, $Res Function(Counter) then) =
-      _$CounterCopyWithImpl<$Res>;
+abstract class _$$CounterCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$CounterCopyWith(_$Counter value, $Res Function(_$Counter) then) =
+      __$$CounterCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -1676,13 +1859,13 @@ abstract class $CounterCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CounterCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements $CounterCopyWith<$Res> {
-  _$CounterCopyWithImpl(Counter _value, $Res Function(Counter) _then)
-      : super(_value, (v) => _then(v as Counter));
+class __$$CounterCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$CounterCopyWith<$Res> {
+  __$$CounterCopyWithImpl(_$Counter _value, $Res Function(_$Counter) _then)
+      : super(_value, (v) => _then(v as _$Counter));
 
   @override
-  Counter get _value => super._value as Counter;
+  _$Counter get _value => super._value as _$Counter;
 
   @override
   $Res call({
@@ -1695,7 +1878,7 @@ class _$CounterCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? onWho = freezed,
     Object? cost = freezed,
   }) {
-    return _then(Counter(
+    return _then(_$Counter(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1713,7 +1896,7 @@ class _$CounterCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       by: by == freezed
@@ -1732,30 +1915,32 @@ class _$CounterCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$Counter extends Counter {
   const _$Counter(
       {this.type = AbilityType.Counter,
       required this.whenS,
       this.everyClause,
       this.timesClause,
-      required this.validTargets,
+      required final List<RoleEnum> validTargets,
       required this.by,
       required this.onWho,
-      this.cost})
+      this.cost,
+      final String? $type})
       : assert(everyClause != null ? timesClause == null : true,
             'Cant Use Every Clause with Times Clause'),
         assert(everyClause != null ? timesClause == null : true,
             'Cant Use Times Clause with Every Clause'),
+        _validTargets = validTargets,
+        $type = $type ?? 'counter',
         super._();
 
   factory _$Counter.fromJson(Map<String, dynamic> json) =>
-      _$_$CounterFromJson(json);
+      _$$CounterFromJson(json);
 
-  @JsonKey(defaultValue: AbilityType.Counter)
   @override
+  @JsonKey()
   final AbilityType type;
   @override
   final Stage whenS;
@@ -1763,14 +1948,22 @@ class _$Counter extends Counter {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
   @override
   final AbilityType by;
   @override
   final Who onWho;
   @override
   final Cost? cost;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1780,44 +1973,38 @@ class _$Counter extends Counter {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Counter &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)) &&
-            (identical(other.by, by) ||
-                const DeepCollectionEquality().equals(other.by, by)) &&
-            (identical(other.onWho, onWho) ||
-                const DeepCollectionEquality().equals(other.onWho, onWho)) &&
-            (identical(other.cost, cost) ||
-                const DeepCollectionEquality().equals(other.cost, cost)));
+        (other.runtimeType == runtimeType &&
+            other is _$Counter &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets) &&
+            const DeepCollectionEquality().equals(other.by, by) &&
+            const DeepCollectionEquality().equals(other.onWho, onWho) &&
+            const DeepCollectionEquality().equals(other.cost, cost));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(validTargets) ^
-      const DeepCollectionEquality().hash(by) ^
-      const DeepCollectionEquality().hash(onWho) ^
-      const DeepCollectionEquality().hash(cost);
 
   @JsonKey(ignore: true)
   @override
-  $CounterCopyWith<Counter> get copyWith =>
-      _$CounterCopyWithImpl<Counter>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(_validTargets),
+      const DeepCollectionEquality().hash(by),
+      const DeepCollectionEquality().hash(onWho),
+      const DeepCollectionEquality().hash(cost));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$CounterCopyWith<_$Counter> get copyWith =>
+      __$$CounterCopyWithImpl<_$Counter>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1944,6 +2131,134 @@ class _$Counter extends Counter {
         reserve,
   }) {
     return counter(
+        type, whenS, everyClause, timesClause, validTargets, by, onWho, cost);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return counter?.call(
         type, whenS, everyClause, timesClause, validTargets, by, onWho, cost);
   }
 
@@ -2099,6 +2414,24 @@ class _$Counter extends Counter {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return counter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -2121,20 +2454,20 @@ class _$Counter extends Counter {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$CounterToJson(this)..['runtimeType'] = 'counter';
+    return _$$CounterToJson(this);
   }
 }
 
 abstract class Counter extends Ability {
   const factory Counter(
-      {AbilityType type,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<RoleEnum> validTargets,
-      required AbilityType by,
-      required Who onWho,
-      Cost? cost}) = _$Counter;
+      {final AbilityType type,
+      required final Stage whenS,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      required final List<RoleEnum> validTargets,
+      required final AbilityType by,
+      required final Who onWho,
+      final Cost? cost}) = _$Counter;
   const Counter._() : super._();
 
   factory Counter.fromJson(Map<String, dynamic> json) = _$Counter.fromJson;
@@ -2154,13 +2487,14 @@ abstract class Counter extends Ability {
   Cost? get cost => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $CounterCopyWith<Counter> get copyWith => throw _privateConstructorUsedError;
+  _$$CounterCopyWith<_$Counter> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RecruteCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory $RecruteCopyWith(Recrute value, $Res Function(Recrute) then) =
-      _$RecruteCopyWithImpl<$Res>;
+abstract class _$$RecruteCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$RecruteCopyWith(_$Recrute value, $Res Function(_$Recrute) then) =
+      __$$RecruteCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -2174,13 +2508,13 @@ abstract class $RecruteCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RecruteCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements $RecruteCopyWith<$Res> {
-  _$RecruteCopyWithImpl(Recrute _value, $Res Function(Recrute) _then)
-      : super(_value, (v) => _then(v as Recrute));
+class __$$RecruteCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$RecruteCopyWith<$Res> {
+  __$$RecruteCopyWithImpl(_$Recrute _value, $Res Function(_$Recrute) _then)
+      : super(_value, (v) => _then(v as _$Recrute));
 
   @override
-  Recrute get _value => super._value as Recrute;
+  _$Recrute get _value => super._value as _$Recrute;
 
   @override
   $Res call({
@@ -2193,7 +2527,7 @@ class _$RecruteCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? costOnHimOrAll = freezed,
     Object? costTypeIfNotValid = freezed,
   }) {
-    return _then(Recrute(
+    return _then(_$Recrute(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -2211,7 +2545,7 @@ class _$RecruteCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       willBeConverted: willBeConverted == freezed
@@ -2230,30 +2564,32 @@ class _$RecruteCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$Recrute extends Recrute {
   const _$Recrute(
       {this.type = AbilityType.Recrute,
       required this.whenS,
       this.everyClause,
       this.timesClause,
-      required this.validTargets,
+      required final List<RoleEnum> validTargets,
       required this.willBeConverted,
       this.costOnHimOrAll = CostOn.None,
-      this.costTypeIfNotValid})
+      this.costTypeIfNotValid,
+      final String? $type})
       : assert(everyClause != null ? timesClause == null : true,
             'Cant Use Every Clause with Times Clause'),
         assert(everyClause != null ? timesClause == null : true,
             'Cant Use Times Clause with Every Clause'),
+        _validTargets = validTargets,
+        $type = $type ?? 'recrute',
         super._();
 
   factory _$Recrute.fromJson(Map<String, dynamic> json) =>
-      _$_$RecruteFromJson(json);
+      _$$RecruteFromJson(json);
 
-  @JsonKey(defaultValue: AbilityType.Recrute)
   @override
+  @JsonKey()
   final AbilityType type;
   @override
   final Stage whenS;
@@ -2261,15 +2597,23 @@ class _$Recrute extends Recrute {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
   @override
   final bool willBeConverted;
-  @JsonKey(defaultValue: CostOn.None)
   @override
+  @JsonKey()
   final CostOn costOnHimOrAll;
   @override
   final Cost? costTypeIfNotValid;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -2279,47 +2623,41 @@ class _$Recrute extends Recrute {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Recrute &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)) &&
-            (identical(other.willBeConverted, willBeConverted) ||
-                const DeepCollectionEquality()
-                    .equals(other.willBeConverted, willBeConverted)) &&
-            (identical(other.costOnHimOrAll, costOnHimOrAll) ||
-                const DeepCollectionEquality()
-                    .equals(other.costOnHimOrAll, costOnHimOrAll)) &&
-            (identical(other.costTypeIfNotValid, costTypeIfNotValid) ||
-                const DeepCollectionEquality()
-                    .equals(other.costTypeIfNotValid, costTypeIfNotValid)));
+        (other.runtimeType == runtimeType &&
+            other is _$Recrute &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets) &&
+            const DeepCollectionEquality()
+                .equals(other.willBeConverted, willBeConverted) &&
+            const DeepCollectionEquality()
+                .equals(other.costOnHimOrAll, costOnHimOrAll) &&
+            const DeepCollectionEquality()
+                .equals(other.costTypeIfNotValid, costTypeIfNotValid));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(validTargets) ^
-      const DeepCollectionEquality().hash(willBeConverted) ^
-      const DeepCollectionEquality().hash(costOnHimOrAll) ^
-      const DeepCollectionEquality().hash(costTypeIfNotValid);
 
   @JsonKey(ignore: true)
   @override
-  $RecruteCopyWith<Recrute> get copyWith =>
-      _$RecruteCopyWithImpl<Recrute>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(_validTargets),
+      const DeepCollectionEquality().hash(willBeConverted),
+      const DeepCollectionEquality().hash(costOnHimOrAll),
+      const DeepCollectionEquality().hash(costTypeIfNotValid));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$RecruteCopyWith<_$Recrute> get copyWith =>
+      __$$RecruteCopyWithImpl<_$Recrute>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2446,6 +2784,134 @@ class _$Recrute extends Recrute {
         reserve,
   }) {
     return recrute(type, whenS, everyClause, timesClause, validTargets,
+        willBeConverted, costOnHimOrAll, costTypeIfNotValid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return recrute?.call(type, whenS, everyClause, timesClause, validTargets,
         willBeConverted, costOnHimOrAll, costTypeIfNotValid);
   }
 
@@ -2601,6 +3067,24 @@ class _$Recrute extends Recrute {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return recrute?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -2623,20 +3107,20 @@ class _$Recrute extends Recrute {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$RecruteToJson(this)..['runtimeType'] = 'recrute';
+    return _$$RecruteToJson(this);
   }
 }
 
 abstract class Recrute extends Ability {
   const factory Recrute(
-      {AbilityType type,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<RoleEnum> validTargets,
-      required bool willBeConverted,
-      CostOn costOnHimOrAll,
-      Cost? costTypeIfNotValid}) = _$Recrute;
+      {final AbilityType type,
+      required final Stage whenS,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      required final List<RoleEnum> validTargets,
+      required final bool willBeConverted,
+      final CostOn costOnHimOrAll,
+      final Cost? costTypeIfNotValid}) = _$Recrute;
   const Recrute._() : super._();
 
   factory Recrute.fromJson(Map<String, dynamic> json) = _$Recrute.fromJson;
@@ -2656,13 +3140,14 @@ abstract class Recrute extends Ability {
   Cost? get costTypeIfNotValid => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $RecruteCopyWith<Recrute> get copyWith => throw _privateConstructorUsedError;
+  _$$RecruteCopyWith<_$Recrute> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GuessCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory $GuessCopyWith(Guess value, $Res Function(Guess) then) =
-      _$GuessCopyWithImpl<$Res>;
+abstract class _$$GuessCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$GuessCopyWith(_$Guess value, $Res Function(_$Guess) then) =
+      __$$GuessCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -2682,13 +3167,13 @@ abstract class $GuessCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GuessCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements $GuessCopyWith<$Res> {
-  _$GuessCopyWithImpl(Guess _value, $Res Function(Guess) _then)
-      : super(_value, (v) => _then(v as Guess));
+class __$$GuessCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$GuessCopyWith<$Res> {
+  __$$GuessCopyWithImpl(_$Guess _value, $Res Function(_$Guess) _then)
+      : super(_value, (v) => _then(v as _$Guess));
 
   @override
-  Guess get _value => super._value as Guess;
+  _$Guess get _value => super._value as _$Guess;
 
   @override
   $Res call({
@@ -2707,7 +3192,7 @@ class _$GuessCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? ifClause = freezed,
     Object? untilClause = freezed,
   }) {
-    return _then(Guess(
+    return _then(_$Guess(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -2725,7 +3210,7 @@ class _$GuessCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       what: what == freezed
@@ -2768,16 +3253,15 @@ class _$GuessCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$Guess extends Guess {
   const _$Guess(
       {this.type = AbilityType.Guess,
       required this.whenS,
       this.everyClause,
       this.timesClause,
-      required this.validTargets,
+      required final List<RoleEnum> validTargets,
       required this.what,
       this.costIfRight,
       this.costIfWrong,
@@ -2786,7 +3270,8 @@ class _$Guess extends Guess {
       this.whenClause,
       this.fromClause,
       this.ifClause,
-      this.untilClause})
+      this.untilClause,
+      final String? $type})
       : assert(everyClause != null ||
             timesClause != null ||
             whenClause != null ||
@@ -2796,13 +3281,14 @@ class _$Guess extends Guess {
             'Cant Use Every Clause with Times Clause'),
         assert(everyClause != null ? timesClause == null : true,
             'Cant Use Times Clause with Every Clause'),
+        _validTargets = validTargets,
+        $type = $type ?? 'guess',
         super._();
 
-  factory _$Guess.fromJson(Map<String, dynamic> json) =>
-      _$_$GuessFromJson(json);
+  factory _$Guess.fromJson(Map<String, dynamic> json) => _$$GuessFromJson(json);
 
-  @JsonKey(defaultValue: AbilityType.Guess)
   @override
+  @JsonKey()
   final AbilityType type;
   @override
   final Stage whenS;
@@ -2810,8 +3296,13 @@ class _$Guess extends Guess {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
   @override
   final GuessType what;
   @override
@@ -2831,6 +3322,9 @@ class _$Guess extends Guess {
   @override
   final UntilClause? untilClause;
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
     return 'Ability.guess(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, validTargets: $validTargets, what: $what, costIfRight: $costIfRight, costIfWrong: $costIfWrong, costOnIfRight: $costOnIfRight, costOnIfWrong: $costOnIfWrong, whenClause: $whenClause, fromClause: $fromClause, ifClause: $ifClause, untilClause: $untilClause)';
@@ -2839,70 +3333,57 @@ class _$Guess extends Guess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Guess &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)) &&
-            (identical(other.what, what) ||
-                const DeepCollectionEquality().equals(other.what, what)) &&
-            (identical(other.costIfRight, costIfRight) ||
-                const DeepCollectionEquality()
-                    .equals(other.costIfRight, costIfRight)) &&
-            (identical(other.costIfWrong, costIfWrong) ||
-                const DeepCollectionEquality()
-                    .equals(other.costIfWrong, costIfWrong)) &&
-            (identical(other.costOnIfRight, costOnIfRight) ||
-                const DeepCollectionEquality()
-                    .equals(other.costOnIfRight, costOnIfRight)) &&
-            (identical(other.costOnIfWrong, costOnIfWrong) ||
-                const DeepCollectionEquality()
-                    .equals(other.costOnIfWrong, costOnIfWrong)) &&
-            (identical(other.whenClause, whenClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.whenClause, whenClause)) &&
-            (identical(other.fromClause, fromClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.fromClause, fromClause)) &&
-            (identical(other.ifClause, ifClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.ifClause, ifClause)) &&
-            (identical(other.untilClause, untilClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.untilClause, untilClause)));
+        (other.runtimeType == runtimeType &&
+            other is _$Guess &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets) &&
+            const DeepCollectionEquality().equals(other.what, what) &&
+            const DeepCollectionEquality()
+                .equals(other.costIfRight, costIfRight) &&
+            const DeepCollectionEquality()
+                .equals(other.costIfWrong, costIfWrong) &&
+            const DeepCollectionEquality()
+                .equals(other.costOnIfRight, costOnIfRight) &&
+            const DeepCollectionEquality()
+                .equals(other.costOnIfWrong, costOnIfWrong) &&
+            const DeepCollectionEquality()
+                .equals(other.whenClause, whenClause) &&
+            const DeepCollectionEquality()
+                .equals(other.fromClause, fromClause) &&
+            const DeepCollectionEquality().equals(other.ifClause, ifClause) &&
+            const DeepCollectionEquality()
+                .equals(other.untilClause, untilClause));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(validTargets) ^
-      const DeepCollectionEquality().hash(what) ^
-      const DeepCollectionEquality().hash(costIfRight) ^
-      const DeepCollectionEquality().hash(costIfWrong) ^
-      const DeepCollectionEquality().hash(costOnIfRight) ^
-      const DeepCollectionEquality().hash(costOnIfWrong) ^
-      const DeepCollectionEquality().hash(whenClause) ^
-      const DeepCollectionEquality().hash(fromClause) ^
-      const DeepCollectionEquality().hash(ifClause) ^
-      const DeepCollectionEquality().hash(untilClause);
 
   @JsonKey(ignore: true)
   @override
-  $GuessCopyWith<Guess> get copyWith =>
-      _$GuessCopyWithImpl<Guess>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(_validTargets),
+      const DeepCollectionEquality().hash(what),
+      const DeepCollectionEquality().hash(costIfRight),
+      const DeepCollectionEquality().hash(costIfWrong),
+      const DeepCollectionEquality().hash(costOnIfRight),
+      const DeepCollectionEquality().hash(costOnIfWrong),
+      const DeepCollectionEquality().hash(whenClause),
+      const DeepCollectionEquality().hash(fromClause),
+      const DeepCollectionEquality().hash(ifClause),
+      const DeepCollectionEquality().hash(untilClause));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$GuessCopyWith<_$Guess> get copyWith =>
+      __$$GuessCopyWithImpl<_$Guess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3029,6 +3510,147 @@ class _$Guess extends Guess {
         reserve,
   }) {
     return guess(
+        type,
+        whenS,
+        everyClause,
+        timesClause,
+        validTargets,
+        what,
+        costIfRight,
+        costIfWrong,
+        costOnIfRight,
+        costOnIfWrong,
+        whenClause,
+        fromClause,
+        ifClause,
+        untilClause);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return guess?.call(
         type,
         whenS,
         everyClause,
@@ -3210,6 +3832,24 @@ class _$Guess extends Guess {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return guess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -3232,26 +3872,26 @@ class _$Guess extends Guess {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$GuessToJson(this)..['runtimeType'] = 'guess';
+    return _$$GuessToJson(this);
   }
 }
 
 abstract class Guess extends Ability {
   const factory Guess(
-      {AbilityType type,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<RoleEnum> validTargets,
-      required GuessType what,
-      Cost? costIfRight,
-      Cost? costIfWrong,
-      CostOn? costOnIfRight,
-      CostOn? costOnIfWrong,
-      WhenClause? whenClause,
-      FromActionClause? fromClause,
-      IFClause? ifClause,
-      UntilClause? untilClause}) = _$Guess;
+      {final AbilityType type,
+      required final Stage whenS,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      required final List<RoleEnum> validTargets,
+      required final GuessType what,
+      final Cost? costIfRight,
+      final Cost? costIfWrong,
+      final CostOn? costOnIfRight,
+      final CostOn? costOnIfWrong,
+      final WhenClause? whenClause,
+      final FromActionClause? fromClause,
+      final IFClause? ifClause,
+      final UntilClause? untilClause}) = _$Guess;
   const Guess._() : super._();
 
   factory Guess.fromJson(Map<String, dynamic> json) = _$Guess.fromJson;
@@ -3277,13 +3917,13 @@ abstract class Guess extends Ability {
   UntilClause? get untilClause => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $GuessCopyWith<Guess> get copyWith => throw _privateConstructorUsedError;
+  _$$GuessCopyWith<_$Guess> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ChangeCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory $ChangeCopyWith(Change value, $Res Function(Change) then) =
-      _$ChangeCopyWithImpl<$Res>;
+abstract class _$$ChangeCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$ChangeCopyWith(_$Change value, $Res Function(_$Change) then) =
+      __$$ChangeCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -3300,13 +3940,13 @@ abstract class $ChangeCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ChangeCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements $ChangeCopyWith<$Res> {
-  _$ChangeCopyWithImpl(Change _value, $Res Function(Change) _then)
-      : super(_value, (v) => _then(v as Change));
+class __$$ChangeCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$ChangeCopyWith<$Res> {
+  __$$ChangeCopyWithImpl(_$Change _value, $Res Function(_$Change) _then)
+      : super(_value, (v) => _then(v as _$Change));
 
   @override
-  Change get _value => super._value as Change;
+  _$Change get _value => super._value as _$Change;
 
   @override
   $Res call({
@@ -3322,7 +3962,7 @@ class _$ChangeCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? ifClause = freezed,
     Object? untilClause = freezed,
   }) {
-    return _then(Change(
+    return _then(_$Change(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -3348,7 +3988,7 @@ class _$ChangeCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : change // ignore: cast_nullable_to_non_nullable
               as ChangeType,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       whenClause: whenClause == freezed
@@ -3371,9 +4011,8 @@ class _$ChangeCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$Change extends Change {
   const _$Change(
       {this.type = AbilityType.Change,
@@ -3382,11 +4021,12 @@ class _$Change extends Change {
       this.timesClause,
       required this.what,
       required this.change,
-      required this.validTargets,
+      required final List<RoleEnum> validTargets,
       this.whenClause,
       this.fromClause,
       this.ifClause,
-      this.untilClause})
+      this.untilClause,
+      final String? $type})
       : assert(everyClause != null ||
             timesClause != null ||
             whenClause != null ||
@@ -3396,13 +4036,15 @@ class _$Change extends Change {
             'Cant Use Every Clause with Times Clause'),
         assert(everyClause != null ? timesClause == null : true,
             'Cant Use Times Clause with Every Clause'),
+        _validTargets = validTargets,
+        $type = $type ?? 'change',
         super._();
 
   factory _$Change.fromJson(Map<String, dynamic> json) =>
-      _$_$ChangeFromJson(json);
+      _$$ChangeFromJson(json);
 
-  @JsonKey(defaultValue: AbilityType.Change)
   @override
+  @JsonKey()
   final AbilityType type;
   @override
   final Stage whenS;
@@ -3414,8 +4056,13 @@ class _$Change extends Change {
   final AbilityType what;
   @override
   final ChangeType change;
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
   @override
   final WhenClause? whenClause;
   @override
@@ -3425,6 +4072,9 @@ class _$Change extends Change {
   @override
   final UntilClause? untilClause;
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
     return 'Ability.change(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, what: $what, change: $change, validTargets: $validTargets, whenClause: $whenClause, fromClause: $fromClause, ifClause: $ifClause, untilClause: $untilClause)';
@@ -3433,57 +4083,47 @@ class _$Change extends Change {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Change &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.what, what) ||
-                const DeepCollectionEquality().equals(other.what, what)) &&
-            (identical(other.change, change) ||
-                const DeepCollectionEquality().equals(other.change, change)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)) &&
-            (identical(other.whenClause, whenClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.whenClause, whenClause)) &&
-            (identical(other.fromClause, fromClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.fromClause, fromClause)) &&
-            (identical(other.ifClause, ifClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.ifClause, ifClause)) &&
-            (identical(other.untilClause, untilClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.untilClause, untilClause)));
+        (other.runtimeType == runtimeType &&
+            other is _$Change &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality().equals(other.what, what) &&
+            const DeepCollectionEquality().equals(other.change, change) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets) &&
+            const DeepCollectionEquality()
+                .equals(other.whenClause, whenClause) &&
+            const DeepCollectionEquality()
+                .equals(other.fromClause, fromClause) &&
+            const DeepCollectionEquality().equals(other.ifClause, ifClause) &&
+            const DeepCollectionEquality()
+                .equals(other.untilClause, untilClause));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(what) ^
-      const DeepCollectionEquality().hash(change) ^
-      const DeepCollectionEquality().hash(validTargets) ^
-      const DeepCollectionEquality().hash(whenClause) ^
-      const DeepCollectionEquality().hash(fromClause) ^
-      const DeepCollectionEquality().hash(ifClause) ^
-      const DeepCollectionEquality().hash(untilClause);
 
   @JsonKey(ignore: true)
   @override
-  $ChangeCopyWith<Change> get copyWith =>
-      _$ChangeCopyWithImpl<Change>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(what),
+      const DeepCollectionEquality().hash(change),
+      const DeepCollectionEquality().hash(_validTargets),
+      const DeepCollectionEquality().hash(whenClause),
+      const DeepCollectionEquality().hash(fromClause),
+      const DeepCollectionEquality().hash(ifClause),
+      const DeepCollectionEquality().hash(untilClause));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$ChangeCopyWith<_$Change> get copyWith =>
+      __$$ChangeCopyWithImpl<_$Change>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3611,6 +4251,144 @@ class _$Change extends Change {
   }) {
     return change(type, whenS, everyClause, timesClause, what, this.change,
         validTargets, whenClause, fromClause, ifClause, untilClause);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return change?.call(
+        type,
+        whenS,
+        everyClause,
+        timesClause,
+        what,
+        this.change,
+        validTargets,
+        whenClause,
+        fromClause,
+        ifClause,
+        untilClause);
   }
 
   @override
@@ -3765,6 +4543,24 @@ class _$Change extends Change {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return change?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -3787,23 +4583,23 @@ class _$Change extends Change {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$ChangeToJson(this)..['runtimeType'] = 'change';
+    return _$$ChangeToJson(this);
   }
 }
 
 abstract class Change extends Ability {
   const factory Change(
-      {AbilityType type,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required AbilityType what,
-      required ChangeType change,
-      required List<RoleEnum> validTargets,
-      WhenClause? whenClause,
-      FromClause? fromClause,
-      IFClause? ifClause,
-      UntilClause? untilClause}) = _$Change;
+      {final AbilityType type,
+      required final Stage whenS,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      required final AbilityType what,
+      required final ChangeType change,
+      required final List<RoleEnum> validTargets,
+      final WhenClause? whenClause,
+      final FromClause? fromClause,
+      final IFClause? ifClause,
+      final UntilClause? untilClause}) = _$Change;
   const Change._() : super._();
 
   factory Change.fromJson(Map<String, dynamic> json) = _$Change.fromJson;
@@ -3826,13 +4622,14 @@ abstract class Change extends Ability {
   UntilClause? get untilClause => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $ChangeCopyWith<Change> get copyWith => throw _privateConstructorUsedError;
+  _$$ChangeCopyWith<_$Change> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $KillCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory $KillCopyWith(Kill value, $Res Function(Kill) then) =
-      _$KillCopyWithImpl<$Res>;
+abstract class _$$KillCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$KillCopyWith(_$Kill value, $Res Function(_$Kill) then) =
+      __$$KillCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -3851,13 +4648,13 @@ abstract class $KillCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$KillCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements $KillCopyWith<$Res> {
-  _$KillCopyWithImpl(Kill _value, $Res Function(Kill) _then)
-      : super(_value, (v) => _then(v as Kill));
+class __$$KillCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$KillCopyWith<$Res> {
+  __$$KillCopyWithImpl(_$Kill _value, $Res Function(_$Kill) _then)
+      : super(_value, (v) => _then(v as _$Kill));
 
   @override
-  Kill get _value => super._value as Kill;
+  _$Kill get _value => super._value as _$Kill;
 
   @override
   $Res call({
@@ -3875,7 +4672,7 @@ class _$KillCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? ifClause = freezed,
     Object? untilClause = freezed,
   }) {
-    return _then(Kill(
+    return _then(_$Kill(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -3893,7 +4690,7 @@ class _$KillCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       effectesAfter: effectesAfter == freezed
@@ -3905,7 +4702,7 @@ class _$KillCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : effectesAfterStage // ignore: cast_nullable_to_non_nullable
               as Stage,
       cantSaveBy: cantSaveBy == freezed
-          ? _value.cantSaveBy
+          ? _value._cantSaveBy
           : cantSaveBy // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       costTypeForKill: costTypeForKill == freezed
@@ -3932,24 +4729,24 @@ class _$KillCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$Kill extends Kill {
   const _$Kill(
       {this.type = AbilityType.Kill,
       required this.whenS,
       this.everyClause,
       this.timesClause,
-      required this.validTargets,
+      required final List<RoleEnum> validTargets,
       required this.effectesAfter,
       required this.effectesAfterStage,
-      this.cantSaveBy = const [],
+      final List<RoleEnum> cantSaveBy = const [],
       this.costTypeForKill,
       this.costTypeIfWrong,
       this.whenClause,
       this.ifClause,
-      this.untilClause})
+      this.untilClause,
+      final String? $type})
       : assert(everyClause != null ||
             timesClause != null ||
             whenClause != null ||
@@ -3959,12 +4756,15 @@ class _$Kill extends Kill {
             'Cant Use Every Clause with Times Clause'),
         assert(everyClause != null ? timesClause == null : true,
             'Cant Use Times Clause with Every Clause'),
+        _validTargets = validTargets,
+        _cantSaveBy = cantSaveBy,
+        $type = $type ?? 'kill',
         super._();
 
-  factory _$Kill.fromJson(Map<String, dynamic> json) => _$_$KillFromJson(json);
+  factory _$Kill.fromJson(Map<String, dynamic> json) => _$$KillFromJson(json);
 
-  @JsonKey(defaultValue: AbilityType.Kill)
   @override
+  @JsonKey()
   final AbilityType type;
   @override
   final Stage whenS;
@@ -3972,15 +4772,25 @@ class _$Kill extends Kill {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
   @override
   final int effectesAfter;
   @override
   final Stage effectesAfterStage;
-  @JsonKey(defaultValue: const [])
+  final List<RoleEnum> _cantSaveBy;
   @override
-  final List<RoleEnum> cantSaveBy;
+  @JsonKey()
+  List<RoleEnum> get cantSaveBy {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cantSaveBy);
+  }
+
   @override
   final Cost? costTypeForKill;
   @override
@@ -3992,6 +4802,9 @@ class _$Kill extends Kill {
   @override
   final UntilClause? untilClause;
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
     return 'Ability.kill(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, validTargets: $validTargets, effectesAfter: $effectesAfter, effectesAfterStage: $effectesAfterStage, cantSaveBy: $cantSaveBy, costTypeForKill: $costTypeForKill, costTypeIfWrong: $costTypeIfWrong, whenClause: $whenClause, ifClause: $ifClause, untilClause: $untilClause)';
@@ -4000,67 +4813,55 @@ class _$Kill extends Kill {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Kill &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)) &&
-            (identical(other.effectesAfter, effectesAfter) ||
-                const DeepCollectionEquality()
-                    .equals(other.effectesAfter, effectesAfter)) &&
-            (identical(other.effectesAfterStage, effectesAfterStage) ||
-                const DeepCollectionEquality()
-                    .equals(other.effectesAfterStage, effectesAfterStage)) &&
-            (identical(other.cantSaveBy, cantSaveBy) ||
-                const DeepCollectionEquality()
-                    .equals(other.cantSaveBy, cantSaveBy)) &&
-            (identical(other.costTypeForKill, costTypeForKill) ||
-                const DeepCollectionEquality()
-                    .equals(other.costTypeForKill, costTypeForKill)) &&
-            (identical(other.costTypeIfWrong, costTypeIfWrong) ||
-                const DeepCollectionEquality()
-                    .equals(other.costTypeIfWrong, costTypeIfWrong)) &&
-            (identical(other.whenClause, whenClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.whenClause, whenClause)) &&
-            (identical(other.ifClause, ifClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.ifClause, ifClause)) &&
-            (identical(other.untilClause, untilClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.untilClause, untilClause)));
+        (other.runtimeType == runtimeType &&
+            other is _$Kill &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets) &&
+            const DeepCollectionEquality()
+                .equals(other.effectesAfter, effectesAfter) &&
+            const DeepCollectionEquality()
+                .equals(other.effectesAfterStage, effectesAfterStage) &&
+            const DeepCollectionEquality()
+                .equals(other._cantSaveBy, _cantSaveBy) &&
+            const DeepCollectionEquality()
+                .equals(other.costTypeForKill, costTypeForKill) &&
+            const DeepCollectionEquality()
+                .equals(other.costTypeIfWrong, costTypeIfWrong) &&
+            const DeepCollectionEquality()
+                .equals(other.whenClause, whenClause) &&
+            const DeepCollectionEquality().equals(other.ifClause, ifClause) &&
+            const DeepCollectionEquality()
+                .equals(other.untilClause, untilClause));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(validTargets) ^
-      const DeepCollectionEquality().hash(effectesAfter) ^
-      const DeepCollectionEquality().hash(effectesAfterStage) ^
-      const DeepCollectionEquality().hash(cantSaveBy) ^
-      const DeepCollectionEquality().hash(costTypeForKill) ^
-      const DeepCollectionEquality().hash(costTypeIfWrong) ^
-      const DeepCollectionEquality().hash(whenClause) ^
-      const DeepCollectionEquality().hash(ifClause) ^
-      const DeepCollectionEquality().hash(untilClause);
 
   @JsonKey(ignore: true)
   @override
-  $KillCopyWith<Kill> get copyWith =>
-      _$KillCopyWithImpl<Kill>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(_validTargets),
+      const DeepCollectionEquality().hash(effectesAfter),
+      const DeepCollectionEquality().hash(effectesAfterStage),
+      const DeepCollectionEquality().hash(_cantSaveBy),
+      const DeepCollectionEquality().hash(costTypeForKill),
+      const DeepCollectionEquality().hash(costTypeIfWrong),
+      const DeepCollectionEquality().hash(whenClause),
+      const DeepCollectionEquality().hash(ifClause),
+      const DeepCollectionEquality().hash(untilClause));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$KillCopyWith<_$Kill> get copyWith =>
+      __$$KillCopyWithImpl<_$Kill>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -4187,6 +4988,146 @@ class _$Kill extends Kill {
         reserve,
   }) {
     return kill(
+        type,
+        whenS,
+        everyClause,
+        timesClause,
+        validTargets,
+        effectesAfter,
+        effectesAfterStage,
+        cantSaveBy,
+        costTypeForKill,
+        costTypeIfWrong,
+        whenClause,
+        ifClause,
+        untilClause);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return kill?.call(
         type,
         whenS,
         everyClause,
@@ -4366,6 +5307,24 @@ class _$Kill extends Kill {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return kill?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -4388,25 +5347,25 @@ class _$Kill extends Kill {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$KillToJson(this)..['runtimeType'] = 'kill';
+    return _$$KillToJson(this);
   }
 }
 
 abstract class Kill extends Ability {
   const factory Kill(
-      {AbilityType type,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<RoleEnum> validTargets,
-      required int effectesAfter,
-      required Stage effectesAfterStage,
-      List<RoleEnum> cantSaveBy,
-      Cost? costTypeForKill,
-      Cost? costTypeIfWrong,
-      WhenClause? whenClause,
-      IFClause? ifClause,
-      UntilClause? untilClause}) = _$Kill;
+      {final AbilityType type,
+      required final Stage whenS,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      required final List<RoleEnum> validTargets,
+      required final int effectesAfter,
+      required final Stage effectesAfterStage,
+      final List<RoleEnum> cantSaveBy,
+      final Cost? costTypeForKill,
+      final Cost? costTypeIfWrong,
+      final WhenClause? whenClause,
+      final IFClause? ifClause,
+      final UntilClause? untilClause}) = _$Kill;
   const Kill._() : super._();
 
   factory Kill.fromJson(Map<String, dynamic> json) = _$Kill.fromJson;
@@ -4431,13 +5390,13 @@ abstract class Kill extends Ability {
   UntilClause? get untilClause => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $KillCopyWith<Kill> get copyWith => throw _privateConstructorUsedError;
+  _$$KillCopyWith<_$Kill> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DisableCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory $DisableCopyWith(Disable value, $Res Function(Disable) then) =
-      _$DisableCopyWithImpl<$Res>;
+abstract class _$$DisableCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$DisableCopyWith(_$Disable value, $Res Function(_$Disable) then) =
+      __$$DisableCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -4450,13 +5409,13 @@ abstract class $DisableCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DisableCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements $DisableCopyWith<$Res> {
-  _$DisableCopyWithImpl(Disable _value, $Res Function(Disable) _then)
-      : super(_value, (v) => _then(v as Disable));
+class __$$DisableCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$DisableCopyWith<$Res> {
+  __$$DisableCopyWithImpl(_$Disable _value, $Res Function(_$Disable) _then)
+      : super(_value, (v) => _then(v as _$Disable));
 
   @override
-  Disable get _value => super._value as Disable;
+  _$Disable get _value => super._value as _$Disable;
 
   @override
   $Res call({
@@ -4468,7 +5427,7 @@ class _$DisableCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? validTargets = freezed,
     Object? ifClause = freezed,
   }) {
-    return _then(Disable(
+    return _then(_$Disable(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -4486,11 +5445,11 @@ class _$DisableCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
       fromActions: fromActions == freezed
-          ? _value.fromActions
+          ? _value._fromActions
           : fromActions // ignore: cast_nullable_to_non_nullable
               as List<Action>,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       ifClause: ifClause == freezed
@@ -4501,29 +5460,32 @@ class _$DisableCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$Disable extends Disable {
   const _$Disable(
       {this.type = AbilityType.Disable,
       required this.whenS,
       this.everyClause,
       this.timesClause,
-      required this.fromActions,
-      required this.validTargets,
-      this.ifClause})
+      required final List<Action> fromActions,
+      required final List<RoleEnum> validTargets,
+      this.ifClause,
+      final String? $type})
       : assert(everyClause != null ? timesClause == null : true,
             'Cant Use Every Clause with Times Clause'),
         assert(everyClause != null ? timesClause == null : true,
             'Cant Use Times Clause with Every Clause'),
+        _fromActions = fromActions,
+        _validTargets = validTargets,
+        $type = $type ?? 'disable',
         super._();
 
   factory _$Disable.fromJson(Map<String, dynamic> json) =>
-      _$_$DisableFromJson(json);
+      _$$DisableFromJson(json);
 
-  @JsonKey(defaultValue: AbilityType.Disable)
   @override
+  @JsonKey()
   final AbilityType type;
   @override
   final Stage whenS;
@@ -4531,12 +5493,25 @@ class _$Disable extends Disable {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
+  final List<Action> _fromActions;
   @override
-  final List<Action> fromActions;
+  List<Action> get fromActions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_fromActions);
+  }
+
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
   @override
   final IFClause? ifClause;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -4546,43 +5521,37 @@ class _$Disable extends Disable {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Disable &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.fromActions, fromActions) ||
-                const DeepCollectionEquality()
-                    .equals(other.fromActions, fromActions)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)) &&
-            (identical(other.ifClause, ifClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.ifClause, ifClause)));
+        (other.runtimeType == runtimeType &&
+            other is _$Disable &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality()
+                .equals(other._fromActions, _fromActions) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets) &&
+            const DeepCollectionEquality().equals(other.ifClause, ifClause));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(fromActions) ^
-      const DeepCollectionEquality().hash(validTargets) ^
-      const DeepCollectionEquality().hash(ifClause);
 
   @JsonKey(ignore: true)
   @override
-  $DisableCopyWith<Disable> get copyWith =>
-      _$DisableCopyWithImpl<Disable>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(_fromActions),
+      const DeepCollectionEquality().hash(_validTargets),
+      const DeepCollectionEquality().hash(ifClause));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$DisableCopyWith<_$Disable> get copyWith =>
+      __$$DisableCopyWithImpl<_$Disable>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -4709,6 +5678,134 @@ class _$Disable extends Disable {
         reserve,
   }) {
     return disable(type, whenS, everyClause, timesClause, fromActions,
+        validTargets, ifClause);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return disable?.call(type, whenS, everyClause, timesClause, fromActions,
         validTargets, ifClause);
   }
 
@@ -4864,6 +5961,24 @@ class _$Disable extends Disable {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return disable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -4886,19 +6001,19 @@ class _$Disable extends Disable {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$DisableToJson(this)..['runtimeType'] = 'disable';
+    return _$$DisableToJson(this);
   }
 }
 
 abstract class Disable extends Ability {
   const factory Disable(
-      {AbilityType type,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<Action> fromActions,
-      required List<RoleEnum> validTargets,
-      IFClause? ifClause}) = _$Disable;
+      {final AbilityType type,
+      required final Stage whenS,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      required final List<Action> fromActions,
+      required final List<RoleEnum> validTargets,
+      final IFClause? ifClause}) = _$Disable;
   const Disable._() : super._();
 
   factory Disable.fromJson(Map<String, dynamic> json) = _$Disable.fromJson;
@@ -4917,14 +6032,15 @@ abstract class Disable extends Ability {
   IFClause? get ifClause => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $DisableCopyWith<Disable> get copyWith => throw _privateConstructorUsedError;
+  _$$DisableCopyWith<_$Disable> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ActivationCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory $ActivationCopyWith(
-          Activation value, $Res Function(Activation) then) =
-      _$ActivationCopyWithImpl<$Res>;
+abstract class _$$ActivationCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$ActivationCopyWith(
+          _$Activation value, $Res Function(_$Activation) then) =
+      __$$ActivationCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -4939,13 +6055,14 @@ abstract class $ActivationCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ActivationCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements $ActivationCopyWith<$Res> {
-  _$ActivationCopyWithImpl(Activation _value, $Res Function(Activation) _then)
-      : super(_value, (v) => _then(v as Activation));
+class __$$ActivationCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$ActivationCopyWith<$Res> {
+  __$$ActivationCopyWithImpl(
+      _$Activation _value, $Res Function(_$Activation) _then)
+      : super(_value, (v) => _then(v as _$Activation));
 
   @override
-  Activation get _value => super._value as Activation;
+  _$Activation get _value => super._value as _$Activation;
 
   @override
   $Res call({
@@ -4959,7 +6076,7 @@ class _$ActivationCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? can = freezed,
     Object? ifClause = freezed,
   }) {
-    return _then(Activation(
+    return _then(_$Activation(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -4977,7 +6094,7 @@ class _$ActivationCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       whenActivates: whenActivates == freezed
@@ -5000,31 +6117,33 @@ class _$ActivationCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$Activation extends Activation {
   const _$Activation(
       {this.type = AbilityType.Activation,
       required this.whenS,
       this.everyClause,
       this.timesClause,
-      this.validTargets = const [],
+      final List<RoleEnum> validTargets = const [],
       required this.whenActivates,
       required this.whoGains,
       required this.can,
-      this.ifClause})
+      this.ifClause,
+      final String? $type})
       : assert(everyClause != null ? timesClause == null : true,
             'Cant Use Every Clause with Times Clause'),
         assert(everyClause != null ? timesClause == null : true,
             'Cant Use Times Clause with Every Clause'),
+        _validTargets = validTargets,
+        $type = $type ?? 'activation',
         super._();
 
   factory _$Activation.fromJson(Map<String, dynamic> json) =>
-      _$_$ActivationFromJson(json);
+      _$$ActivationFromJson(json);
 
-  @JsonKey(defaultValue: AbilityType.Activation)
   @override
+  @JsonKey()
   final AbilityType type;
   @override
   final Stage whenS;
@@ -5032,9 +6151,14 @@ class _$Activation extends Activation {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
-  @JsonKey(defaultValue: const [])
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  @JsonKey()
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
   @override
   final Action whenActivates;
   @override
@@ -5044,6 +6168,9 @@ class _$Activation extends Activation {
   @override
   final IFClause? ifClause;
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
     return 'Ability.activation(type: $type, whenS: $whenS, everyClause: $everyClause, timesClause: $timesClause, validTargets: $validTargets, whenActivates: $whenActivates, whoGains: $whoGains, can: $can, ifClause: $ifClause)';
@@ -5052,50 +6179,41 @@ class _$Activation extends Activation {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Activation &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)) &&
-            (identical(other.whenActivates, whenActivates) ||
-                const DeepCollectionEquality()
-                    .equals(other.whenActivates, whenActivates)) &&
-            (identical(other.whoGains, whoGains) ||
-                const DeepCollectionEquality()
-                    .equals(other.whoGains, whoGains)) &&
-            (identical(other.can, can) ||
-                const DeepCollectionEquality().equals(other.can, can)) &&
-            (identical(other.ifClause, ifClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.ifClause, ifClause)));
+        (other.runtimeType == runtimeType &&
+            other is _$Activation &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets) &&
+            const DeepCollectionEquality()
+                .equals(other.whenActivates, whenActivates) &&
+            const DeepCollectionEquality().equals(other.whoGains, whoGains) &&
+            const DeepCollectionEquality().equals(other.can, can) &&
+            const DeepCollectionEquality().equals(other.ifClause, ifClause));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(validTargets) ^
-      const DeepCollectionEquality().hash(whenActivates) ^
-      const DeepCollectionEquality().hash(whoGains) ^
-      const DeepCollectionEquality().hash(can) ^
-      const DeepCollectionEquality().hash(ifClause);
 
   @JsonKey(ignore: true)
   @override
-  $ActivationCopyWith<Activation> get copyWith =>
-      _$ActivationCopyWithImpl<Activation>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(_validTargets),
+      const DeepCollectionEquality().hash(whenActivates),
+      const DeepCollectionEquality().hash(whoGains),
+      const DeepCollectionEquality().hash(can),
+      const DeepCollectionEquality().hash(ifClause));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$ActivationCopyWith<_$Activation> get copyWith =>
+      __$$ActivationCopyWithImpl<_$Activation>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -5222,6 +6340,134 @@ class _$Activation extends Activation {
         reserve,
   }) {
     return activation(type, whenS, everyClause, timesClause, validTargets,
+        whenActivates, whoGains, can, ifClause);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return activation?.call(type, whenS, everyClause, timesClause, validTargets,
         whenActivates, whoGains, can, ifClause);
   }
 
@@ -5377,6 +6623,24 @@ class _$Activation extends Activation {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return activation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -5399,21 +6663,21 @@ class _$Activation extends Activation {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$ActivationToJson(this)..['runtimeType'] = 'activation';
+    return _$$ActivationToJson(this);
   }
 }
 
 abstract class Activation extends Ability {
   const factory Activation(
-      {AbilityType type,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      List<RoleEnum> validTargets,
-      required Action whenActivates,
-      required Who whoGains,
-      required AbilityType can,
-      IFClause? ifClause}) = _$Activation;
+      {final AbilityType type,
+      required final Stage whenS,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      final List<RoleEnum> validTargets,
+      required final Action whenActivates,
+      required final Who whoGains,
+      required final AbilityType can,
+      final IFClause? ifClause}) = _$Activation;
   const Activation._() : super._();
 
   factory Activation.fromJson(Map<String, dynamic> json) =
@@ -5435,14 +6699,14 @@ abstract class Activation extends Ability {
   IFClause? get ifClause => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $ActivationCopyWith<Activation> get copyWith =>
+  _$$ActivationCopyWith<_$Activation> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GiveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory $GiveCopyWith(Give value, $Res Function(Give) then) =
-      _$GiveCopyWithImpl<$Res>;
+abstract class _$$GiveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$GiveCopyWith(_$Give value, $Res Function(_$Give) then) =
+      __$$GiveCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -5456,13 +6720,13 @@ abstract class $GiveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GiveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements $GiveCopyWith<$Res> {
-  _$GiveCopyWithImpl(Give _value, $Res Function(Give) _then)
-      : super(_value, (v) => _then(v as Give));
+class __$$GiveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$GiveCopyWith<$Res> {
+  __$$GiveCopyWithImpl(_$Give _value, $Res Function(_$Give) _then)
+      : super(_value, (v) => _then(v as _$Give));
 
   @override
-  Give get _value => super._value as Give;
+  _$Give get _value => super._value as _$Give;
 
   @override
   $Res call({
@@ -5475,7 +6739,7 @@ class _$GiveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? whenAction = freezed,
     Object? ifClause = freezed,
   }) {
-    return _then(Give(
+    return _then(_$Give(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -5493,7 +6757,7 @@ class _$GiveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       action: action == freezed
@@ -5512,29 +6776,31 @@ class _$GiveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$Give extends Give {
   const _$Give(
       {this.type = AbilityType.Give,
       required this.whenS,
       this.everyClause,
       this.timesClause,
-      required this.validTargets,
+      required final List<RoleEnum> validTargets,
       required this.action,
       required this.whenAction,
-      this.ifClause})
+      this.ifClause,
+      final String? $type})
       : assert(everyClause != null ? timesClause == null : true,
             'Cant Use Every Clause with Times Clause'),
         assert(everyClause != null ? timesClause == null : true,
             'Cant Use Times Clause with Every Clause'),
+        _validTargets = validTargets,
+        $type = $type ?? 'give',
         super._();
 
-  factory _$Give.fromJson(Map<String, dynamic> json) => _$_$GiveFromJson(json);
+  factory _$Give.fromJson(Map<String, dynamic> json) => _$$GiveFromJson(json);
 
-  @JsonKey(defaultValue: AbilityType.Give)
   @override
+  @JsonKey()
   final AbilityType type;
   @override
   final Stage whenS;
@@ -5542,14 +6808,22 @@ class _$Give extends Give {
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
   @override
   final Action action;
   @override
   final Stage whenAction;
   @override
   final IFClause? ifClause;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -5559,46 +6833,39 @@ class _$Give extends Give {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Give &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)) &&
-            (identical(other.action, action) ||
-                const DeepCollectionEquality().equals(other.action, action)) &&
-            (identical(other.whenAction, whenAction) ||
-                const DeepCollectionEquality()
-                    .equals(other.whenAction, whenAction)) &&
-            (identical(other.ifClause, ifClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.ifClause, ifClause)));
+        (other.runtimeType == runtimeType &&
+            other is _$Give &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets) &&
+            const DeepCollectionEquality().equals(other.action, action) &&
+            const DeepCollectionEquality()
+                .equals(other.whenAction, whenAction) &&
+            const DeepCollectionEquality().equals(other.ifClause, ifClause));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(validTargets) ^
-      const DeepCollectionEquality().hash(action) ^
-      const DeepCollectionEquality().hash(whenAction) ^
-      const DeepCollectionEquality().hash(ifClause);
 
   @JsonKey(ignore: true)
   @override
-  $GiveCopyWith<Give> get copyWith =>
-      _$GiveCopyWithImpl<Give>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(_validTargets),
+      const DeepCollectionEquality().hash(action),
+      const DeepCollectionEquality().hash(whenAction),
+      const DeepCollectionEquality().hash(ifClause));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$GiveCopyWith<_$Give> get copyWith =>
+      __$$GiveCopyWithImpl<_$Give>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -5726,6 +6993,134 @@ class _$Give extends Give {
   }) {
     return give(type, whenS, everyClause, timesClause, validTargets, action,
         whenAction, ifClause);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return give?.call(type, whenS, everyClause, timesClause, validTargets,
+        action, whenAction, ifClause);
   }
 
   @override
@@ -5880,6 +7275,24 @@ class _$Give extends Give {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return give?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -5902,20 +7315,20 @@ class _$Give extends Give {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$GiveToJson(this)..['runtimeType'] = 'give';
+    return _$$GiveToJson(this);
   }
 }
 
 abstract class Give extends Ability {
   const factory Give(
-      {AbilityType type,
-      required Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      required List<RoleEnum> validTargets,
-      required Action action,
-      required Stage whenAction,
-      IFClause? ifClause}) = _$Give;
+      {final AbilityType type,
+      required final Stage whenS,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      required final List<RoleEnum> validTargets,
+      required final Action action,
+      required final Stage whenAction,
+      final IFClause? ifClause}) = _$Give;
   const Give._() : super._();
 
   factory Give.fromJson(Map<String, dynamic> json) = _$Give.fromJson;
@@ -5935,13 +7348,13 @@ abstract class Give extends Ability {
   IFClause? get ifClause => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $GiveCopyWith<Give> get copyWith => throw _privateConstructorUsedError;
+  _$$GiveCopyWith<_$Give> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ReserveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
-  factory $ReserveCopyWith(Reserve value, $Res Function(Reserve) then) =
-      _$ReserveCopyWithImpl<$Res>;
+abstract class _$$ReserveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
+  factory _$$ReserveCopyWith(_$Reserve value, $Res Function(_$Reserve) then) =
+      __$$ReserveCopyWithImpl<$Res>;
   @override
   $Res call(
       {AbilityType type,
@@ -5955,13 +7368,13 @@ abstract class $ReserveCopyWith<$Res> implements $AbilityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReserveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
-    implements $ReserveCopyWith<$Res> {
-  _$ReserveCopyWithImpl(Reserve _value, $Res Function(Reserve) _then)
-      : super(_value, (v) => _then(v as Reserve));
+class __$$ReserveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
+    implements _$$ReserveCopyWith<$Res> {
+  __$$ReserveCopyWithImpl(_$Reserve _value, $Res Function(_$Reserve) _then)
+      : super(_value, (v) => _then(v as _$Reserve));
 
   @override
-  Reserve get _value => super._value as Reserve;
+  _$Reserve get _value => super._value as _$Reserve;
 
   @override
   $Res call({
@@ -5974,7 +7387,7 @@ class _$ReserveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
     Object? priority = freezed,
     Object? ifClause = freezed,
   }) {
-    return _then(Reserve(
+    return _then(_$Reserve(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -5992,7 +7405,7 @@ class _$ReserveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
           : timesClause // ignore: cast_nullable_to_non_nullable
               as TimesClause?,
       validTargets: validTargets == freezed
-          ? _value.validTargets
+          ? _value._validTargets
           : validTargets // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>,
       role: role == freezed
@@ -6011,47 +7424,57 @@ class _$ReserveCopyWithImpl<$Res> extends _$AbilityCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$Reserve extends Reserve {
   const _$Reserve(
       {this.type = AbilityType.Reserve,
       this.whenS = Stage.All,
       this.everyClause,
       this.timesClause,
-      this.validTargets = const [],
+      final List<RoleEnum> validTargets = const [],
       required this.role,
       required this.priority,
-      this.ifClause})
+      this.ifClause,
+      final String? $type})
       : assert(everyClause != null ? timesClause == null : true,
             'Cant Use Every Clause with Times Clause'),
         assert(everyClause != null ? timesClause == null : true,
             'Cant Use Times Clause with Every Clause'),
+        _validTargets = validTargets,
+        $type = $type ?? 'reserve',
         super._();
 
   factory _$Reserve.fromJson(Map<String, dynamic> json) =>
-      _$_$ReserveFromJson(json);
+      _$$ReserveFromJson(json);
 
-  @JsonKey(defaultValue: AbilityType.Reserve)
   @override
+  @JsonKey()
   final AbilityType type;
-  @JsonKey(defaultValue: Stage.All)
   @override
+  @JsonKey()
   final Stage whenS;
   @override
   final EveryClause? everyClause;
   @override
   final TimesClause? timesClause;
-  @JsonKey(defaultValue: const [])
+  final List<RoleEnum> _validTargets;
   @override
-  final List<RoleEnum> validTargets;
+  @JsonKey()
+  List<RoleEnum> get validTargets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_validTargets);
+  }
+
   @override
   final RoleEnum role;
   @override
   final int priority;
   @override
   final IFClause? ifClause;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -6061,46 +7484,38 @@ class _$Reserve extends Reserve {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Reserve &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.whenS, whenS) ||
-                const DeepCollectionEquality().equals(other.whenS, whenS)) &&
-            (identical(other.everyClause, everyClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.everyClause, everyClause)) &&
-            (identical(other.timesClause, timesClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.timesClause, timesClause)) &&
-            (identical(other.validTargets, validTargets) ||
-                const DeepCollectionEquality()
-                    .equals(other.validTargets, validTargets)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)) &&
-            (identical(other.priority, priority) ||
-                const DeepCollectionEquality()
-                    .equals(other.priority, priority)) &&
-            (identical(other.ifClause, ifClause) ||
-                const DeepCollectionEquality()
-                    .equals(other.ifClause, ifClause)));
+        (other.runtimeType == runtimeType &&
+            other is _$Reserve &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.whenS, whenS) &&
+            const DeepCollectionEquality()
+                .equals(other.everyClause, everyClause) &&
+            const DeepCollectionEquality()
+                .equals(other.timesClause, timesClause) &&
+            const DeepCollectionEquality()
+                .equals(other._validTargets, _validTargets) &&
+            const DeepCollectionEquality().equals(other.role, role) &&
+            const DeepCollectionEquality().equals(other.priority, priority) &&
+            const DeepCollectionEquality().equals(other.ifClause, ifClause));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(whenS) ^
-      const DeepCollectionEquality().hash(everyClause) ^
-      const DeepCollectionEquality().hash(timesClause) ^
-      const DeepCollectionEquality().hash(validTargets) ^
-      const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(priority) ^
-      const DeepCollectionEquality().hash(ifClause);
 
   @JsonKey(ignore: true)
   @override
-  $ReserveCopyWith<Reserve> get copyWith =>
-      _$ReserveCopyWithImpl<Reserve>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(whenS),
+      const DeepCollectionEquality().hash(everyClause),
+      const DeepCollectionEquality().hash(timesClause),
+      const DeepCollectionEquality().hash(_validTargets),
+      const DeepCollectionEquality().hash(role),
+      const DeepCollectionEquality().hash(priority),
+      const DeepCollectionEquality().hash(ifClause));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$ReserveCopyWith<_$Reserve> get copyWith =>
+      __$$ReserveCopyWithImpl<_$Reserve>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -6228,6 +7643,134 @@ class _$Reserve extends Reserve {
   }) {
     return reserve(type, whenS, everyClause, timesClause, validTargets, role,
         priority, ifClause);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(AbilityType type, Stage whenS, EveryClause? everyClause,
+            TimesClause? timesClause, List<RoleEnum> validTargets)?
+        $default, {
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            List<Action> saveFrom,
+            SelfClause selfClause,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            UntilClause? untilClause,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            IFClause? ifClause)?
+        save,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            AbilityType by,
+            Who onWho,
+            Cost? cost)?
+        counter,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            bool willBeConverted,
+            CostOn costOnHimOrAll,
+            Cost? costTypeIfNotValid)?
+        recrute,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            GuessType what,
+            Cost? costIfRight,
+            Cost? costIfWrong,
+            CostOn? costOnIfRight,
+            CostOn? costOnIfWrong,
+            WhenClause? whenClause,
+            FromActionClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        guess,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            AbilityType what,
+            ChangeType change,
+            List<RoleEnum> validTargets,
+            WhenClause? whenClause,
+            FromClause? fromClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        change,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            int effectesAfter,
+            Stage effectesAfterStage,
+            List<RoleEnum> cantSaveBy,
+            Cost? costTypeForKill,
+            Cost? costTypeIfWrong,
+            WhenClause? whenClause,
+            IFClause? ifClause,
+            UntilClause? untilClause)?
+        kill,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<Action> fromActions,
+            List<RoleEnum> validTargets,
+            IFClause? ifClause)?
+        disable,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action whenActivates,
+            Who whoGains,
+            AbilityType can,
+            IFClause? ifClause)?
+        activation,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            Action action,
+            Stage whenAction,
+            IFClause? ifClause)?
+        give,
+    TResult Function(
+            AbilityType type,
+            Stage whenS,
+            EveryClause? everyClause,
+            TimesClause? timesClause,
+            List<RoleEnum> validTargets,
+            RoleEnum role,
+            int priority,
+            IFClause? ifClause)?
+        reserve,
+  }) {
+    return reserve?.call(type, whenS, everyClause, timesClause, validTargets,
+        role, priority, ifClause);
   }
 
   @override
@@ -6382,6 +7925,24 @@ class _$Reserve extends Reserve {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Ability value)? $default, {
+    TResult Function(Save value)? save,
+    TResult Function(Counter value)? counter,
+    TResult Function(Recrute value)? recrute,
+    TResult Function(Guess value)? guess,
+    TResult Function(Change value)? change,
+    TResult Function(Kill value)? kill,
+    TResult Function(Disable value)? disable,
+    TResult Function(Activation value)? activation,
+    TResult Function(Give value)? give,
+    TResult Function(Reserve value)? reserve,
+  }) {
+    return reserve?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_Ability value)? $default, {
     TResult Function(Save value)? save,
@@ -6404,20 +7965,20 @@ class _$Reserve extends Reserve {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$ReserveToJson(this)..['runtimeType'] = 'reserve';
+    return _$$ReserveToJson(this);
   }
 }
 
 abstract class Reserve extends Ability {
   const factory Reserve(
-      {AbilityType type,
-      Stage whenS,
-      EveryClause? everyClause,
-      TimesClause? timesClause,
-      List<RoleEnum> validTargets,
-      required RoleEnum role,
-      required int priority,
-      IFClause? ifClause}) = _$Reserve;
+      {final AbilityType type,
+      final Stage whenS,
+      final EveryClause? everyClause,
+      final TimesClause? timesClause,
+      final List<RoleEnum> validTargets,
+      required final RoleEnum role,
+      required final int priority,
+      final IFClause? ifClause}) = _$Reserve;
   const Reserve._() : super._();
 
   factory Reserve.fromJson(Map<String, dynamic> json) = _$Reserve.fromJson;
@@ -6437,5 +7998,6 @@ abstract class Reserve extends Ability {
   IFClause? get ifClause => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $ReserveCopyWith<Reserve> get copyWith => throw _privateConstructorUsedError;
+  _$$ReserveCopyWith<_$Reserve> get copyWith =>
+      throw _privateConstructorUsedError;
 }

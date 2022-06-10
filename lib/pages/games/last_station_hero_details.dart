@@ -9,10 +9,10 @@ import '../../widgets/beam_back_button.dart';
 class LastStationHeroDetailsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
-    final state = Beamer.of(context).state;
-    if (state.data["charachter_name"] != null) {
-      final charachterName = state.data["charachter_name"] as String;
-      final charachterImage = state.data["charachter_image"] as String;
+    final beamState = Beamer.of(context).currentBeamLocation.state as BeamState;
+    if (beamState.queryParameters["charachter_name"] != null) {
+      final charachterName = beamState.queryParameters["charachter_name"] as String;
+      final charachterImage = beamState.queryParameters["charachter_image"] as String;
       return LayoutBuilder(builder: (context, cs) {
         return Scaffold(
           appBar: AppBar(

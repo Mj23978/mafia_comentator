@@ -23,7 +23,7 @@ class SplashView extends HookConsumerWidget {
       backgroundColor: Color(0xFF401734),
       onSuccess: (data) {
         //data is the optional data returned by until callback function
-        context.beamToNamed("/home", replaceCurrent: true, stacked: false);
+        context.beamToNamed("/home", replaceRouteInformation: true, stacked: false);
       },
       onError: (err, stack) {
         //error throw by until callback function

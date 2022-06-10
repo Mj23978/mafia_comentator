@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'role.dart';
 
@@ -10,75 +12,20 @@ part of 'role.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Role _$RoleFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String) {
+  switch (json['runtimeType']) {
     case 'city':
       return CityRole.fromJson(json);
     case 'mafia':
       return MafiaRole.fromJson(json);
 
     default:
-      throw FallThroughError();
+      throw CheckedFromJsonException(json, 'runtimeType', 'Role',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
-
-/// @nodoc
-class _$RoleTearOff {
-  const _$RoleTearOff();
-
-  CityRole city(
-      {required String name,
-      required RoleEnum nameEnum,
-      required List<Ability> abilities,
-      String appDescription = "",
-      String description = "",
-      bool selected = false,
-      bool wakesAtNight = false,
-      int count = 0}) {
-    return CityRole(
-      name: name,
-      nameEnum: nameEnum,
-      abilities: abilities,
-      appDescription: appDescription,
-      description: description,
-      selected: selected,
-      wakesAtNight: wakesAtNight,
-      count: count,
-    );
-  }
-
-  MafiaRole mafia(
-      {required String name,
-      required RoleEnum nameEnum,
-      required List<Ability> abilities,
-      String appDescription = "",
-      String description = "",
-      bool selected = false,
-      bool wakesAtNight = false,
-      int count = 0,
-      MafiaWakesGroup wakesGroup = MafiaWakesGroup.Main}) {
-    return MafiaRole(
-      name: name,
-      nameEnum: nameEnum,
-      abilities: abilities,
-      appDescription: appDescription,
-      description: description,
-      selected: selected,
-      wakesAtNight: wakesAtNight,
-      count: count,
-      wakesGroup: wakesGroup,
-    );
-  }
-
-  Role fromJson(Map<String, Object> json) {
-    return Role.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Role = _$RoleTearOff();
 
 /// @nodoc
 mixin _$Role {
@@ -90,7 +37,6 @@ mixin _$Role {
   bool get selected => throw _privateConstructorUsedError;
   bool get wakesAtNight => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -113,6 +59,31 @@ mixin _$Role {
             bool wakesAtNight,
             int count,
             MafiaWakesGroup wakesGroup)
+        mafia,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            String name,
+            RoleEnum nameEnum,
+            List<Ability> abilities,
+            String appDescription,
+            String description,
+            bool selected,
+            bool wakesAtNight,
+            int count)?
+        city,
+    TResult Function(
+            String name,
+            RoleEnum nameEnum,
+            List<Ability> abilities,
+            String appDescription,
+            String description,
+            bool selected,
+            bool wakesAtNight,
+            int count,
+            MafiaWakesGroup wakesGroup)?
         mafia,
   }) =>
       throw _privateConstructorUsedError;
@@ -146,6 +117,12 @@ mixin _$Role {
   TResult map<TResult extends Object?>({
     required TResult Function(CityRole value) city,
     required TResult Function(MafiaRole value) mafia,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CityRole value)? city,
+    TResult Function(MafiaRole value)? mafia,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -232,9 +209,10 @@ class _$RoleCopyWithImpl<$Res> implements $RoleCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $CityRoleCopyWith<$Res> implements $RoleCopyWith<$Res> {
-  factory $CityRoleCopyWith(CityRole value, $Res Function(CityRole) then) =
-      _$CityRoleCopyWithImpl<$Res>;
+abstract class _$$CityRoleCopyWith<$Res> implements $RoleCopyWith<$Res> {
+  factory _$$CityRoleCopyWith(
+          _$CityRole value, $Res Function(_$CityRole) then) =
+      __$$CityRoleCopyWithImpl<$Res>;
   @override
   $Res call(
       {String name,
@@ -248,13 +226,13 @@ abstract class $CityRoleCopyWith<$Res> implements $RoleCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CityRoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
-    implements $CityRoleCopyWith<$Res> {
-  _$CityRoleCopyWithImpl(CityRole _value, $Res Function(CityRole) _then)
-      : super(_value, (v) => _then(v as CityRole));
+class __$$CityRoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
+    implements _$$CityRoleCopyWith<$Res> {
+  __$$CityRoleCopyWithImpl(_$CityRole _value, $Res Function(_$CityRole) _then)
+      : super(_value, (v) => _then(v as _$CityRole));
 
   @override
-  CityRole get _value => super._value as CityRole;
+  _$CityRole get _value => super._value as _$CityRole;
 
   @override
   $Res call({
@@ -267,7 +245,7 @@ class _$CityRoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
     Object? wakesAtNight = freezed,
     Object? count = freezed,
   }) {
-    return _then(CityRole(
+    return _then(_$CityRole(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -277,7 +255,7 @@ class _$CityRoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
           : nameEnum // ignore: cast_nullable_to_non_nullable
               as RoleEnum,
       abilities: abilities == freezed
-          ? _value.abilities
+          ? _value._abilities
           : abilities // ignore: cast_nullable_to_non_nullable
               as List<Ability>,
       appDescription: appDescription == freezed
@@ -304,45 +282,55 @@ class _$CityRoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$CityRole extends CityRole {
   const _$CityRole(
       {required this.name,
       required this.nameEnum,
-      required this.abilities,
+      required final List<Ability> abilities,
       this.appDescription = "",
       this.description = "",
       this.selected = false,
       this.wakesAtNight = false,
-      this.count = 0})
-      : super._();
+      this.count = 0,
+      final String? $type})
+      : _abilities = abilities,
+        $type = $type ?? 'city',
+        super._();
 
   factory _$CityRole.fromJson(Map<String, dynamic> json) =>
-      _$_$CityRoleFromJson(json);
+      _$$CityRoleFromJson(json);
 
   @override
   final String name;
   @override
   final RoleEnum nameEnum;
+  final List<Ability> _abilities;
   @override
-  final List<Ability> abilities;
-  @JsonKey(defaultValue: "")
+  List<Ability> get abilities {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_abilities);
+  }
+
   @override
+  @JsonKey()
   final String appDescription;
-  @JsonKey(defaultValue: "")
   @override
+  @JsonKey()
   final String description;
-  @JsonKey(defaultValue: false)
   @override
+  @JsonKey()
   final bool selected;
-  @JsonKey(defaultValue: false)
   @override
+  @JsonKey()
   final bool wakesAtNight;
-  @JsonKey(defaultValue: 0)
   @override
+  @JsonKey()
   final int count;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -352,47 +340,39 @@ class _$CityRole extends CityRole {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CityRole &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.nameEnum, nameEnum) ||
-                const DeepCollectionEquality()
-                    .equals(other.nameEnum, nameEnum)) &&
-            (identical(other.abilities, abilities) ||
-                const DeepCollectionEquality()
-                    .equals(other.abilities, abilities)) &&
-            (identical(other.appDescription, appDescription) ||
-                const DeepCollectionEquality()
-                    .equals(other.appDescription, appDescription)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.selected, selected) ||
-                const DeepCollectionEquality()
-                    .equals(other.selected, selected)) &&
-            (identical(other.wakesAtNight, wakesAtNight) ||
-                const DeepCollectionEquality()
-                    .equals(other.wakesAtNight, wakesAtNight)) &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)));
+        (other.runtimeType == runtimeType &&
+            other is _$CityRole &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.nameEnum, nameEnum) &&
+            const DeepCollectionEquality()
+                .equals(other._abilities, _abilities) &&
+            const DeepCollectionEquality()
+                .equals(other.appDescription, appDescription) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.selected, selected) &&
+            const DeepCollectionEquality()
+                .equals(other.wakesAtNight, wakesAtNight) &&
+            const DeepCollectionEquality().equals(other.count, count));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(nameEnum) ^
-      const DeepCollectionEquality().hash(abilities) ^
-      const DeepCollectionEquality().hash(appDescription) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(selected) ^
-      const DeepCollectionEquality().hash(wakesAtNight) ^
-      const DeepCollectionEquality().hash(count);
 
   @JsonKey(ignore: true)
   @override
-  $CityRoleCopyWith<CityRole> get copyWith =>
-      _$CityRoleCopyWithImpl<CityRole>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(nameEnum),
+      const DeepCollectionEquality().hash(_abilities),
+      const DeepCollectionEquality().hash(appDescription),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(selected),
+      const DeepCollectionEquality().hash(wakesAtNight),
+      const DeepCollectionEquality().hash(count));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$CityRoleCopyWith<_$CityRole> get copyWith =>
+      __$$CityRoleCopyWithImpl<_$CityRole>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -420,6 +400,35 @@ class _$CityRole extends CityRole {
         mafia,
   }) {
     return city(name, nameEnum, abilities, appDescription, description,
+        selected, wakesAtNight, count);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            String name,
+            RoleEnum nameEnum,
+            List<Ability> abilities,
+            String appDescription,
+            String description,
+            bool selected,
+            bool wakesAtNight,
+            int count)?
+        city,
+    TResult Function(
+            String name,
+            RoleEnum nameEnum,
+            List<Ability> abilities,
+            String appDescription,
+            String description,
+            bool selected,
+            bool wakesAtNight,
+            int count,
+            MafiaWakesGroup wakesGroup)?
+        mafia,
+  }) {
+    return city?.call(name, nameEnum, abilities, appDescription, description,
         selected, wakesAtNight, count);
   }
 
@@ -467,6 +476,15 @@ class _$CityRole extends CityRole {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CityRole value)? city,
+    TResult Function(MafiaRole value)? mafia,
+  }) {
+    return city?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CityRole value)? city,
     TResult Function(MafiaRole value)? mafia,
@@ -480,20 +498,20 @@ class _$CityRole extends CityRole {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$CityRoleToJson(this)..['runtimeType'] = 'city';
+    return _$$CityRoleToJson(this);
   }
 }
 
 abstract class CityRole extends Role {
   const factory CityRole(
-      {required String name,
-      required RoleEnum nameEnum,
-      required List<Ability> abilities,
-      String appDescription,
-      String description,
-      bool selected,
-      bool wakesAtNight,
-      int count}) = _$CityRole;
+      {required final String name,
+      required final RoleEnum nameEnum,
+      required final List<Ability> abilities,
+      final String appDescription,
+      final String description,
+      final bool selected,
+      final bool wakesAtNight,
+      final int count}) = _$CityRole;
   const CityRole._() : super._();
 
   factory CityRole.fromJson(Map<String, dynamic> json) = _$CityRole.fromJson;
@@ -516,14 +534,15 @@ abstract class CityRole extends Role {
   int get count => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $CityRoleCopyWith<CityRole> get copyWith =>
+  _$$CityRoleCopyWith<_$CityRole> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MafiaRoleCopyWith<$Res> implements $RoleCopyWith<$Res> {
-  factory $MafiaRoleCopyWith(MafiaRole value, $Res Function(MafiaRole) then) =
-      _$MafiaRoleCopyWithImpl<$Res>;
+abstract class _$$MafiaRoleCopyWith<$Res> implements $RoleCopyWith<$Res> {
+  factory _$$MafiaRoleCopyWith(
+          _$MafiaRole value, $Res Function(_$MafiaRole) then) =
+      __$$MafiaRoleCopyWithImpl<$Res>;
   @override
   $Res call(
       {String name,
@@ -538,13 +557,14 @@ abstract class $MafiaRoleCopyWith<$Res> implements $RoleCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MafiaRoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
-    implements $MafiaRoleCopyWith<$Res> {
-  _$MafiaRoleCopyWithImpl(MafiaRole _value, $Res Function(MafiaRole) _then)
-      : super(_value, (v) => _then(v as MafiaRole));
+class __$$MafiaRoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
+    implements _$$MafiaRoleCopyWith<$Res> {
+  __$$MafiaRoleCopyWithImpl(
+      _$MafiaRole _value, $Res Function(_$MafiaRole) _then)
+      : super(_value, (v) => _then(v as _$MafiaRole));
 
   @override
-  MafiaRole get _value => super._value as MafiaRole;
+  _$MafiaRole get _value => super._value as _$MafiaRole;
 
   @override
   $Res call({
@@ -558,7 +578,7 @@ class _$MafiaRoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
     Object? count = freezed,
     Object? wakesGroup = freezed,
   }) {
-    return _then(MafiaRole(
+    return _then(_$MafiaRole(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -568,7 +588,7 @@ class _$MafiaRoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
           : nameEnum // ignore: cast_nullable_to_non_nullable
               as RoleEnum,
       abilities: abilities == freezed
-          ? _value.abilities
+          ? _value._abilities
           : abilities // ignore: cast_nullable_to_non_nullable
               as List<Ability>,
       appDescription: appDescription == freezed
@@ -599,49 +619,59 @@ class _$MafiaRoleCopyWithImpl<$Res> extends _$RoleCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$MafiaRole extends MafiaRole {
   const _$MafiaRole(
       {required this.name,
       required this.nameEnum,
-      required this.abilities,
+      required final List<Ability> abilities,
       this.appDescription = "",
       this.description = "",
       this.selected = false,
       this.wakesAtNight = false,
       this.count = 0,
-      this.wakesGroup = MafiaWakesGroup.Main})
-      : super._();
+      this.wakesGroup = MafiaWakesGroup.Main,
+      final String? $type})
+      : _abilities = abilities,
+        $type = $type ?? 'mafia',
+        super._();
 
   factory _$MafiaRole.fromJson(Map<String, dynamic> json) =>
-      _$_$MafiaRoleFromJson(json);
+      _$$MafiaRoleFromJson(json);
 
   @override
   final String name;
   @override
   final RoleEnum nameEnum;
+  final List<Ability> _abilities;
   @override
-  final List<Ability> abilities;
-  @JsonKey(defaultValue: "")
+  List<Ability> get abilities {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_abilities);
+  }
+
   @override
+  @JsonKey()
   final String appDescription;
-  @JsonKey(defaultValue: "")
   @override
+  @JsonKey()
   final String description;
-  @JsonKey(defaultValue: false)
   @override
+  @JsonKey()
   final bool selected;
-  @JsonKey(defaultValue: false)
   @override
+  @JsonKey()
   final bool wakesAtNight;
-  @JsonKey(defaultValue: 0)
   @override
+  @JsonKey()
   final int count;
-  @JsonKey(defaultValue: MafiaWakesGroup.Main)
   @override
+  @JsonKey()
   final MafiaWakesGroup wakesGroup;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -651,51 +681,42 @@ class _$MafiaRole extends MafiaRole {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is MafiaRole &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.nameEnum, nameEnum) ||
-                const DeepCollectionEquality()
-                    .equals(other.nameEnum, nameEnum)) &&
-            (identical(other.abilities, abilities) ||
-                const DeepCollectionEquality()
-                    .equals(other.abilities, abilities)) &&
-            (identical(other.appDescription, appDescription) ||
-                const DeepCollectionEquality()
-                    .equals(other.appDescription, appDescription)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.selected, selected) ||
-                const DeepCollectionEquality()
-                    .equals(other.selected, selected)) &&
-            (identical(other.wakesAtNight, wakesAtNight) ||
-                const DeepCollectionEquality()
-                    .equals(other.wakesAtNight, wakesAtNight)) &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.wakesGroup, wakesGroup) ||
-                const DeepCollectionEquality()
-                    .equals(other.wakesGroup, wakesGroup)));
+        (other.runtimeType == runtimeType &&
+            other is _$MafiaRole &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.nameEnum, nameEnum) &&
+            const DeepCollectionEquality()
+                .equals(other._abilities, _abilities) &&
+            const DeepCollectionEquality()
+                .equals(other.appDescription, appDescription) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.selected, selected) &&
+            const DeepCollectionEquality()
+                .equals(other.wakesAtNight, wakesAtNight) &&
+            const DeepCollectionEquality().equals(other.count, count) &&
+            const DeepCollectionEquality()
+                .equals(other.wakesGroup, wakesGroup));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(nameEnum) ^
-      const DeepCollectionEquality().hash(abilities) ^
-      const DeepCollectionEquality().hash(appDescription) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(selected) ^
-      const DeepCollectionEquality().hash(wakesAtNight) ^
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(wakesGroup);
 
   @JsonKey(ignore: true)
   @override
-  $MafiaRoleCopyWith<MafiaRole> get copyWith =>
-      _$MafiaRoleCopyWithImpl<MafiaRole>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(nameEnum),
+      const DeepCollectionEquality().hash(_abilities),
+      const DeepCollectionEquality().hash(appDescription),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(selected),
+      const DeepCollectionEquality().hash(wakesAtNight),
+      const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(wakesGroup));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$MafiaRoleCopyWith<_$MafiaRole> get copyWith =>
+      __$$MafiaRoleCopyWithImpl<_$MafiaRole>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -723,6 +744,35 @@ class _$MafiaRole extends MafiaRole {
         mafia,
   }) {
     return mafia(name, nameEnum, abilities, appDescription, description,
+        selected, wakesAtNight, count, wakesGroup);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            String name,
+            RoleEnum nameEnum,
+            List<Ability> abilities,
+            String appDescription,
+            String description,
+            bool selected,
+            bool wakesAtNight,
+            int count)?
+        city,
+    TResult Function(
+            String name,
+            RoleEnum nameEnum,
+            List<Ability> abilities,
+            String appDescription,
+            String description,
+            bool selected,
+            bool wakesAtNight,
+            int count,
+            MafiaWakesGroup wakesGroup)?
+        mafia,
+  }) {
+    return mafia?.call(name, nameEnum, abilities, appDescription, description,
         selected, wakesAtNight, count, wakesGroup);
   }
 
@@ -770,6 +820,15 @@ class _$MafiaRole extends MafiaRole {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CityRole value)? city,
+    TResult Function(MafiaRole value)? mafia,
+  }) {
+    return mafia?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CityRole value)? city,
     TResult Function(MafiaRole value)? mafia,
@@ -783,21 +842,21 @@ class _$MafiaRole extends MafiaRole {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$MafiaRoleToJson(this)..['runtimeType'] = 'mafia';
+    return _$$MafiaRoleToJson(this);
   }
 }
 
 abstract class MafiaRole extends Role {
   const factory MafiaRole(
-      {required String name,
-      required RoleEnum nameEnum,
-      required List<Ability> abilities,
-      String appDescription,
-      String description,
-      bool selected,
-      bool wakesAtNight,
-      int count,
-      MafiaWakesGroup wakesGroup}) = _$MafiaRole;
+      {required final String name,
+      required final RoleEnum nameEnum,
+      required final List<Ability> abilities,
+      final String appDescription,
+      final String description,
+      final bool selected,
+      final bool wakesAtNight,
+      final int count,
+      final MafiaWakesGroup wakesGroup}) = _$MafiaRole;
   const MafiaRole._() : super._();
 
   factory MafiaRole.fromJson(Map<String, dynamic> json) = _$MafiaRole.fromJson;
@@ -821,6 +880,6 @@ abstract class MafiaRole extends Role {
   MafiaWakesGroup get wakesGroup => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $MafiaRoleCopyWith<MafiaRole> get copyWith =>
+  _$$MafiaRoleCopyWith<_$MafiaRole> get copyWith =>
       throw _privateConstructorUsedError;
 }

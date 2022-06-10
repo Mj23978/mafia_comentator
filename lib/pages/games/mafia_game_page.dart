@@ -231,7 +231,7 @@ class _MafiaDetailsView extends StatelessWidget {
                                       popToNamed: "mafia",
                                       popBeamLocationOnPop: true,
                                       stacked: true,
-                                      replaceCurrent: true,
+                                      replaceRouteInformation: true,
                                     );
                                   },
                                   child: Align(

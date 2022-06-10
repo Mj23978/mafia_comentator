@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_comentator/core/notifiers/game_provider.dart';
-import 'package:flutter_comentator/core/providers.dart';
-import 'package:flutter_uix/flutter_uix.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_uix/flutter_uix.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../core/notifiers/game_provider.dart';
+import '../../core/providers.dart';
 import '../../models/enums.dart';
 import '../../utils/helpers.dart';
 

@@ -1,4 +1,4 @@
-package com.example.flutter_comentator
+package com.example.mikoji_prison
 
 import io.flutter.embedding.android.FlutterActivity
 

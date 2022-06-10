@@ -1,7 +1,8 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_comentator/utils/helpers.dart';
 import 'package:flutter_uix/flutter_uix.dart';
+
+import '../../utils/helpers.dart';
 
 class AddCheckBox extends StatelessWidget {
   final bool value;

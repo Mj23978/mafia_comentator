@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'package:dartz/dartz.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flash/flash.dart';

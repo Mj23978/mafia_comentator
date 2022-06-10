@@ -1,7 +1,6 @@
 import 'package:flutter_comentator/core/engine/roles.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_comentator/models/ability/ability.dart';
 import 'package:flutter_comentator/models/player/player.dart';
 import 'package:flutter_comentator/models/enums.dart';
 import 'package:flutter_comentator/core/engine/mafia_engine.dart';

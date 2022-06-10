@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
@@ -40,7 +39,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final RouteInformationParser<BeamState> parser = BeamerParser();
+  final RouteInformationParser parser = BeamerParser();
   final routerDelegate = BeamerDelegate(
       initialPath: '/home',
       locationBuilder: BeamerLocationBuilder(beamLocations: [
@@ -49,9 +48,6 @@ class MyApp extends StatelessWidget {
         MafiaGameLocation(),
         LastStationLocation(),
       ]),
-      listener: (info, delegate) {
-        print("[Beamer] ${info.uri}");
-      },
       notFoundPage: BeamPage(key: ValueKey("404"), child: NotFoundPage()),
       // guards: [
       //   BeamGuard(
@@ -69,7 +65,7 @@ class MyApp extends StatelessWidget {
           // var locale = box.get("local").split("_");
           // print(locale);
           return MaterialApp.router(
-            routeInformationParser: parser,
+            routeInformationParser: parser as RouteInformationParser<BeamState>,
             routerDelegate: routerDelegate,
             locale: context.locale,
             supportedLocales: context.supportedLocales,
@@ -83,11 +79,6 @@ class MyApp extends StatelessWidget {
             ],
             debugShowCheckedModeBanner: false,
             theme: mDefaultTheme,
-            // unknownRoute: GetPage(name: 'not-found', page: () => NotFound()),
-            // enableLog: true,
-            // transitionDuration: 300.milliseconds,
-            // logWriterCallback: Logger.write,
-            // getPages: AppPages.routes,
           );
         });
   }

@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'player.dart';
 
@@ -10,44 +12,11 @@ part of 'player.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Player _$PlayerFromJson(Map<String, dynamic> json) {
   return _Player.fromJson(json);
 }
-
-/// @nodoc
-class _$PlayerTearOff {
-  const _$PlayerTearOff();
-
-  _Player call(
-      {required String name,
-      required List<StageAction> takingAction,
-      bool selected = false,
-      bool roleShowed = false,
-      bool alive = true,
-      Map<String, int> votes = const <String, int>{},
-      String? roleName,
-      Role? role}) {
-    return _Player(
-      name: name,
-      takingAction: takingAction,
-      selected: selected,
-      roleShowed: roleShowed,
-      alive: alive,
-      votes: votes,
-      roleName: roleName,
-      role: role,
-    );
-  }
-
-  Player fromJson(Map<String, Object> json) {
-    return Player.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Player = _$PlayerTearOff();
 
 /// @nodoc
 mixin _$Player {
@@ -150,9 +119,9 @@ class _$PlayerCopyWithImpl<$Res> implements $PlayerCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$PlayerCopyWith<$Res> implements $PlayerCopyWith<$Res> {
-  factory _$PlayerCopyWith(_Player value, $Res Function(_Player) then) =
-      __$PlayerCopyWithImpl<$Res>;
+abstract class _$$_PlayerCopyWith<$Res> implements $PlayerCopyWith<$Res> {
+  factory _$$_PlayerCopyWith(_$_Player value, $Res Function(_$_Player) then) =
+      __$$_PlayerCopyWithImpl<$Res>;
   @override
   $Res call(
       {String name,
@@ -169,13 +138,13 @@ abstract class _$PlayerCopyWith<$Res> implements $PlayerCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
-    implements _$PlayerCopyWith<$Res> {
-  __$PlayerCopyWithImpl(_Player _value, $Res Function(_Player) _then)
-      : super(_value, (v) => _then(v as _Player));
+class __$$_PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
+    implements _$$_PlayerCopyWith<$Res> {
+  __$$_PlayerCopyWithImpl(_$_Player _value, $Res Function(_$_Player) _then)
+      : super(_value, (v) => _then(v as _$_Player));
 
   @override
-  _Player get _value => super._value as _Player;
+  _$_Player get _value => super._value as _$_Player;
 
   @override
   $Res call({
@@ -188,13 +157,13 @@ class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
     Object? roleName = freezed,
     Object? role = freezed,
   }) {
-    return _then(_Player(
+    return _then(_$_Player(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       takingAction: takingAction == freezed
-          ? _value.takingAction
+          ? _value._takingAction
           : takingAction // ignore: cast_nullable_to_non_nullable
               as List<StageAction>,
       selected: selected == freezed
@@ -210,7 +179,7 @@ class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
           : alive // ignore: cast_nullable_to_non_nullable
               as bool,
       votes: votes == freezed
-          ? _value.votes
+          ? _value._votes
           : votes // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
       roleName: roleName == freezed
@@ -225,40 +194,51 @@ class __$PlayerCopyWithImpl<$Res> extends _$PlayerCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_Player extends _Player {
   const _$_Player(
       {required this.name,
-      required this.takingAction,
+      required final List<StageAction> takingAction,
       this.selected = false,
       this.roleShowed = false,
       this.alive = true,
-      this.votes = const <String, int>{},
+      final Map<String, int> votes = const <String, int>{},
       this.roleName,
       this.role})
-      : super._();
+      : _takingAction = takingAction,
+        _votes = votes,
+        super._();
 
   factory _$_Player.fromJson(Map<String, dynamic> json) =>
-      _$_$_PlayerFromJson(json);
+      _$$_PlayerFromJson(json);
 
   @override
   final String name;
+  final List<StageAction> _takingAction;
   @override
-  final List<StageAction> takingAction;
-  @JsonKey(defaultValue: false)
+  List<StageAction> get takingAction {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_takingAction);
+  }
+
   @override
+  @JsonKey()
   final bool selected;
-  @JsonKey(defaultValue: false)
   @override
+  @JsonKey()
   final bool roleShowed;
-  @JsonKey(defaultValue: true)
   @override
+  @JsonKey()
   final bool alive;
-  @JsonKey(defaultValue: const <String, int>{})
+  final Map<String, int> _votes;
   @override
-  final Map<String, int> votes;
+  @JsonKey()
+  Map<String, int> get votes {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_votes);
+  }
+
   @override
   final String? roleName;
   @override
@@ -272,62 +252,54 @@ class _$_Player extends _Player {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Player &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.takingAction, takingAction) ||
-                const DeepCollectionEquality()
-                    .equals(other.takingAction, takingAction)) &&
-            (identical(other.selected, selected) ||
-                const DeepCollectionEquality()
-                    .equals(other.selected, selected)) &&
-            (identical(other.roleShowed, roleShowed) ||
-                const DeepCollectionEquality()
-                    .equals(other.roleShowed, roleShowed)) &&
-            (identical(other.alive, alive) ||
-                const DeepCollectionEquality().equals(other.alive, alive)) &&
-            (identical(other.votes, votes) ||
-                const DeepCollectionEquality().equals(other.votes, votes)) &&
-            (identical(other.roleName, roleName) ||
-                const DeepCollectionEquality()
-                    .equals(other.roleName, roleName)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)));
+        (other.runtimeType == runtimeType &&
+            other is _$_Player &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other._takingAction, _takingAction) &&
+            const DeepCollectionEquality().equals(other.selected, selected) &&
+            const DeepCollectionEquality()
+                .equals(other.roleShowed, roleShowed) &&
+            const DeepCollectionEquality().equals(other.alive, alive) &&
+            const DeepCollectionEquality().equals(other._votes, _votes) &&
+            const DeepCollectionEquality().equals(other.roleName, roleName) &&
+            const DeepCollectionEquality().equals(other.role, role));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(takingAction) ^
-      const DeepCollectionEquality().hash(selected) ^
-      const DeepCollectionEquality().hash(roleShowed) ^
-      const DeepCollectionEquality().hash(alive) ^
-      const DeepCollectionEquality().hash(votes) ^
-      const DeepCollectionEquality().hash(roleName) ^
-      const DeepCollectionEquality().hash(role);
 
   @JsonKey(ignore: true)
   @override
-  _$PlayerCopyWith<_Player> get copyWith =>
-      __$PlayerCopyWithImpl<_Player>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(_takingAction),
+      const DeepCollectionEquality().hash(selected),
+      const DeepCollectionEquality().hash(roleShowed),
+      const DeepCollectionEquality().hash(alive),
+      const DeepCollectionEquality().hash(_votes),
+      const DeepCollectionEquality().hash(roleName),
+      const DeepCollectionEquality().hash(role));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_PlayerCopyWith<_$_Player> get copyWith =>
+      __$$_PlayerCopyWithImpl<_$_Player>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PlayerToJson(this);
+    return _$$_PlayerToJson(this);
   }
 }
 
 abstract class _Player extends Player {
   const factory _Player(
-      {required String name,
-      required List<StageAction> takingAction,
-      bool selected,
-      bool roleShowed,
-      bool alive,
-      Map<String, int> votes,
-      String? roleName,
-      Role? role}) = _$_Player;
+      {required final String name,
+      required final List<StageAction> takingAction,
+      final bool selected,
+      final bool roleShowed,
+      final bool alive,
+      final Map<String, int> votes,
+      final String? roleName,
+      final Role? role}) = _$_Player;
   const _Player._() : super._();
 
   factory _Player.fromJson(Map<String, dynamic> json) = _$_Player.fromJson;
@@ -350,5 +322,6 @@ abstract class _Player extends Player {
   Role? get role => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PlayerCopyWith<_Player> get copyWith => throw _privateConstructorUsedError;
+  _$$_PlayerCopyWith<_$_Player> get copyWith =>
+      throw _privateConstructorUsedError;
 }

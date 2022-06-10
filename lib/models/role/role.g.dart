@@ -6,22 +6,21 @@ part of 'role.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CityRole _$_$CityRoleFromJson(Map<String, dynamic> json) {
-  return _$CityRole(
-    name: json['name'] as String,
-    nameEnum: _$enumDecode(_$RoleEnumEnumMap, json['nameEnum']),
-    abilities: (json['abilities'] as List<dynamic>)
-        .map((e) => Ability.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    appDescription: json['appDescription'] as String? ?? '',
-    description: json['description'] as String? ?? '',
-    selected: json['selected'] as bool? ?? false,
-    wakesAtNight: json['wakesAtNight'] as bool? ?? false,
-    count: json['count'] as int? ?? 0,
-  );
-}
+_$CityRole _$$CityRoleFromJson(Map<String, dynamic> json) => _$CityRole(
+      name: json['name'] as String,
+      nameEnum: $enumDecode(_$RoleEnumEnumMap, json['nameEnum']),
+      abilities: (json['abilities'] as List<dynamic>)
+          .map((e) => Ability.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      appDescription: json['appDescription'] as String? ?? "",
+      description: json['description'] as String? ?? "",
+      selected: json['selected'] as bool? ?? false,
+      wakesAtNight: json['wakesAtNight'] as bool? ?? false,
+      count: json['count'] as int? ?? 0,
+      $type: json['runtimeType'] as String?,
+    );
 
-Map<String, dynamic> _$_$CityRoleToJson(_$CityRole instance) =>
+Map<String, dynamic> _$$CityRoleToJson(_$CityRole instance) =>
     <String, dynamic>{
       'name': instance.name,
       'nameEnum': _$RoleEnumEnumMap[instance.nameEnum],
@@ -31,33 +30,8 @@ Map<String, dynamic> _$_$CityRoleToJson(_$CityRole instance) =>
       'selected': instance.selected,
       'wakesAtNight': instance.wakesAtNight,
       'count': instance.count,
+      'runtimeType': instance.$type,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$RoleEnumEnumMap = {
   RoleEnum.Lecter: 'Lecter',
@@ -104,25 +78,24 @@ const _$RoleEnumEnumMap = {
   RoleEnum.PickedPlayer: 'PickedPlayer',
 };
 
-_$MafiaRole _$_$MafiaRoleFromJson(Map<String, dynamic> json) {
-  return _$MafiaRole(
-    name: json['name'] as String,
-    nameEnum: _$enumDecode(_$RoleEnumEnumMap, json['nameEnum']),
-    abilities: (json['abilities'] as List<dynamic>)
-        .map((e) => Ability.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    appDescription: json['appDescription'] as String? ?? '',
-    description: json['description'] as String? ?? '',
-    selected: json['selected'] as bool? ?? false,
-    wakesAtNight: json['wakesAtNight'] as bool? ?? false,
-    count: json['count'] as int? ?? 0,
-    wakesGroup:
-        _$enumDecodeNullable(_$MafiaWakesGroupEnumMap, json['wakesGroup']) ??
-            MafiaWakesGroup.Main,
-  );
-}
+_$MafiaRole _$$MafiaRoleFromJson(Map<String, dynamic> json) => _$MafiaRole(
+      name: json['name'] as String,
+      nameEnum: $enumDecode(_$RoleEnumEnumMap, json['nameEnum']),
+      abilities: (json['abilities'] as List<dynamic>)
+          .map((e) => Ability.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      appDescription: json['appDescription'] as String? ?? "",
+      description: json['description'] as String? ?? "",
+      selected: json['selected'] as bool? ?? false,
+      wakesAtNight: json['wakesAtNight'] as bool? ?? false,
+      count: json['count'] as int? ?? 0,
+      wakesGroup:
+          $enumDecodeNullable(_$MafiaWakesGroupEnumMap, json['wakesGroup']) ??
+              MafiaWakesGroup.Main,
+      $type: json['runtimeType'] as String?,
+    );
 
-Map<String, dynamic> _$_$MafiaRoleToJson(_$MafiaRole instance) =>
+Map<String, dynamic> _$$MafiaRoleToJson(_$MafiaRole instance) =>
     <String, dynamic>{
       'name': instance.name,
       'nameEnum': _$RoleEnumEnumMap[instance.nameEnum],
@@ -133,18 +106,8 @@ Map<String, dynamic> _$_$MafiaRoleToJson(_$MafiaRole instance) =>
       'wakesAtNight': instance.wakesAtNight,
       'count': instance.count,
       'wakesGroup': _$MafiaWakesGroupEnumMap[instance.wakesGroup],
+      'runtimeType': instance.$type,
     };
-
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
-}
 
 const _$MafiaWakesGroupEnumMap = {
   MafiaWakesGroup.Main: 'Main',

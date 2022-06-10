@@ -3,10 +3,6 @@ import 'package:dartx/dartx.dart';
 import 'package:dartz/dartz.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_comentator/widgets/dialogs/fast_finish_dialog.dart';
-import 'package:flutter_comentator/widgets/dialogs/kill_confirm_dialog.dart';
-import 'package:flutter_comentator/widgets/dialogs/kill_player_dialog.dart';
-import 'package:flutter_comentator/widgets/dialogs/revive_player_dialog.dart';
 import 'package:hive/hive.dart';
 
 import '../../../core/engine/mafia_engine.dart';
@@ -17,10 +13,14 @@ import '../../models/enums.dart';
 import '../../utils/helpers.dart';
 import '../../widgets/dialogs/ability_pre_picker.dart';
 import '../../widgets/dialogs/cant_take_action_dialog.dart';
+import '../../widgets/dialogs/fast_finish_dialog.dart';
 import '../../widgets/dialogs/guess_resualt_dialog.dart';
+import '../../widgets/dialogs/kill_confirm_dialog.dart';
+import '../../widgets/dialogs/kill_player_dialog.dart';
 import '../../widgets/dialogs/note_dialog.dart';
 import '../../widgets/dialogs/player_picker_dialog.dart';
 import '../../widgets/dialogs/players_vote.dart';
+import '../../widgets/dialogs/revive_player_dialog.dart';
 import '../../widgets/dialogs/timer_dialog.dart';
 import '../../widgets/dialogs/to_night_dialog.dart';
 import '../engine/roles.dart';
@@ -225,7 +225,7 @@ class GameProvider extends ChangeNotifier {
   }
 
   void finishGame(BuildContext context) {
-    context.beamToNamed('/home', stacked: false, replaceCurrent: true);
+    context.beamToNamed('/home', stacked: false, replaceRouteInformation: true);
     _appProvider.players = [];
     _appProvider.mafiaEngine = MafiaEngine(players: []);
     notifyListeners();
@@ -234,7 +234,7 @@ class GameProvider extends ChangeNotifier {
   void goNight(BuildContext context) {
     mafiaEngine.currentStage = Stage.Night;
     doneVoting = false;
-    print("Go To Night ${doneVoting}");
+    print("Go To Night $doneVoting");
     print("df" + "${_appProvider.mafiaEngine.players[0]}");
     print("df3" + "${mafiaEngine.players[0].toString()}");
     notifyListeners();
@@ -389,18 +389,18 @@ class GameProvider extends ChangeNotifier {
               resIndexes.add(e.key.name);
             }
           });
-    notifyListeners();
+          notifyListeners();
           stageVotesFinal(context, width, height * 0.8, resIndexes);
           controller.dismiss();
         },
         increment: (e) {
           playersVote[e] = (playersVote[e] ?? 0) + 1;
-    notifyListeners();
+          notifyListeners();
         },
         decrement: (e) {
           if (playersVote[e]! > 0) {
             playersVote[e] = playersVote[e]! - 1;
-      notifyListeners();
+            notifyListeners();
           }
         },
       ),
@@ -444,7 +444,7 @@ class GameProvider extends ChangeNotifier {
               killIndexes.add(alivePlayers.indexOf(e.key));
             }
           });
-      notifyListeners();
+          notifyListeners();
           if (killIndexes.length > 0) {
             killPlayer(context, width, height, indexes: killIndexes);
           }
@@ -452,12 +452,12 @@ class GameProvider extends ChangeNotifier {
         },
         increment: (e) {
           playersVote[e] = (playersVote[e] ?? 0) + 1;
-      notifyListeners();
+          notifyListeners();
         },
         decrement: (e) {
           if (playersVote[e]! > 0) {
             playersVote[e] = playersVote[e]! - 1;
-      notifyListeners();
+            notifyListeners();
           }
         },
       ),

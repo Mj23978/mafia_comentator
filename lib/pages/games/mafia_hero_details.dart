@@ -1,19 +1,19 @@
 import 'package:beamer/beamer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_comentator/widgets/beam_back_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../config/mock/heros.dart';
 import '../../utils/helpers.dart';
+import '../../widgets/beam_back_button.dart';
 
 
 class MafiaHeroDetailsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
-    final beamState = Beamer.of(context).state;
-    if (beamState.data["charachter"] != null) {
-      final charachter = beamState.data["charachter"] as HerosCard;
+    final beamState = Beamer.of(context).currentBeamLocation.state as BeamState;
+    if (beamState.queryParameters["charachter"] != null) {
+      final charachter = beamState.queryParameters["charachter"] as HerosCard;
       return LayoutBuilder(builder: (context, cs) {
         return Scaffold(
           appBar: AppBar(

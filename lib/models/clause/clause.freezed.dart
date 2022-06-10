@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'clause.dart';
 
@@ -10,10 +12,10 @@ part of 'clause.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Clause _$ClauseFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String) {
+  switch (json['runtimeType']) {
     case 'every':
       return EveryClause.fromJson(json);
     case 'times':
@@ -32,86 +34,10 @@ Clause _$ClauseFromJson(Map<String, dynamic> json) {
       return IFClause.fromJson(json);
 
     default:
-      throw FallThroughError();
+      throw CheckedFromJsonException(json, 'runtimeType', 'Clause',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
-
-/// @nodoc
-class _$ClauseTearOff {
-  const _$ClauseTearOff();
-
-  EveryClause every(
-      {required int time,
-      required int howManyEveryStage,
-      int lastStageUsed = 0,
-      int stageDone = 0}) {
-    return EveryClause(
-      time: time,
-      howManyEveryStage: howManyEveryStage,
-      lastStageUsed: lastStageUsed,
-      stageDone: stageDone,
-    );
-  }
-
-  TimesClause times(
-      {required int time, required int howManyEveryStage, int done = 0}) {
-    return TimesClause(
-      time: time,
-      howManyEveryStage: howManyEveryStage,
-      done: done,
-    );
-  }
-
-  SelfClause self({required int time, int done = 0}) {
-    return SelfClause(
-      time: time,
-      done: done,
-    );
-  }
-
-  FromActionClause fromAction({required Action action}) {
-    return FromActionClause(
-      action: action,
-    );
-  }
-
-  WhenClause when({required Action action}) {
-    return WhenClause(
-      action: action,
-    );
-  }
-
-  UntilClause until({required Action action}) {
-    return UntilClause(
-      action: action,
-    );
-  }
-
-  FromClause from({required RoleEnum from, required RoleEnum to}) {
-    return FromClause(
-      from: from,
-      to: to,
-    );
-  }
-
-  IFClause iF(
-      {List<RoleEnum>? target,
-      AbilityType? targetFor,
-      required Action action}) {
-    return IFClause(
-      target: target,
-      targetFor: targetFor,
-      action: action,
-    );
-  }
-
-  Clause fromJson(Map<String, Object> json) {
-    return Clause.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Clause = _$ClauseTearOff();
 
 /// @nodoc
 mixin _$Clause {
@@ -128,6 +54,22 @@ mixin _$Clause {
     required TResult Function(RoleEnum from, RoleEnum to) from,
     required TResult Function(
             List<RoleEnum>? target, AbilityType? targetFor, Action action)
+        iF,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int time, int howManyEveryStage, int lastStageUsed, int stageDone)?
+        every,
+    TResult Function(int time, int howManyEveryStage, int done)? times,
+    TResult Function(int time, int done)? self,
+    TResult Function(Action action)? fromAction,
+    TResult Function(Action action)? when,
+    TResult Function(Action action)? until,
+    TResult Function(RoleEnum from, RoleEnum to)? from,
+    TResult Function(
+            List<RoleEnum>? target, AbilityType? targetFor, Action action)?
         iF,
   }) =>
       throw _privateConstructorUsedError;
@@ -158,6 +100,18 @@ mixin _$Clause {
     required TResult Function(UntilClause value) until,
     required TResult Function(FromClause value) from,
     required TResult Function(IFClause value) iF,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EveryClause value)? every,
+    TResult Function(TimesClause value)? times,
+    TResult Function(SelfClause value)? self,
+    TResult Function(FromActionClause value)? fromAction,
+    TResult Function(WhenClause value)? when,
+    TResult Function(UntilClause value)? until,
+    TResult Function(FromClause value)? from,
+    TResult Function(IFClause value)? iF,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -192,23 +146,23 @@ class _$ClauseCopyWithImpl<$Res> implements $ClauseCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $EveryClauseCopyWith<$Res> {
-  factory $EveryClauseCopyWith(
-          EveryClause value, $Res Function(EveryClause) then) =
-      _$EveryClauseCopyWithImpl<$Res>;
+abstract class _$$EveryClauseCopyWith<$Res> {
+  factory _$$EveryClauseCopyWith(
+          _$EveryClause value, $Res Function(_$EveryClause) then) =
+      __$$EveryClauseCopyWithImpl<$Res>;
   $Res call(
       {int time, int howManyEveryStage, int lastStageUsed, int stageDone});
 }
 
 /// @nodoc
-class _$EveryClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
-    implements $EveryClauseCopyWith<$Res> {
-  _$EveryClauseCopyWithImpl(
-      EveryClause _value, $Res Function(EveryClause) _then)
-      : super(_value, (v) => _then(v as EveryClause));
+class __$$EveryClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
+    implements _$$EveryClauseCopyWith<$Res> {
+  __$$EveryClauseCopyWithImpl(
+      _$EveryClause _value, $Res Function(_$EveryClause) _then)
+      : super(_value, (v) => _then(v as _$EveryClause));
 
   @override
-  EveryClause get _value => super._value as EveryClause;
+  _$EveryClause get _value => super._value as _$EveryClause;
 
   @override
   $Res call({
@@ -217,7 +171,7 @@ class _$EveryClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
     Object? lastStageUsed = freezed,
     Object? stageDone = freezed,
   }) {
-    return _then(EveryClause(
+    return _then(_$EveryClause(
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -238,30 +192,34 @@ class _$EveryClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$EveryClause extends EveryClause {
   const _$EveryClause(
       {required this.time,
       required this.howManyEveryStage,
       this.lastStageUsed = 0,
-      this.stageDone = 0})
-      : super._();
+      this.stageDone = 0,
+      final String? $type})
+      : $type = $type ?? 'every',
+        super._();
 
   factory _$EveryClause.fromJson(Map<String, dynamic> json) =>
-      _$_$EveryClauseFromJson(json);
+      _$$EveryClauseFromJson(json);
 
   @override
   final int time;
   @override
   final int howManyEveryStage;
-  @JsonKey(defaultValue: 0)
   @override
+  @JsonKey()
   final int lastStageUsed;
-  @JsonKey(defaultValue: 0)
   @override
+  @JsonKey()
   final int stageDone;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -271,32 +229,29 @@ class _$EveryClause extends EveryClause {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is EveryClause &&
-            (identical(other.time, time) ||
-                const DeepCollectionEquality().equals(other.time, time)) &&
-            (identical(other.howManyEveryStage, howManyEveryStage) ||
-                const DeepCollectionEquality()
-                    .equals(other.howManyEveryStage, howManyEveryStage)) &&
-            (identical(other.lastStageUsed, lastStageUsed) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastStageUsed, lastStageUsed)) &&
-            (identical(other.stageDone, stageDone) ||
-                const DeepCollectionEquality()
-                    .equals(other.stageDone, stageDone)));
+        (other.runtimeType == runtimeType &&
+            other is _$EveryClause &&
+            const DeepCollectionEquality().equals(other.time, time) &&
+            const DeepCollectionEquality()
+                .equals(other.howManyEveryStage, howManyEveryStage) &&
+            const DeepCollectionEquality()
+                .equals(other.lastStageUsed, lastStageUsed) &&
+            const DeepCollectionEquality().equals(other.stageDone, stageDone));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(time) ^
-      const DeepCollectionEquality().hash(howManyEveryStage) ^
-      const DeepCollectionEquality().hash(lastStageUsed) ^
-      const DeepCollectionEquality().hash(stageDone);
 
   @JsonKey(ignore: true)
   @override
-  $EveryClauseCopyWith<EveryClause> get copyWith =>
-      _$EveryClauseCopyWithImpl<EveryClause>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(time),
+      const DeepCollectionEquality().hash(howManyEveryStage),
+      const DeepCollectionEquality().hash(lastStageUsed),
+      const DeepCollectionEquality().hash(stageDone));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$EveryClauseCopyWith<_$EveryClause> get copyWith =>
+      __$$EveryClauseCopyWithImpl<_$EveryClause>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -315,6 +270,25 @@ class _$EveryClause extends EveryClause {
         iF,
   }) {
     return every(time, howManyEveryStage, lastStageUsed, stageDone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int time, int howManyEveryStage, int lastStageUsed, int stageDone)?
+        every,
+    TResult Function(int time, int howManyEveryStage, int done)? times,
+    TResult Function(int time, int done)? self,
+    TResult Function(Action action)? fromAction,
+    TResult Function(Action action)? when,
+    TResult Function(Action action)? until,
+    TResult Function(RoleEnum from, RoleEnum to)? from,
+    TResult Function(
+            List<RoleEnum>? target, AbilityType? targetFor, Action action)?
+        iF,
+  }) {
+    return every?.call(time, howManyEveryStage, lastStageUsed, stageDone);
   }
 
   @override
@@ -357,6 +331,21 @@ class _$EveryClause extends EveryClause {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EveryClause value)? every,
+    TResult Function(TimesClause value)? times,
+    TResult Function(SelfClause value)? self,
+    TResult Function(FromActionClause value)? fromAction,
+    TResult Function(WhenClause value)? when,
+    TResult Function(UntilClause value)? until,
+    TResult Function(FromClause value)? from,
+    TResult Function(IFClause value)? iF,
+  }) {
+    return every?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EveryClause value)? every,
     TResult Function(TimesClause value)? times,
@@ -376,16 +365,16 @@ class _$EveryClause extends EveryClause {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$EveryClauseToJson(this)..['runtimeType'] = 'every';
+    return _$$EveryClauseToJson(this);
   }
 }
 
 abstract class EveryClause extends Clause {
   const factory EveryClause(
-      {required int time,
-      required int howManyEveryStage,
-      int lastStageUsed,
-      int stageDone}) = _$EveryClause;
+      {required final int time,
+      required final int howManyEveryStage,
+      final int lastStageUsed,
+      final int stageDone}) = _$EveryClause;
   const EveryClause._() : super._();
 
   factory EveryClause.fromJson(Map<String, dynamic> json) =
@@ -396,27 +385,27 @@ abstract class EveryClause extends Clause {
   int get lastStageUsed => throw _privateConstructorUsedError;
   int get stageDone => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $EveryClauseCopyWith<EveryClause> get copyWith =>
+  _$$EveryClauseCopyWith<_$EveryClause> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TimesClauseCopyWith<$Res> {
-  factory $TimesClauseCopyWith(
-          TimesClause value, $Res Function(TimesClause) then) =
-      _$TimesClauseCopyWithImpl<$Res>;
+abstract class _$$TimesClauseCopyWith<$Res> {
+  factory _$$TimesClauseCopyWith(
+          _$TimesClause value, $Res Function(_$TimesClause) then) =
+      __$$TimesClauseCopyWithImpl<$Res>;
   $Res call({int time, int howManyEveryStage, int done});
 }
 
 /// @nodoc
-class _$TimesClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
-    implements $TimesClauseCopyWith<$Res> {
-  _$TimesClauseCopyWithImpl(
-      TimesClause _value, $Res Function(TimesClause) _then)
-      : super(_value, (v) => _then(v as TimesClause));
+class __$$TimesClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
+    implements _$$TimesClauseCopyWith<$Res> {
+  __$$TimesClauseCopyWithImpl(
+      _$TimesClause _value, $Res Function(_$TimesClause) _then)
+      : super(_value, (v) => _then(v as _$TimesClause));
 
   @override
-  TimesClause get _value => super._value as TimesClause;
+  _$TimesClause get _value => super._value as _$TimesClause;
 
   @override
   $Res call({
@@ -424,7 +413,7 @@ class _$TimesClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
     Object? howManyEveryStage = freezed,
     Object? done = freezed,
   }) {
-    return _then(TimesClause(
+    return _then(_$TimesClause(
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -441,24 +430,30 @@ class _$TimesClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$TimesClause extends TimesClause {
   const _$TimesClause(
-      {required this.time, required this.howManyEveryStage, this.done = 0})
-      : super._();
+      {required this.time,
+      required this.howManyEveryStage,
+      this.done = 0,
+      final String? $type})
+      : $type = $type ?? 'times',
+        super._();
 
   factory _$TimesClause.fromJson(Map<String, dynamic> json) =>
-      _$_$TimesClauseFromJson(json);
+      _$$TimesClauseFromJson(json);
 
   @override
   final int time;
   @override
   final int howManyEveryStage;
-  @JsonKey(defaultValue: 0)
   @override
+  @JsonKey()
   final int done;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -468,27 +463,26 @@ class _$TimesClause extends TimesClause {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TimesClause &&
-            (identical(other.time, time) ||
-                const DeepCollectionEquality().equals(other.time, time)) &&
-            (identical(other.howManyEveryStage, howManyEveryStage) ||
-                const DeepCollectionEquality()
-                    .equals(other.howManyEveryStage, howManyEveryStage)) &&
-            (identical(other.done, done) ||
-                const DeepCollectionEquality().equals(other.done, done)));
+        (other.runtimeType == runtimeType &&
+            other is _$TimesClause &&
+            const DeepCollectionEquality().equals(other.time, time) &&
+            const DeepCollectionEquality()
+                .equals(other.howManyEveryStage, howManyEveryStage) &&
+            const DeepCollectionEquality().equals(other.done, done));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(time) ^
-      const DeepCollectionEquality().hash(howManyEveryStage) ^
-      const DeepCollectionEquality().hash(done);
 
   @JsonKey(ignore: true)
   @override
-  $TimesClauseCopyWith<TimesClause> get copyWith =>
-      _$TimesClauseCopyWithImpl<TimesClause>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(time),
+      const DeepCollectionEquality().hash(howManyEveryStage),
+      const DeepCollectionEquality().hash(done));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$TimesClauseCopyWith<_$TimesClause> get copyWith =>
+      __$$TimesClauseCopyWithImpl<_$TimesClause>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -507,6 +501,25 @@ class _$TimesClause extends TimesClause {
         iF,
   }) {
     return times(time, howManyEveryStage, done);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int time, int howManyEveryStage, int lastStageUsed, int stageDone)?
+        every,
+    TResult Function(int time, int howManyEveryStage, int done)? times,
+    TResult Function(int time, int done)? self,
+    TResult Function(Action action)? fromAction,
+    TResult Function(Action action)? when,
+    TResult Function(Action action)? until,
+    TResult Function(RoleEnum from, RoleEnum to)? from,
+    TResult Function(
+            List<RoleEnum>? target, AbilityType? targetFor, Action action)?
+        iF,
+  }) {
+    return times?.call(time, howManyEveryStage, done);
   }
 
   @override
@@ -549,6 +562,21 @@ class _$TimesClause extends TimesClause {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EveryClause value)? every,
+    TResult Function(TimesClause value)? times,
+    TResult Function(SelfClause value)? self,
+    TResult Function(FromActionClause value)? fromAction,
+    TResult Function(WhenClause value)? when,
+    TResult Function(UntilClause value)? until,
+    TResult Function(FromClause value)? from,
+    TResult Function(IFClause value)? iF,
+  }) {
+    return times?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EveryClause value)? every,
     TResult Function(TimesClause value)? times,
@@ -568,15 +596,15 @@ class _$TimesClause extends TimesClause {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$TimesClauseToJson(this)..['runtimeType'] = 'times';
+    return _$$TimesClauseToJson(this);
   }
 }
 
 abstract class TimesClause extends Clause {
   const factory TimesClause(
-      {required int time,
-      required int howManyEveryStage,
-      int done}) = _$TimesClause;
+      {required final int time,
+      required final int howManyEveryStage,
+      final int done}) = _$TimesClause;
   const TimesClause._() : super._();
 
   factory TimesClause.fromJson(Map<String, dynamic> json) =
@@ -586,33 +614,34 @@ abstract class TimesClause extends Clause {
   int get howManyEveryStage => throw _privateConstructorUsedError;
   int get done => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TimesClauseCopyWith<TimesClause> get copyWith =>
+  _$$TimesClauseCopyWith<_$TimesClause> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SelfClauseCopyWith<$Res> {
-  factory $SelfClauseCopyWith(
-          SelfClause value, $Res Function(SelfClause) then) =
-      _$SelfClauseCopyWithImpl<$Res>;
+abstract class _$$SelfClauseCopyWith<$Res> {
+  factory _$$SelfClauseCopyWith(
+          _$SelfClause value, $Res Function(_$SelfClause) then) =
+      __$$SelfClauseCopyWithImpl<$Res>;
   $Res call({int time, int done});
 }
 
 /// @nodoc
-class _$SelfClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
-    implements $SelfClauseCopyWith<$Res> {
-  _$SelfClauseCopyWithImpl(SelfClause _value, $Res Function(SelfClause) _then)
-      : super(_value, (v) => _then(v as SelfClause));
+class __$$SelfClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
+    implements _$$SelfClauseCopyWith<$Res> {
+  __$$SelfClauseCopyWithImpl(
+      _$SelfClause _value, $Res Function(_$SelfClause) _then)
+      : super(_value, (v) => _then(v as _$SelfClause));
 
   @override
-  SelfClause get _value => super._value as SelfClause;
+  _$SelfClause get _value => super._value as _$SelfClause;
 
   @override
   $Res call({
     Object? time = freezed,
     Object? done = freezed,
   }) {
-    return _then(SelfClause(
+    return _then(_$SelfClause(
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -625,20 +654,24 @@ class _$SelfClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$SelfClause extends SelfClause {
-  const _$SelfClause({required this.time, this.done = 0}) : super._();
+  const _$SelfClause({required this.time, this.done = 0, final String? $type})
+      : $type = $type ?? 'self',
+        super._();
 
   factory _$SelfClause.fromJson(Map<String, dynamic> json) =>
-      _$_$SelfClauseFromJson(json);
+      _$$SelfClauseFromJson(json);
 
   @override
   final int time;
-  @JsonKey(defaultValue: 0)
   @override
+  @JsonKey()
   final int done;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -648,23 +681,23 @@ class _$SelfClause extends SelfClause {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SelfClause &&
-            (identical(other.time, time) ||
-                const DeepCollectionEquality().equals(other.time, time)) &&
-            (identical(other.done, done) ||
-                const DeepCollectionEquality().equals(other.done, done)));
+        (other.runtimeType == runtimeType &&
+            other is _$SelfClause &&
+            const DeepCollectionEquality().equals(other.time, time) &&
+            const DeepCollectionEquality().equals(other.done, done));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(time) ^
-      const DeepCollectionEquality().hash(done);
 
   @JsonKey(ignore: true)
   @override
-  $SelfClauseCopyWith<SelfClause> get copyWith =>
-      _$SelfClauseCopyWithImpl<SelfClause>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(time),
+      const DeepCollectionEquality().hash(done));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$SelfClauseCopyWith<_$SelfClause> get copyWith =>
+      __$$SelfClauseCopyWithImpl<_$SelfClause>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -683,6 +716,25 @@ class _$SelfClause extends SelfClause {
         iF,
   }) {
     return self(time, done);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int time, int howManyEveryStage, int lastStageUsed, int stageDone)?
+        every,
+    TResult Function(int time, int howManyEveryStage, int done)? times,
+    TResult Function(int time, int done)? self,
+    TResult Function(Action action)? fromAction,
+    TResult Function(Action action)? when,
+    TResult Function(Action action)? until,
+    TResult Function(RoleEnum from, RoleEnum to)? from,
+    TResult Function(
+            List<RoleEnum>? target, AbilityType? targetFor, Action action)?
+        iF,
+  }) {
+    return self?.call(time, done);
   }
 
   @override
@@ -725,6 +777,21 @@ class _$SelfClause extends SelfClause {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EveryClause value)? every,
+    TResult Function(TimesClause value)? times,
+    TResult Function(SelfClause value)? self,
+    TResult Function(FromActionClause value)? fromAction,
+    TResult Function(WhenClause value)? when,
+    TResult Function(UntilClause value)? until,
+    TResult Function(FromClause value)? from,
+    TResult Function(IFClause value)? iF,
+  }) {
+    return self?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EveryClause value)? every,
     TResult Function(TimesClause value)? times,
@@ -744,12 +811,13 @@ class _$SelfClause extends SelfClause {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$SelfClauseToJson(this)..['runtimeType'] = 'self';
+    return _$$SelfClauseToJson(this);
   }
 }
 
 abstract class SelfClause extends Clause {
-  const factory SelfClause({required int time, int done}) = _$SelfClause;
+  const factory SelfClause({required final int time, final int done}) =
+      _$SelfClause;
   const SelfClause._() : super._();
 
   factory SelfClause.fromJson(Map<String, dynamic> json) =
@@ -758,33 +826,33 @@ abstract class SelfClause extends Clause {
   int get time => throw _privateConstructorUsedError;
   int get done => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SelfClauseCopyWith<SelfClause> get copyWith =>
+  _$$SelfClauseCopyWith<_$SelfClause> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FromActionClauseCopyWith<$Res> {
-  factory $FromActionClauseCopyWith(
-          FromActionClause value, $Res Function(FromActionClause) then) =
-      _$FromActionClauseCopyWithImpl<$Res>;
+abstract class _$$FromActionClauseCopyWith<$Res> {
+  factory _$$FromActionClauseCopyWith(
+          _$FromActionClause value, $Res Function(_$FromActionClause) then) =
+      __$$FromActionClauseCopyWithImpl<$Res>;
   $Res call({Action action});
 }
 
 /// @nodoc
-class _$FromActionClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
-    implements $FromActionClauseCopyWith<$Res> {
-  _$FromActionClauseCopyWithImpl(
-      FromActionClause _value, $Res Function(FromActionClause) _then)
-      : super(_value, (v) => _then(v as FromActionClause));
+class __$$FromActionClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
+    implements _$$FromActionClauseCopyWith<$Res> {
+  __$$FromActionClauseCopyWithImpl(
+      _$FromActionClause _value, $Res Function(_$FromActionClause) _then)
+      : super(_value, (v) => _then(v as _$FromActionClause));
 
   @override
-  FromActionClause get _value => super._value as FromActionClause;
+  _$FromActionClause get _value => super._value as _$FromActionClause;
 
   @override
   $Res call({
     Object? action = freezed,
   }) {
-    return _then(FromActionClause(
+    return _then(_$FromActionClause(
       action: action == freezed
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -793,17 +861,21 @@ class _$FromActionClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$FromActionClause extends FromActionClause {
-  const _$FromActionClause({required this.action}) : super._();
+  const _$FromActionClause({required this.action, final String? $type})
+      : $type = $type ?? 'fromAction',
+        super._();
 
   factory _$FromActionClause.fromJson(Map<String, dynamic> json) =>
-      _$_$FromActionClauseFromJson(json);
+      _$$FromActionClauseFromJson(json);
 
   @override
   final Action action;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -813,19 +885,20 @@ class _$FromActionClause extends FromActionClause {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FromActionClause &&
-            (identical(other.action, action) ||
-                const DeepCollectionEquality().equals(other.action, action)));
+        (other.runtimeType == runtimeType &&
+            other is _$FromActionClause &&
+            const DeepCollectionEquality().equals(other.action, action));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(action);
 
   @JsonKey(ignore: true)
   @override
-  $FromActionClauseCopyWith<FromActionClause> get copyWith =>
-      _$FromActionClauseCopyWithImpl<FromActionClause>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(action));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$FromActionClauseCopyWith<_$FromActionClause> get copyWith =>
+      __$$FromActionClauseCopyWithImpl<_$FromActionClause>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -844,6 +917,25 @@ class _$FromActionClause extends FromActionClause {
         iF,
   }) {
     return fromAction(action);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int time, int howManyEveryStage, int lastStageUsed, int stageDone)?
+        every,
+    TResult Function(int time, int howManyEveryStage, int done)? times,
+    TResult Function(int time, int done)? self,
+    TResult Function(Action action)? fromAction,
+    TResult Function(Action action)? when,
+    TResult Function(Action action)? until,
+    TResult Function(RoleEnum from, RoleEnum to)? from,
+    TResult Function(
+            List<RoleEnum>? target, AbilityType? targetFor, Action action)?
+        iF,
+  }) {
+    return fromAction?.call(action);
   }
 
   @override
@@ -886,6 +978,21 @@ class _$FromActionClause extends FromActionClause {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EveryClause value)? every,
+    TResult Function(TimesClause value)? times,
+    TResult Function(SelfClause value)? self,
+    TResult Function(FromActionClause value)? fromAction,
+    TResult Function(WhenClause value)? when,
+    TResult Function(UntilClause value)? until,
+    TResult Function(FromClause value)? from,
+    TResult Function(IFClause value)? iF,
+  }) {
+    return fromAction?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EveryClause value)? every,
     TResult Function(TimesClause value)? times,
@@ -905,12 +1012,13 @@ class _$FromActionClause extends FromActionClause {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$FromActionClauseToJson(this)..['runtimeType'] = 'fromAction';
+    return _$$FromActionClauseToJson(this);
   }
 }
 
 abstract class FromActionClause extends Clause {
-  const factory FromActionClause({required Action action}) = _$FromActionClause;
+  const factory FromActionClause({required final Action action}) =
+      _$FromActionClause;
   const FromActionClause._() : super._();
 
   factory FromActionClause.fromJson(Map<String, dynamic> json) =
@@ -918,32 +1026,33 @@ abstract class FromActionClause extends Clause {
 
   Action get action => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FromActionClauseCopyWith<FromActionClause> get copyWith =>
+  _$$FromActionClauseCopyWith<_$FromActionClause> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WhenClauseCopyWith<$Res> {
-  factory $WhenClauseCopyWith(
-          WhenClause value, $Res Function(WhenClause) then) =
-      _$WhenClauseCopyWithImpl<$Res>;
+abstract class _$$WhenClauseCopyWith<$Res> {
+  factory _$$WhenClauseCopyWith(
+          _$WhenClause value, $Res Function(_$WhenClause) then) =
+      __$$WhenClauseCopyWithImpl<$Res>;
   $Res call({Action action});
 }
 
 /// @nodoc
-class _$WhenClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
-    implements $WhenClauseCopyWith<$Res> {
-  _$WhenClauseCopyWithImpl(WhenClause _value, $Res Function(WhenClause) _then)
-      : super(_value, (v) => _then(v as WhenClause));
+class __$$WhenClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
+    implements _$$WhenClauseCopyWith<$Res> {
+  __$$WhenClauseCopyWithImpl(
+      _$WhenClause _value, $Res Function(_$WhenClause) _then)
+      : super(_value, (v) => _then(v as _$WhenClause));
 
   @override
-  WhenClause get _value => super._value as WhenClause;
+  _$WhenClause get _value => super._value as _$WhenClause;
 
   @override
   $Res call({
     Object? action = freezed,
   }) {
-    return _then(WhenClause(
+    return _then(_$WhenClause(
       action: action == freezed
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -952,17 +1061,21 @@ class _$WhenClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$WhenClause extends WhenClause {
-  const _$WhenClause({required this.action}) : super._();
+  const _$WhenClause({required this.action, final String? $type})
+      : $type = $type ?? 'when',
+        super._();
 
   factory _$WhenClause.fromJson(Map<String, dynamic> json) =>
-      _$_$WhenClauseFromJson(json);
+      _$$WhenClauseFromJson(json);
 
   @override
   final Action action;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -972,19 +1085,20 @@ class _$WhenClause extends WhenClause {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is WhenClause &&
-            (identical(other.action, action) ||
-                const DeepCollectionEquality().equals(other.action, action)));
+        (other.runtimeType == runtimeType &&
+            other is _$WhenClause &&
+            const DeepCollectionEquality().equals(other.action, action));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(action);
 
   @JsonKey(ignore: true)
   @override
-  $WhenClauseCopyWith<WhenClause> get copyWith =>
-      _$WhenClauseCopyWithImpl<WhenClause>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(action));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$WhenClauseCopyWith<_$WhenClause> get copyWith =>
+      __$$WhenClauseCopyWithImpl<_$WhenClause>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1003,6 +1117,25 @@ class _$WhenClause extends WhenClause {
         iF,
   }) {
     return when(action);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int time, int howManyEveryStage, int lastStageUsed, int stageDone)?
+        every,
+    TResult Function(int time, int howManyEveryStage, int done)? times,
+    TResult Function(int time, int done)? self,
+    TResult Function(Action action)? fromAction,
+    TResult Function(Action action)? when,
+    TResult Function(Action action)? until,
+    TResult Function(RoleEnum from, RoleEnum to)? from,
+    TResult Function(
+            List<RoleEnum>? target, AbilityType? targetFor, Action action)?
+        iF,
+  }) {
+    return when?.call(action);
   }
 
   @override
@@ -1045,6 +1178,21 @@ class _$WhenClause extends WhenClause {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EveryClause value)? every,
+    TResult Function(TimesClause value)? times,
+    TResult Function(SelfClause value)? self,
+    TResult Function(FromActionClause value)? fromAction,
+    TResult Function(WhenClause value)? when,
+    TResult Function(UntilClause value)? until,
+    TResult Function(FromClause value)? from,
+    TResult Function(IFClause value)? iF,
+  }) {
+    return when?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EveryClause value)? every,
     TResult Function(TimesClause value)? times,
@@ -1064,12 +1212,12 @@ class _$WhenClause extends WhenClause {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$WhenClauseToJson(this)..['runtimeType'] = 'when';
+    return _$$WhenClauseToJson(this);
   }
 }
 
 abstract class WhenClause extends Clause {
-  const factory WhenClause({required Action action}) = _$WhenClause;
+  const factory WhenClause({required final Action action}) = _$WhenClause;
   const WhenClause._() : super._();
 
   factory WhenClause.fromJson(Map<String, dynamic> json) =
@@ -1077,33 +1225,33 @@ abstract class WhenClause extends Clause {
 
   Action get action => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $WhenClauseCopyWith<WhenClause> get copyWith =>
+  _$$WhenClauseCopyWith<_$WhenClause> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UntilClauseCopyWith<$Res> {
-  factory $UntilClauseCopyWith(
-          UntilClause value, $Res Function(UntilClause) then) =
-      _$UntilClauseCopyWithImpl<$Res>;
+abstract class _$$UntilClauseCopyWith<$Res> {
+  factory _$$UntilClauseCopyWith(
+          _$UntilClause value, $Res Function(_$UntilClause) then) =
+      __$$UntilClauseCopyWithImpl<$Res>;
   $Res call({Action action});
 }
 
 /// @nodoc
-class _$UntilClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
-    implements $UntilClauseCopyWith<$Res> {
-  _$UntilClauseCopyWithImpl(
-      UntilClause _value, $Res Function(UntilClause) _then)
-      : super(_value, (v) => _then(v as UntilClause));
+class __$$UntilClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
+    implements _$$UntilClauseCopyWith<$Res> {
+  __$$UntilClauseCopyWithImpl(
+      _$UntilClause _value, $Res Function(_$UntilClause) _then)
+      : super(_value, (v) => _then(v as _$UntilClause));
 
   @override
-  UntilClause get _value => super._value as UntilClause;
+  _$UntilClause get _value => super._value as _$UntilClause;
 
   @override
   $Res call({
     Object? action = freezed,
   }) {
-    return _then(UntilClause(
+    return _then(_$UntilClause(
       action: action == freezed
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -1112,17 +1260,21 @@ class _$UntilClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$UntilClause extends UntilClause {
-  const _$UntilClause({required this.action}) : super._();
+  const _$UntilClause({required this.action, final String? $type})
+      : $type = $type ?? 'until',
+        super._();
 
   factory _$UntilClause.fromJson(Map<String, dynamic> json) =>
-      _$_$UntilClauseFromJson(json);
+      _$$UntilClauseFromJson(json);
 
   @override
   final Action action;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1132,19 +1284,20 @@ class _$UntilClause extends UntilClause {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UntilClause &&
-            (identical(other.action, action) ||
-                const DeepCollectionEquality().equals(other.action, action)));
+        (other.runtimeType == runtimeType &&
+            other is _$UntilClause &&
+            const DeepCollectionEquality().equals(other.action, action));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(action);
 
   @JsonKey(ignore: true)
   @override
-  $UntilClauseCopyWith<UntilClause> get copyWith =>
-      _$UntilClauseCopyWithImpl<UntilClause>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(action));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$UntilClauseCopyWith<_$UntilClause> get copyWith =>
+      __$$UntilClauseCopyWithImpl<_$UntilClause>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1163,6 +1316,25 @@ class _$UntilClause extends UntilClause {
         iF,
   }) {
     return until(action);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int time, int howManyEveryStage, int lastStageUsed, int stageDone)?
+        every,
+    TResult Function(int time, int howManyEveryStage, int done)? times,
+    TResult Function(int time, int done)? self,
+    TResult Function(Action action)? fromAction,
+    TResult Function(Action action)? when,
+    TResult Function(Action action)? until,
+    TResult Function(RoleEnum from, RoleEnum to)? from,
+    TResult Function(
+            List<RoleEnum>? target, AbilityType? targetFor, Action action)?
+        iF,
+  }) {
+    return until?.call(action);
   }
 
   @override
@@ -1205,6 +1377,21 @@ class _$UntilClause extends UntilClause {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EveryClause value)? every,
+    TResult Function(TimesClause value)? times,
+    TResult Function(SelfClause value)? self,
+    TResult Function(FromActionClause value)? fromAction,
+    TResult Function(WhenClause value)? when,
+    TResult Function(UntilClause value)? until,
+    TResult Function(FromClause value)? from,
+    TResult Function(IFClause value)? iF,
+  }) {
+    return until?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EveryClause value)? every,
     TResult Function(TimesClause value)? times,
@@ -1224,12 +1411,12 @@ class _$UntilClause extends UntilClause {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$UntilClauseToJson(this)..['runtimeType'] = 'until';
+    return _$$UntilClauseToJson(this);
   }
 }
 
 abstract class UntilClause extends Clause {
-  const factory UntilClause({required Action action}) = _$UntilClause;
+  const factory UntilClause({required final Action action}) = _$UntilClause;
   const UntilClause._() : super._();
 
   factory UntilClause.fromJson(Map<String, dynamic> json) =
@@ -1237,33 +1424,34 @@ abstract class UntilClause extends Clause {
 
   Action get action => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UntilClauseCopyWith<UntilClause> get copyWith =>
+  _$$UntilClauseCopyWith<_$UntilClause> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FromClauseCopyWith<$Res> {
-  factory $FromClauseCopyWith(
-          FromClause value, $Res Function(FromClause) then) =
-      _$FromClauseCopyWithImpl<$Res>;
+abstract class _$$FromClauseCopyWith<$Res> {
+  factory _$$FromClauseCopyWith(
+          _$FromClause value, $Res Function(_$FromClause) then) =
+      __$$FromClauseCopyWithImpl<$Res>;
   $Res call({RoleEnum from, RoleEnum to});
 }
 
 /// @nodoc
-class _$FromClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
-    implements $FromClauseCopyWith<$Res> {
-  _$FromClauseCopyWithImpl(FromClause _value, $Res Function(FromClause) _then)
-      : super(_value, (v) => _then(v as FromClause));
+class __$$FromClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
+    implements _$$FromClauseCopyWith<$Res> {
+  __$$FromClauseCopyWithImpl(
+      _$FromClause _value, $Res Function(_$FromClause) _then)
+      : super(_value, (v) => _then(v as _$FromClause));
 
   @override
-  FromClause get _value => super._value as FromClause;
+  _$FromClause get _value => super._value as _$FromClause;
 
   @override
   $Res call({
     Object? from = freezed,
     Object? to = freezed,
   }) {
-    return _then(FromClause(
+    return _then(_$FromClause(
       from: from == freezed
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
@@ -1276,19 +1464,24 @@ class _$FromClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$FromClause extends FromClause {
-  const _$FromClause({required this.from, required this.to}) : super._();
+  const _$FromClause(
+      {required this.from, required this.to, final String? $type})
+      : $type = $type ?? 'from',
+        super._();
 
   factory _$FromClause.fromJson(Map<String, dynamic> json) =>
-      _$_$FromClauseFromJson(json);
+      _$$FromClauseFromJson(json);
 
   @override
   final RoleEnum from;
   @override
   final RoleEnum to;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1298,23 +1491,23 @@ class _$FromClause extends FromClause {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FromClause &&
-            (identical(other.from, from) ||
-                const DeepCollectionEquality().equals(other.from, from)) &&
-            (identical(other.to, to) ||
-                const DeepCollectionEquality().equals(other.to, to)));
+        (other.runtimeType == runtimeType &&
+            other is _$FromClause &&
+            const DeepCollectionEquality().equals(other.from, from) &&
+            const DeepCollectionEquality().equals(other.to, to));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(from) ^
-      const DeepCollectionEquality().hash(to);
 
   @JsonKey(ignore: true)
   @override
-  $FromClauseCopyWith<FromClause> get copyWith =>
-      _$FromClauseCopyWithImpl<FromClause>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(from),
+      const DeepCollectionEquality().hash(to));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$FromClauseCopyWith<_$FromClause> get copyWith =>
+      __$$FromClauseCopyWithImpl<_$FromClause>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1333,6 +1526,25 @@ class _$FromClause extends FromClause {
         iF,
   }) {
     return from(this.from, to);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int time, int howManyEveryStage, int lastStageUsed, int stageDone)?
+        every,
+    TResult Function(int time, int howManyEveryStage, int done)? times,
+    TResult Function(int time, int done)? self,
+    TResult Function(Action action)? fromAction,
+    TResult Function(Action action)? when,
+    TResult Function(Action action)? until,
+    TResult Function(RoleEnum from, RoleEnum to)? from,
+    TResult Function(
+            List<RoleEnum>? target, AbilityType? targetFor, Action action)?
+        iF,
+  }) {
+    return from?.call(this.from, to);
   }
 
   @override
@@ -1375,6 +1587,21 @@ class _$FromClause extends FromClause {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EveryClause value)? every,
+    TResult Function(TimesClause value)? times,
+    TResult Function(SelfClause value)? self,
+    TResult Function(FromActionClause value)? fromAction,
+    TResult Function(WhenClause value)? when,
+    TResult Function(UntilClause value)? until,
+    TResult Function(FromClause value)? from,
+    TResult Function(IFClause value)? iF,
+  }) {
+    return from?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EveryClause value)? every,
     TResult Function(TimesClause value)? times,
@@ -1394,13 +1621,14 @@ class _$FromClause extends FromClause {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$FromClauseToJson(this)..['runtimeType'] = 'from';
+    return _$$FromClauseToJson(this);
   }
 }
 
 abstract class FromClause extends Clause {
-  const factory FromClause({required RoleEnum from, required RoleEnum to}) =
-      _$FromClause;
+  const factory FromClause(
+      {required final RoleEnum from,
+      required final RoleEnum to}) = _$FromClause;
   const FromClause._() : super._();
 
   factory FromClause.fromJson(Map<String, dynamic> json) =
@@ -1409,25 +1637,26 @@ abstract class FromClause extends Clause {
   RoleEnum get from => throw _privateConstructorUsedError;
   RoleEnum get to => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FromClauseCopyWith<FromClause> get copyWith =>
+  _$$FromClauseCopyWith<_$FromClause> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $IFClauseCopyWith<$Res> {
-  factory $IFClauseCopyWith(IFClause value, $Res Function(IFClause) then) =
-      _$IFClauseCopyWithImpl<$Res>;
+abstract class _$$IFClauseCopyWith<$Res> {
+  factory _$$IFClauseCopyWith(
+          _$IFClause value, $Res Function(_$IFClause) then) =
+      __$$IFClauseCopyWithImpl<$Res>;
   $Res call({List<RoleEnum>? target, AbilityType? targetFor, Action action});
 }
 
 /// @nodoc
-class _$IFClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
-    implements $IFClauseCopyWith<$Res> {
-  _$IFClauseCopyWithImpl(IFClause _value, $Res Function(IFClause) _then)
-      : super(_value, (v) => _then(v as IFClause));
+class __$$IFClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
+    implements _$$IFClauseCopyWith<$Res> {
+  __$$IFClauseCopyWithImpl(_$IFClause _value, $Res Function(_$IFClause) _then)
+      : super(_value, (v) => _then(v as _$IFClause));
 
   @override
-  IFClause get _value => super._value as IFClause;
+  _$IFClause get _value => super._value as _$IFClause;
 
   @override
   $Res call({
@@ -1435,9 +1664,9 @@ class _$IFClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
     Object? targetFor = freezed,
     Object? action = freezed,
   }) {
-    return _then(IFClause(
+    return _then(_$IFClause(
       target: target == freezed
-          ? _value.target
+          ? _value._target
           : target // ignore: cast_nullable_to_non_nullable
               as List<RoleEnum>?,
       targetFor: targetFor == freezed
@@ -1452,22 +1681,37 @@ class _$IFClauseCopyWithImpl<$Res> extends _$ClauseCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$IFClause extends IFClause {
-  const _$IFClause({this.target, this.targetFor, required this.action})
-      : super._();
+  const _$IFClause(
+      {final List<RoleEnum>? target,
+      this.targetFor,
+      required this.action,
+      final String? $type})
+      : _target = target,
+        $type = $type ?? 'iF',
+        super._();
 
   factory _$IFClause.fromJson(Map<String, dynamic> json) =>
-      _$_$IFClauseFromJson(json);
+      _$$IFClauseFromJson(json);
 
+  final List<RoleEnum>? _target;
   @override
-  final List<RoleEnum>? target;
+  List<RoleEnum>? get target {
+    final value = _target;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final AbilityType? targetFor;
   @override
   final Action action;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1477,27 +1721,25 @@ class _$IFClause extends IFClause {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is IFClause &&
-            (identical(other.target, target) ||
-                const DeepCollectionEquality().equals(other.target, target)) &&
-            (identical(other.targetFor, targetFor) ||
-                const DeepCollectionEquality()
-                    .equals(other.targetFor, targetFor)) &&
-            (identical(other.action, action) ||
-                const DeepCollectionEquality().equals(other.action, action)));
+        (other.runtimeType == runtimeType &&
+            other is _$IFClause &&
+            const DeepCollectionEquality().equals(other._target, _target) &&
+            const DeepCollectionEquality().equals(other.targetFor, targetFor) &&
+            const DeepCollectionEquality().equals(other.action, action));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(target) ^
-      const DeepCollectionEquality().hash(targetFor) ^
-      const DeepCollectionEquality().hash(action);
 
   @JsonKey(ignore: true)
   @override
-  $IFClauseCopyWith<IFClause> get copyWith =>
-      _$IFClauseCopyWithImpl<IFClause>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_target),
+      const DeepCollectionEquality().hash(targetFor),
+      const DeepCollectionEquality().hash(action));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$IFClauseCopyWith<_$IFClause> get copyWith =>
+      __$$IFClauseCopyWithImpl<_$IFClause>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1516,6 +1758,25 @@ class _$IFClause extends IFClause {
         iF,
   }) {
     return iF(target, targetFor, action);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            int time, int howManyEveryStage, int lastStageUsed, int stageDone)?
+        every,
+    TResult Function(int time, int howManyEveryStage, int done)? times,
+    TResult Function(int time, int done)? self,
+    TResult Function(Action action)? fromAction,
+    TResult Function(Action action)? when,
+    TResult Function(Action action)? until,
+    TResult Function(RoleEnum from, RoleEnum to)? from,
+    TResult Function(
+            List<RoleEnum>? target, AbilityType? targetFor, Action action)?
+        iF,
+  }) {
+    return iF?.call(target, targetFor, action);
   }
 
   @override
@@ -1558,6 +1819,21 @@ class _$IFClause extends IFClause {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EveryClause value)? every,
+    TResult Function(TimesClause value)? times,
+    TResult Function(SelfClause value)? self,
+    TResult Function(FromActionClause value)? fromAction,
+    TResult Function(WhenClause value)? when,
+    TResult Function(UntilClause value)? until,
+    TResult Function(FromClause value)? from,
+    TResult Function(IFClause value)? iF,
+  }) {
+    return iF?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EveryClause value)? every,
     TResult Function(TimesClause value)? times,
@@ -1577,15 +1853,15 @@ class _$IFClause extends IFClause {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$IFClauseToJson(this)..['runtimeType'] = 'iF';
+    return _$$IFClauseToJson(this);
   }
 }
 
 abstract class IFClause extends Clause {
   const factory IFClause(
-      {List<RoleEnum>? target,
-      AbilityType? targetFor,
-      required Action action}) = _$IFClause;
+      {final List<RoleEnum>? target,
+      final AbilityType? targetFor,
+      required final Action action}) = _$IFClause;
   const IFClause._() : super._();
 
   factory IFClause.fromJson(Map<String, dynamic> json) = _$IFClause.fromJson;
@@ -1594,6 +1870,6 @@ abstract class IFClause extends Clause {
   AbilityType? get targetFor => throw _privateConstructorUsedError;
   Action get action => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $IFClauseCopyWith<IFClause> get copyWith =>
+  _$$IFClauseCopyWith<_$IFClause> get copyWith =>
       throw _privateConstructorUsedError;
 }

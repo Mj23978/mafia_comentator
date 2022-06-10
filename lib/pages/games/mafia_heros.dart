@@ -2,12 +2,12 @@ import 'package:beamer/beamer.dart';
 import 'package:dartx/dartx.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_comentator/widgets/beam_back_button.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../config/mock/heros.dart';
 import '../../utils/helpers.dart';
+import '../../widgets/beam_back_button.dart';
 
 
 class MafiaHerosView extends ConsumerWidget {

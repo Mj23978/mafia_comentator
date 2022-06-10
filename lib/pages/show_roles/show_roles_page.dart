@@ -30,11 +30,12 @@ class ShowRolesView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final controller = ref.watch(showRolesProvider);
-    final state = Beamer.of(context).state;
-    if (state.data["show_players"] != null) {
+    final beamState = Beamer.of(context).currentBeamLocation.state as BeamState;
+
+    if (beamState.routeState != null) {
       if (controller.players.length == 0) {
-        controller.setRoles(state.data["show_roles"] ?? []);
-        controller.setPlayers(state.data["show_players"] ?? []);
+        // controller.setRoles(beamState.queryParameters["show_roles"] ?? []);
+        // controller.setPlayers(beamState.queryParameters["show_players"] ?? []);
         controller.refreshRoles();
       }
       return Scaffold(

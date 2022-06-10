@@ -6,7 +6,7 @@ import '../../utils/helpers.dart';
 class NotFoundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final state = context.beamLocationHistory.reversed.toList()[1].state;
+    final state = context.beamingHistory.reversed.toList()[1].state as BeamState;
     return Scaffold(
       body: Center(
         child: Column(

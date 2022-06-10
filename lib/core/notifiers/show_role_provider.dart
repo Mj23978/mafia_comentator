@@ -1,8 +1,8 @@
 import 'package:beamer/beamer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_comentator/core/notifiers/app_provider.dart';
 
+import '../../core/notifiers/app_provider.dart';
 import '../../models/player/player.dart';
 import '../../utils/helpers.dart';
 import '../../widgets/dialogs/done_show_role_dialog.dart';

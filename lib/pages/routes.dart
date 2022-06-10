@@ -23,7 +23,7 @@ final navigationToThirdProvider = StateProvider<bool>((ref) => false);
 class HomeLocation extends BeamLocation<BeamState> {
 
   @override
-  List<Pattern> get pathBlueprints => [
+  List<Pattern> get pathPatterns => [
     '/',
     '/home',  
     '/settings',  
@@ -44,7 +44,7 @@ class HomeLocation extends BeamLocation<BeamState> {
 class MafiaIntroLocation extends BeamLocation<BeamState> {
 
   @override
-  List<Pattern> get pathBlueprints => [
+  List<Pattern> get pathPatterns => [
     '/mafia',
     '/mafia/heros/*',
     '/mafia/rules/*',
@@ -71,7 +71,7 @@ class MafiaIntroLocation extends BeamLocation<BeamState> {
 class MafiaGameLocation extends BeamLocation<BeamState> {
 
   @override
-  List<Pattern> get pathBlueprints => [
+  List<Pattern> get pathPatterns => [
     '/mafia/game',
   ];
 
@@ -88,7 +88,7 @@ class MafiaGameLocation extends BeamLocation<BeamState> {
 class LastStationLocation extends BeamLocation<BeamState> {
 
   @override
-  List<Pattern> get pathBlueprints => [
+  List<Pattern> get pathPatterns => [
     '/last-station',
     '/last-station/rules',
     '/last-station/heros',

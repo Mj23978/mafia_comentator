@@ -12,9 +12,9 @@ import '../../widgets/beam_back_button.dart';
 class LastStationEventDetailsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
-    final beamState = Beamer.of(context).state;
-    if (beamState.data["event"] != null) {
-      final event = beamState.data["event"] as EventCard;
+    final beamState = Beamer.of(context).currentBeamLocation.state as BeamState;
+    if (beamState.queryParameters["event"] != null) {
+      final event = beamState.queryParameters["event"] as EventCard;
       return LayoutBuilder(builder: (context, cs) {
         return Scaffold(
           appBar: AppBar(

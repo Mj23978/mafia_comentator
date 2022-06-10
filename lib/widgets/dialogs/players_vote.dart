@@ -160,7 +160,7 @@ class PlayerVoteTile extends StatelessWidget {
           child: Container(
             width: width * 0.35,
             child: Text(
-              "${playerName}",
+              "$playerName",
               style: textStyle(
                 context,
                 12,

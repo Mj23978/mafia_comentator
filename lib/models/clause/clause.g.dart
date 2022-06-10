@@ -6,87 +6,64 @@ part of 'clause.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$EveryClause _$_$EveryClauseFromJson(Map<String, dynamic> json) {
-  return _$EveryClause(
-    time: json['time'] as int,
-    howManyEveryStage: json['howManyEveryStage'] as int,
-    lastStageUsed: json['lastStageUsed'] as int? ?? 0,
-    stageDone: json['stageDone'] as int? ?? 0,
-  );
-}
+_$EveryClause _$$EveryClauseFromJson(Map<String, dynamic> json) =>
+    _$EveryClause(
+      time: json['time'] as int,
+      howManyEveryStage: json['howManyEveryStage'] as int,
+      lastStageUsed: json['lastStageUsed'] as int? ?? 0,
+      stageDone: json['stageDone'] as int? ?? 0,
+      $type: json['runtimeType'] as String?,
+    );
 
-Map<String, dynamic> _$_$EveryClauseToJson(_$EveryClause instance) =>
+Map<String, dynamic> _$$EveryClauseToJson(_$EveryClause instance) =>
     <String, dynamic>{
       'time': instance.time,
       'howManyEveryStage': instance.howManyEveryStage,
       'lastStageUsed': instance.lastStageUsed,
       'stageDone': instance.stageDone,
+      'runtimeType': instance.$type,
     };
 
-_$TimesClause _$_$TimesClauseFromJson(Map<String, dynamic> json) {
-  return _$TimesClause(
-    time: json['time'] as int,
-    howManyEveryStage: json['howManyEveryStage'] as int,
-    done: json['done'] as int? ?? 0,
-  );
-}
+_$TimesClause _$$TimesClauseFromJson(Map<String, dynamic> json) =>
+    _$TimesClause(
+      time: json['time'] as int,
+      howManyEveryStage: json['howManyEveryStage'] as int,
+      done: json['done'] as int? ?? 0,
+      $type: json['runtimeType'] as String?,
+    );
 
-Map<String, dynamic> _$_$TimesClauseToJson(_$TimesClause instance) =>
+Map<String, dynamic> _$$TimesClauseToJson(_$TimesClause instance) =>
     <String, dynamic>{
       'time': instance.time,
       'howManyEveryStage': instance.howManyEveryStage,
       'done': instance.done,
+      'runtimeType': instance.$type,
     };
 
-_$SelfClause _$_$SelfClauseFromJson(Map<String, dynamic> json) {
-  return _$SelfClause(
-    time: json['time'] as int,
-    done: json['done'] as int? ?? 0,
-  );
-}
+_$SelfClause _$$SelfClauseFromJson(Map<String, dynamic> json) => _$SelfClause(
+      time: json['time'] as int,
+      done: json['done'] as int? ?? 0,
+      $type: json['runtimeType'] as String?,
+    );
 
-Map<String, dynamic> _$_$SelfClauseToJson(_$SelfClause instance) =>
+Map<String, dynamic> _$$SelfClauseToJson(_$SelfClause instance) =>
     <String, dynamic>{
       'time': instance.time,
       'done': instance.done,
+      'runtimeType': instance.$type,
     };
 
-_$FromActionClause _$_$FromActionClauseFromJson(Map<String, dynamic> json) {
-  return _$FromActionClause(
-    action: _$enumDecode(_$ActionEnumMap, json['action']),
-  );
-}
+_$FromActionClause _$$FromActionClauseFromJson(Map<String, dynamic> json) =>
+    _$FromActionClause(
+      action: $enumDecode(_$ActionEnumMap, json['action']),
+      $type: json['runtimeType'] as String?,
+    );
 
-Map<String, dynamic> _$_$FromActionClauseToJson(_$FromActionClause instance) =>
+Map<String, dynamic> _$$FromActionClauseToJson(_$FromActionClause instance) =>
     <String, dynamic>{
       'action': _$ActionEnumMap[instance.action],
+      'runtimeType': instance.$type,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$ActionEnumMap = {
   Action.Killing: 'Killing',
@@ -103,39 +80,40 @@ const _$ActionEnumMap = {
   Action.Nothing: 'Nothing',
 };
 
-_$WhenClause _$_$WhenClauseFromJson(Map<String, dynamic> json) {
-  return _$WhenClause(
-    action: _$enumDecode(_$ActionEnumMap, json['action']),
-  );
-}
+_$WhenClause _$$WhenClauseFromJson(Map<String, dynamic> json) => _$WhenClause(
+      action: $enumDecode(_$ActionEnumMap, json['action']),
+      $type: json['runtimeType'] as String?,
+    );
 
-Map<String, dynamic> _$_$WhenClauseToJson(_$WhenClause instance) =>
+Map<String, dynamic> _$$WhenClauseToJson(_$WhenClause instance) =>
     <String, dynamic>{
       'action': _$ActionEnumMap[instance.action],
+      'runtimeType': instance.$type,
     };
 
-_$UntilClause _$_$UntilClauseFromJson(Map<String, dynamic> json) {
-  return _$UntilClause(
-    action: _$enumDecode(_$ActionEnumMap, json['action']),
-  );
-}
+_$UntilClause _$$UntilClauseFromJson(Map<String, dynamic> json) =>
+    _$UntilClause(
+      action: $enumDecode(_$ActionEnumMap, json['action']),
+      $type: json['runtimeType'] as String?,
+    );
 
-Map<String, dynamic> _$_$UntilClauseToJson(_$UntilClause instance) =>
+Map<String, dynamic> _$$UntilClauseToJson(_$UntilClause instance) =>
     <String, dynamic>{
       'action': _$ActionEnumMap[instance.action],
+      'runtimeType': instance.$type,
     };
 
-_$FromClause _$_$FromClauseFromJson(Map<String, dynamic> json) {
-  return _$FromClause(
-    from: _$enumDecode(_$RoleEnumEnumMap, json['from']),
-    to: _$enumDecode(_$RoleEnumEnumMap, json['to']),
-  );
-}
+_$FromClause _$$FromClauseFromJson(Map<String, dynamic> json) => _$FromClause(
+      from: $enumDecode(_$RoleEnumEnumMap, json['from']),
+      to: $enumDecode(_$RoleEnumEnumMap, json['to']),
+      $type: json['runtimeType'] as String?,
+    );
 
-Map<String, dynamic> _$_$FromClauseToJson(_$FromClause instance) =>
+Map<String, dynamic> _$$FromClauseToJson(_$FromClause instance) =>
     <String, dynamic>{
       'from': _$RoleEnumEnumMap[instance.from],
       'to': _$RoleEnumEnumMap[instance.to],
+      'runtimeType': instance.$type,
     };
 
 const _$RoleEnumEnumMap = {
@@ -183,33 +161,22 @@ const _$RoleEnumEnumMap = {
   RoleEnum.PickedPlayer: 'PickedPlayer',
 };
 
-_$IFClause _$_$IFClauseFromJson(Map<String, dynamic> json) {
-  return _$IFClause(
-    target: (json['target'] as List<dynamic>?)
-        ?.map((e) => _$enumDecode(_$RoleEnumEnumMap, e))
-        .toList(),
-    targetFor: _$enumDecodeNullable(_$AbilityTypeEnumMap, json['targetFor']),
-    action: _$enumDecode(_$ActionEnumMap, json['action']),
-  );
-}
+_$IFClause _$$IFClauseFromJson(Map<String, dynamic> json) => _$IFClause(
+      target: (json['target'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$RoleEnumEnumMap, e))
+          .toList(),
+      targetFor: $enumDecodeNullable(_$AbilityTypeEnumMap, json['targetFor']),
+      action: $enumDecode(_$ActionEnumMap, json['action']),
+      $type: json['runtimeType'] as String?,
+    );
 
-Map<String, dynamic> _$_$IFClauseToJson(_$IFClause instance) =>
+Map<String, dynamic> _$$IFClauseToJson(_$IFClause instance) =>
     <String, dynamic>{
       'target': instance.target?.map((e) => _$RoleEnumEnumMap[e]).toList(),
       'targetFor': _$AbilityTypeEnumMap[instance.targetFor],
       'action': _$ActionEnumMap[instance.action],
+      'runtimeType': instance.$type,
     };
-
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
-}
 
 const _$AbilityTypeEnumMap = {
   AbilityType.Save: 'Save',

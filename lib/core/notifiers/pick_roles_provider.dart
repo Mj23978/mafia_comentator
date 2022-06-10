@@ -1,14 +1,14 @@
+import 'package:beamer/beamer.dart';
 import 'package:dartx/dartx.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:beamer/beamer.dart';
-import 'package:flutter_comentator/core/notifiers/app_provider.dart';
-import '../../widgets/role_number_details.dart';
 
+import '../../core/notifiers/app_provider.dart';
 import '../../models/player/player.dart';
 import '../../models/role/role.dart';
 import '../../utils/helpers.dart';
 import '../../widgets/dialogs/role_details_dialog.dart';
+import '../../widgets/role_number_details.dart';
 import '../../widgets/show_snackbar.dart';
 import '../engine/roles.dart';
 

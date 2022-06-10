@@ -136,7 +136,7 @@ class _RiveLoadingState extends State<RiveLoading> {
 
   _finished() {
     if (!_controller.isLoading!) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         if (_isSuccessful) {
           widget.onSuccess(_data);
         } else {
