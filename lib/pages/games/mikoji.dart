@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../utils/helpers.dart';
 import '../../widgets/beam_back_button.dart';
 import '../../widgets/rive/rive_home.dart';
-
+ 
 class AllGamesView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
