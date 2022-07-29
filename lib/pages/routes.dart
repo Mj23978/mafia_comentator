@@ -41,6 +41,22 @@ class HomeLocation extends BeamLocation<BeamState> {
   }
 }
 
+class MikojiLocation extends BeamLocation<BeamState> {
+  @override
+  List<Pattern> get pathPatterns => [
+        '/mikoji',
+      ];
+
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    return [
+      BeamPage(key: ValueKey("Mikoji"), child: MafiaView()),
+      // if (state.uri.pathSegments.contains("heros"))
+      //   BeamPage(key: ValueKey("Mafia Heros"), child: MafiaHerosView()),
+      ];
+  }
+}
+
 class MafiaIntroLocation extends BeamLocation<BeamState> {
 
   @override

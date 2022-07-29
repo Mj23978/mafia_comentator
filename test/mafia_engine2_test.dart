@@ -1,9 +1,9 @@
-import 'package:flutter_comentator/core/engine/roles.dart';
+import 'package:mikoji_prison/core/engine/roles.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_comentator/models/player/player.dart';
-import 'package:flutter_comentator/models/enums.dart';
-import 'package:flutter_comentator/core/engine/mafia_engine.dart';
+import 'package:mikoji_prison/models/player/player.dart';
+import 'package:mikoji_prison/models/enums.dart';
+import 'package:mikoji_prison/core/engine/mafia_engine.dart';
 
 void main() {
   group("Mafia Engine 2", () {

@@ -39,23 +39,24 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final RouteInformationParser parser = BeamerParser();
+  final parser = BeamerParser();
   final routerDelegate = BeamerDelegate(
-      initialPath: '/home',
-      locationBuilder: BeamerLocationBuilder(beamLocations: [
-        HomeLocation(),
-        MafiaIntroLocation(),
-        MafiaGameLocation(),
-        LastStationLocation(),
-      ]),
-      notFoundPage: BeamPage(key: ValueKey("404"), child: NotFoundPage()),
-      // guards: [
-      //   BeamGuard(
-      //     pathPatterns: ['/$firstRoute/$secondRoute'],
-      //     check: (_, __) => read(navigationToSecondProvider).state,
-      //   ),
-      // ],
-      );
+    initialPath: '/home',
+    locationBuilder: BeamerLocationBuilder(beamLocations: [
+      HomeLocation(),
+      MafiaIntroLocation(),
+      MafiaGameLocation(),
+      MikojiLocation(),
+      LastStationLocation(),
+    ]),
+    notFoundPage: BeamPage(key: ValueKey("404"), child: NotFoundPage()),
+    // guards: [
+    //   BeamGuard(
+    //     pathPatterns: ['/$firstRoute/$secondRoute'],
+    //     check: (_, __) => read(navigationToSecondProvider).state,
+    //   ),
+    // ],
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +66,13 @@ class MyApp extends StatelessWidget {
           // var locale = box.get("local").split("_");
           // print(locale);
           return MaterialApp.router(
-            routeInformationParser: parser as RouteInformationParser<BeamState>,
+            routeInformationParser: parser,
             routerDelegate: routerDelegate,
             locale: context.locale,
             supportedLocales: context.supportedLocales,
-            // backButtonDispatcher: BeamerBackButtonDispatcher(delegate: routerDelegate), 
-            backButtonDispatcher: BeamerBackButtonDispatcher(delegate: routerDelegate), 
+            // backButtonDispatcher: BeamerBackButtonDispatcher(delegate: routerDelegate),
+            backButtonDispatcher:
+                BeamerBackButtonDispatcher(delegate: routerDelegate),
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
